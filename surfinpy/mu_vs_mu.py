@@ -14,6 +14,8 @@ def get_phase_data(S, nsurfaces):
         -------
             X : value
     '''
+    # to do 
+    # add this function to unitls and combine with find_phase
     S = np.split(S, nsurfaces)
     S = np.column_stack(S)
     x = np.argmin(S, axis=1) + 1
@@ -29,6 +31,8 @@ def get_labels(ticks, data):
        -------
             labels : list strings
     '''
+    # to do 
+    # add to utils
     labels = []
     for i in range(0, ticks.size):
         val = ticks[i] - 1
@@ -48,6 +52,8 @@ def transform_numbers(Z, ticks):
         -------
             Z : numpy array - new array
     '''
+    # to do 
+    # add to utils
     counter = 0
     y = np.arange(ticks.size)
     for i in range(0, ticks.size):
@@ -67,6 +73,8 @@ def pressure(X, T):
         -------
             pressure : numpy array - pressure values
     '''
+    # to do 
+    # add to utils
     k = codata.value('Boltzmann constant in eV/K')
     pressure = X / (k * T * 2.203)
 
@@ -95,18 +103,24 @@ def scale(X, Xscale):
 
 def calculate_surface_energy(Uo, Uh, yshiftval, xshiftval, Hexcess, Oexcess, B):
     ''' This function calculates the surface for a given chemical potential of
-        oxygen and hydrogen
-        Parameters
-        ----------
-            Uo   : Chemical potential of Oxygen
-            Ho   : Chemical potential of Hydrogen
-            yshiftval : shift value for y axis
-            xshiftval : shift value for x axis
-            Hexcess : Excess Y
-            Oexcess : Excess X
-            Returns
-        -------
-            SE  : Surface Energy
+    oxygen and hydrogen
+    Parameters
+    ----------
+    Uo : 
+        Chemical potential of Oxygen
+    Ho : 
+        Chemical potential of Hydrogen
+    yshiftval : 
+        shift value for y axis
+    xshiftval : 
+        shift value for x axis
+    Hexcess : 
+        Excess Y
+    Oexcess : 
+        Excess X
+    Returns
+    -------
+    SE  : Surface Energy
     '''
     yshiftval = scale(yshiftval, Hexcess)
     xshiftval = scale(xshiftval, Oexcess)
@@ -116,27 +130,30 @@ def calculate_surface_energy(Uo, Uh, yshiftval, xshiftval, Hexcess, Oexcess, B):
 
     return SE
 
-def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval=None, yshiftval=None):
+def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
     ''' This function calculates and returns a 2D numpy array of surface energes
-        for a range of chemical potential values
-        Parameters
-        ----------
-            data      : List containing the dictionary data for each phase
-            bulk      : dictionary containing data for bulk
-            O         : X axis chemical potential values
-            H         : Y axis chemical potential values
-            nsurfaces : Number of phases
-            xshiftval : shift value for x axis
-            yshiftval : shift value for y axis
-        Returns
-        -------
-            SE_array  : array of surface energies matching chemcial potential values
-     '''
-    if xshiftval is None:
-        xshiftval = 0
-    if yshiftval is None:
-        yshiftval = 0
-    
+    for a range of chemical potential values
+    Parameters
+    ----------
+    data : list 
+        List containing the dictionary data for each phase
+    bulk : dictionary 
+        dictionary containing data for bulk
+    X : dictionary
+        X axis chemical potential values
+    Y : dictionary
+        Y axis chemical potential values
+    nsurfaces : int 
+        Number of phases
+    xshiftval : float
+        shift value for x axis
+    yshiftval : float 
+        shift value for y axis
+    Returns
+    -------
+    SE_array  : array like 
+        array of surface energies matching chemcial potential values
+     '''  
     Xnew = np.tile(X, Y.size)
     Xnew = np.reshape(Xnew, (Y.size, X.size))
     Ynew = np.tile(Y, X.size)
@@ -151,33 +168,32 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval=None, yshiftval=
     SE_array = get_phase_data(S, nsurfaces)
     return SE_array
 
-def read_nist(File):
-    data = np.genfromtxt(File, skip_header=2)
-    return data
-
-def calculate_gibbs(data):
-    temperature = data[:,0]
-    deltas = data[:,1]
-    H = data[:,5]
-
-    DeltaS = (deltas * 0.01036) / 1000
-    H = H + H[0]
-    H_HT = H * 0.01036
-    mu = H_HT - temperature * DeltaS
-    data = {'Temperature': temperature, 'Shift': mu}
-    return data
-
-
 def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0, 
               temperature=0, convert_pressure=False, output="Phase.png"):
-    '''Function that runs the calcualtion
-       Parameters
-       ----------
-        data      : List containing the dictionary data for each phase
-        bulk      : dictionary containing data for bulk
-        O         : X axis chemical potential values
-        H         : Y axis chemical potential values
-        nsurfaces : Number of phases
+    '''Initialise the surface energy calculation.
+    Parameters
+    ----------
+    data : list 
+        List containing the dictionary data for each phase
+    bulk : dictionary
+        Dctionary containing data for bulk
+    deltaX : dictionary
+        X axis chemical potential values
+    DeltaY : dictionary 
+        Y axis chemical potential values
+    xshiftval : float
+        DFT energy of adsorbing species
+    yshiftval : float
+        DFT energy of adsorbing species
+    temperature : int
+        Temperature 
+    convert_pressure : bool
+        Parameter to turn on conversion of chemical potential to pressure
+    output : str
+        Output file name
+    Returns
+    -------
+    None
     '''
     data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)

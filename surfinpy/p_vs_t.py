@@ -4,11 +4,15 @@ from surfinpy import mu_vs_mu
 from scipy.constants import codata
 
 def fit(thermochem, T):
+    # to do
+    # add to utils
     z = np.polyfit(thermochem[:,0], thermochem[:,1], 3)
     shift = (z[0] * (T ** 3)) + (z[1] * (T ** 2)) + (z[2] * T) + z[3]
     return shift
 
 def vectorize(AE, lnP, T):
+    # to do 
+    # a and xnew are the same - write function for this and add to utils
     A = np.tile(AE, lnP.size)
     A = np.reshape(A, (lnP.size, T.size))
     xnew = np.tile(T, lnP.size)
@@ -20,6 +24,8 @@ def vectorize(AE, lnP, T):
     return xnew, ynew, A
 
 def find_phase(data, SEABS):
+    # to do
+    # add this function to utils and combine with get_hase_data
     S = np.split(SEABS, (len(data) + 1))
     S = np.column_stack(S)
     SE_array = np.argmin(S, axis=1) + 1
