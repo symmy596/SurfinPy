@@ -98,7 +98,8 @@ def constants(data, bulk):
     return Hexcess, Oexcess, B
 
 def scale(X, Xscale):
-    
+    # to do 
+    # get rid of this
     return X * Xscale
 
 def calculate_surface_energy(Uo, Uh, yshiftval, xshiftval, Hexcess, Oexcess, B):
@@ -154,6 +155,9 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
     SE_array  : array like 
         array of surface energies matching chemcial potential values
      '''  
+     # to do 
+     # rename this function
+     # use the new vectorize stuff in utils
     Xnew = np.tile(X, Y.size)
     Xnew = np.reshape(Xnew, (Y.size, X.size))
     Ynew = np.tile(Y, X.size)
@@ -195,6 +199,8 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
     -------
     None
     '''
+    # to do 
+    # fix plots
     data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1], 0.025, dtype="float")

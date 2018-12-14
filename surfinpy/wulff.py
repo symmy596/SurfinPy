@@ -25,4 +25,3 @@ def calculate_surface_energy(stoich, data, SE, adsorbant, coverage, thermochem, 
 
 
 
-

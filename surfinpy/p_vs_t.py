@@ -69,7 +69,9 @@ def inititalise(thermochem, adsorbant):
     return lnP, logP, T, adsorbant
 
 def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
-    
+    # to do 
+    # nsurfaces
+    # documentation
     lnP, logP, T, thermochem = inititalise(thermochem, adsorbant)
 
     AE = calculate_adsorption_energy(data, stoich, thermochem) 
