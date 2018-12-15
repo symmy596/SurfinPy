@@ -1,5 +1,4 @@
 import numpy as np
-
 from surfinpy import phaseplot
 from surfinpy import p_vs_t
 from pylab import *

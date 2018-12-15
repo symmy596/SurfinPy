@@ -1,5 +1,4 @@
 import numpy as np
-
 from surfinpy import phaseplot
 from pylab import *
 from scipy.constants import codata
