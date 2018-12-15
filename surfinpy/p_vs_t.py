@@ -1,6 +1,6 @@
 import numpy as np
-
-from surfinpy import mu_vs_mu
+import utils as ut
+import mu_vs_mu
 from scipy.constants import codata
 
 def fit(thermochem, T):
@@ -23,15 +23,7 @@ def vectorize(AE, lnP, T):
 
     return xnew, ynew, A
 
-def find_phase(data, SEABS):
-    # to do
-    # add this function to utils and combine with get_hase_data
-    S = np.split(SEABS, (len(data) + 1))
-    S = np.column_stack(S)
-    SE_array = np.argmin(S, axis=1) + 1
-    return SE_array
-
-def calculate_surface_energy(AE, lnP, T, coverage, SE, data):
+def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     
     R = codata.value('molar gas constant')
     N_A = codata.value('Avogadro constant')
@@ -44,7 +36,7 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data):
     test = np.zeros(lnP.size * T.size)
     test = test + SE
     SEABS = np.insert(SEABS, 0, test)
-    SE_array = find_phase(data, SEABS)
+    SE_array = ut.get_phase_data(SEABS, nsurfaces)
     
     return SE_array
 
@@ -73,9 +65,9 @@ def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
     # nsurfaces
     # documentation
     lnP, logP, T, thermochem = inititalise(thermochem, adsorbant)
-
+    nsurfaces = len(data) + 1
     AE = calculate_adsorption_energy(data, stoich, thermochem) 
-    SE_array = calculate_surface_energy(AE, lnP, T, coverage, SE, data)
+    SE_array = calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces)
     ticks = np.unique([SE_array])
     SE_array = mu_vs_mu.transform_numbers(SE_array, ticks)
     phase_grid = np.reshape(SE_array, (lnP.size, T.size))

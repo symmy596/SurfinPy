@@ -1,5 +1,22 @@
 import numpy as np
 
+def get_phase_data(S, nsurfaces):
+    ''' get_phase_data - Determines which surface composition is most stable
+        Parameters
+        ----------
+            S : 1D numpy array of surface energies
+            nsurfaces : int, Total number of surfaces
+        Returns
+        -------
+            X : value
+    '''
+    # to do 
+    # add this function to unitls and combine with find_phase
+    S = np.split(S, nsurfaces)
+    S = np.column_stack(S)
+    x = np.argmin(S, axis=1) + 1
+    return x
+
 def read_nist(File):
     '''Read a downloaded NIST_JANAF thermochemcial table
     Parameters

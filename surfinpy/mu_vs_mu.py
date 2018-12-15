@@ -2,23 +2,8 @@ import numpy as np
 from surfinpy import phaseplot
 from pylab import *
 from scipy.constants import codata
+import utils as ut
 
-def get_phase_data(S, nsurfaces):
-    ''' get_phase_data - Determines which surface composition is most stable
-        Parameters
-        ----------
-            S : 1D numpy array of surface energies
-            nsurfaces : int, Total number of surfaces
-        Returns
-        -------
-            X : value
-    '''
-    # to do 
-    # add this function to unitls and combine with find_phase
-    S = np.split(S, nsurfaces)
-    S = np.column_stack(S)
-    x = np.argmin(S, axis=1) + 1
-    return x
 
 def get_labels(ticks, data):
     '''Accesses and returns the labels that correspond to the phases displayed on the phase diagram
@@ -168,7 +153,7 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
         Hexcess, Oexcess, B = constants(data[k], bulk)
         SE = calculate_surface_energy(Xnew, Ynew, yshiftval, xshiftval, Hexcess, Oexcess, B)
         S = np.append(S, SE)
-    SE_array = get_phase_data(S, nsurfaces)
+    SE_array = ut.get_phase_data(S, nsurfaces)
     return SE_array
 
 def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0, 
