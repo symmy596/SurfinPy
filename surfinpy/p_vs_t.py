@@ -62,8 +62,31 @@ def inititalise(thermochem, adsorbant):
 
 def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
     # to do 
-    # nsurfaces
+    # nsurfaces - done
     # documentation
+    # In theory coverage can be calcualted from the data provided. 
+    # (nadsobant / surface area (nm)) / 2
+    # allow option with default as 0. if it is None then call a new
+    # function to calculate coverage.
+    '''collects input variables and intitialises the calculation.
+    Parameters
+    ----------
+    stoich : dictionary 
+        information about the stoichiometric surface
+    data : list
+        list of dictionaries containing information on the "adsorbed" surfaces
+    SE : float
+        surface energy of the stoichiomteric surface
+    adsorbant : float
+        dft energy of adsorbing species
+    coverage : array like
+        Numpy array containing the different coverages of adsorbant. 
+    thermochem : array like
+        Numpy array containing thermochemcial data downloaded from NIST_JANAF
+        for the adsorbing species. 
+    Returns
+    -------
+    '''
     lnP, logP, T, thermochem = inititalise(thermochem, adsorbant)
     nsurfaces = len(data) + 1
     AE = calculate_adsorption_energy(data, stoich, thermochem) 
