@@ -1,51 +1,14 @@
 import numpy as np
-from surfinpy import phaseplot
+#from surfinpy import phaseplot
 from pylab import *
 from scipy.constants import codata
+import sys
+
+#sys.path.append('C:\surfinpy')
+
+import phaseplot
 import utils as ut
 
-
-def get_labels(ticks, data):
-    '''Accesses and returns the labels that correspond to the phases displayed on the phase diagram
-       Parameters
-       ----------
-            ticks : list, Phases that are displayed
-            data  : list of dictionaries
-       Returns
-       -------
-            labels : list strings
-    '''
-    # to do 
-    # add to utils
-    labels = []
-    for i in range(0, ticks.size):
-        val = ticks[i] - 1
-        val = int(val)
-        l = data[val]['Label']
-        labels.append(l)
-    
-    return labels
-
-def transform_numbers(Z, ticks):
-    ''' transform numbers - Takes the phase diagram array and converts the numbers to numbers scaled 0, 1, 2, etc in order to make plotting easier
-        Parameters
-        ----------
-            Z : numpy array - surface stabilities
-            ticks : list - unique phases appearing in above array
-        Returns
-        -------
-            Z : numpy array - new array
-    '''
-    # to do 
-    # add to utils
-    counter = 0
-    y = np.arange(ticks.size)
-    for i in range(0, ticks.size):
-        for j in range(0, Z.size):
-            if Z[j] == ticks[i]:
-                Z[j] = y[i]
-    
-    return Z
 
 def pressure(X, T):
     ''' pressure - Calculate the pressure for chemical potential values
@@ -193,9 +156,9 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
     Y = Y - yshiftval
     SE_array = surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval)
     ticks = np.unique([SE_array])
-    SE_array = transform_numbers(SE_array, ticks)
+    SE_array = ut.transform_numbers(SE_array, ticks)
     Z = np.reshape(SE_array, (Y.size, X.size))
-    labels = get_labels(ticks, data)          
+    labels = ut.get_labels(ticks, data)          
     if xshiftval == 0 and yshiftval == 0:
         phaseplot.plot_phase(X, Y, Z, ticks, labels, deltaX['Label'],
                              deltaY['Label'], temperature, output)

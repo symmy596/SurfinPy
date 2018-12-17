@@ -137,7 +137,7 @@ def plot_pressure(x, y, phase, t, labels, XL, YL, temperature, output):
     plt.savefig(output, dpi=600)
     plt.show()  
 
-def tvp_plot(x, y, z, t, labels, output):
+def tvp_plot(x, y, z, t, labels=None, output="Phase.png"):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)

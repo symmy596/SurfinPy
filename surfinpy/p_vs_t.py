@@ -1,16 +1,31 @@
 import numpy as np
+#import utils as ut
+#import mu_vs_mu
+from scipy.constants import codata
+import sys
+
 import utils as ut
 import mu_vs_mu
-from scipy.constants import codata
-
-def fit(thermochem, T):
-    # to do
-    # add to utils
-    z = np.polyfit(thermochem[:,0], thermochem[:,1], 3)
-    shift = (z[0] * (T ** 3)) + (z[1] * (T ** 2)) + (z[2] * T) + z[3]
-    return shift
 
 def vectorize(AE, lnP, T):
+    '''Create 2D arrays of adsorption energy, temperature and pressure values
+    Parameters
+    ----------
+    AE : array like
+        adsorption energies at varying temerature
+    lnP : array like
+        Pressure range
+    T : array like
+        Temperature range
+    Returns
+    -------
+    xnew : array like
+        2D array of temeoerature values
+    ynew : array like 
+        2D array of pressure values
+    A : array like
+        2D array of adsorption energies
+    '''
     # to do 
     # a and xnew are the same - write function for this and add to utils
     A = np.tile(AE, lnP.size)
@@ -24,7 +39,29 @@ def vectorize(AE, lnP, T):
     return xnew, ynew, A
 
 def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
-    
+    '''Calculate the surface energy as a function of pressure and temperature
+    for each surface calculation.
+    Parameters
+    ----------
+    AE : list
+        list of adsorption energies
+    lnP : array like
+        full pressure range
+    T : array like
+        full temperature range
+    coverage : array like
+        surface coverage of adsorbing species in each calculation
+    SE : float
+        surface energy of stoichiomteric surface
+    data : list
+        list of dictionaries containing info on each surface
+    nsurfaces : int
+        total number of surfaces 
+    Returns
+    -------
+    SE_array : array like
+        array of integers corresponding to lowest surface energies
+    '''
     R = codata.value('molar gas constant')
     N_A = codata.value('Avogadro constant')
     SEABS = np.array([])
@@ -41,7 +78,20 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     return SE_array
 
 def calculate_adsorption_energy(data, stoich, thermochem):
-    
+    '''From the dft data provided - calculate the adsorbation energy
+    Parameters
+    ----------
+    data : list
+        list of dictionaries containing info about each calculation
+    stoich : dict
+        info about the stoichiometric surface calculation
+    termochem : float
+        dft energy of adsorbing species
+    Returns 
+    -------
+    AE : array like
+        Adsorbtion energy of adsorbing species in each calculation
+    '''
     AE = np.array([])
     for i in range(0, len(data)):
         adsorption_energy = (data[i]["Energy"] - (stoich["Energy"] + (data[i]["Y"] * thermochem))) / data[i]["Y"]
@@ -51,8 +101,26 @@ def calculate_adsorption_energy(data, stoich, thermochem):
     return AE
 
 def inititalise(thermochem, adsorbant):
+    '''initialise the arrays 
+    Parameters
+    ----------
+    thermochem : array like
+        array containing NIST_JANAF thermochemical data
+    adsorbant : float
+        dft energy of adsorbing species
+    Returns
+    -------
+    lnP : array like
+        numpy array of pressure values
+    logP : array like
+        log of lnP
+    T : array like
+        array of temperature values
+    adsrobant : array like 
+        dft values of adsorbant scaled to temperature
+    '''
     T = np.arange(2, 1000)
-    shift = fit(thermochem, T)
+    shift = ut.fit(thermochem, T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant = adsorbant - shift
 
@@ -61,9 +129,7 @@ def inititalise(thermochem, adsorbant):
     return lnP, logP, T, adsorbant
 
 def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
-    # to do 
-    # nsurfaces - done
-    # documentation
+    # to do 0
     # In theory coverage can be calcualted from the data provided. 
     # (nadsobant / surface area (nm)) / 2
     # allow option with default as 0. if it is None then call a new
@@ -92,10 +158,10 @@ def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
     AE = calculate_adsorption_energy(data, stoich, thermochem) 
     SE_array = calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces)
     ticks = np.unique([SE_array])
-    SE_array = mu_vs_mu.transform_numbers(SE_array, ticks)
+    SE_array = ut.transform_numbers(SE_array, ticks)
     phase_grid = np.reshape(SE_array, (lnP.size, T.size))
     data.insert(0, stoich)
-    labels = mu_vs_mu.get_labels(ticks, data)
+    labels = ut.get_labels(ticks, data)
     y = logP
     x = T
     z = phase_grid
