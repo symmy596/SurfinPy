@@ -1,20 +1,35 @@
 import numpy as np
 
-class System:
-   '''System Information
+class System():
+    '''
+    System Information
     This class is designed to store all of the data involved in all 
     calculations. 
     Specifically this includes the DFT data for each "adsorbed" surface, the
     DFT data for the stroichiometric surface and the DFT energies for the adsorbed species. 
     '''
-    def __init__(self, data, stoich, adsorbant, bulk=None, SE=None):
+    def __init__(self, data, stoich, adsorbant=None, bulk=None, SE=None):
         self.data = data
         self.stoich = stoich 
-        self.adsorbant = adsorbant
+        if adsorbant:
+            self.adsorbant = adsorbant
         if bulk:
             self.bulk = bulk
         if SE:
             self.SE = SE
+        
+    def calculate_coverage(self, i):
+        return(((self.data[i]['Y'] / (self.data[i]['Area'] / 100)) / 2) *  10**18)
+    
+    def first_species(self):
+        pass
+    def second_species(self):
+        pass
+    def labels(self):
+        # already written below
+        pass
+    def adsorption_energy(self):
+        pass
         
 
 def get_labels(ticks, data):
