@@ -1,14 +1,33 @@
 import numpy as np
 
+class System:
+   '''System Information
+    This class is designed to store all of the data involved in all 
+    calculations. 
+    Specifically this includes the DFT data for each "adsorbed" surface, the
+    DFT data for the stroichiometric surface and the DFT energies for the adsorbed species. 
+    '''
+    def __init__(self, data, stoich, adsorbant, bulk=None, SE=None):
+        self.data = data
+        self.stoich = stoich 
+        self.adsorbant = adsorbant
+        if bulk:
+            self.bulk = bulk
+        if SE:
+            self.SE = SE
+        
+
 def get_labels(ticks, data):
     '''Accesses and returns the labels that correspond to the phases displayed on the phase diagram
-       Parameters
-       ----------
-            ticks : list, Phases that are displayed
-            data  : list of dictionaries
-       Returns
-       -------
-            labels : list strings
+    Parameters
+    ----------
+    ticks : list
+        Phases that are displayed
+    data  : list 
+        list of dictionaries
+    Returns
+    -------
+    labels : list strings
     '''
     # to do 
     # add to utils
