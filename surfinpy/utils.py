@@ -1,5 +1,11 @@
 import numpy as np
 
+def calculate_coverage(data):
+    coverage = np.array([])
+    for i in range(0, len(data)):
+        coverage = np.append(coverage, (((data[i]['Y'] / (data[i]['Area'] / 100)) / 2) *  10**18))
+    return coverage
+
 def get_labels(ticks, data):
     '''Accesses and returns the labels that correspond to the phases displayed on the phase diagram
     Parameters

@@ -128,7 +128,7 @@ def inititalise(thermochem, adsorbant):
     lnP = np.log(10 ** logP)
     return lnP, logP, T, adsorbant
 
-def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
+def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
     # to do 0
     # In theory coverage can be calcualted from the data provided. 
     # (nadsobant / surface area (nm)) / 2
@@ -153,6 +153,8 @@ def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
     Returns
     -------
     '''
+    if Coverage is None:
+        coverage = sut.calculate_coverage(data)
     lnP, logP, T, thermochem = inititalise(thermochem, adsorbant)
     nsurfaces = len(data) + 1
     AE = calculate_adsorption_energy(data, stoich, thermochem) 
@@ -165,5 +167,4 @@ def calculate(stoich, data, SE, adsorbant, coverage, thermochem):
     y = logP
     x = T
     z = phase_grid
-
     return x, y, z
