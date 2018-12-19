@@ -1,5 +1,5 @@
 surfinpy\.phaseplot
-============
+===================
 
 This module is designed to generate the phase diagram
 

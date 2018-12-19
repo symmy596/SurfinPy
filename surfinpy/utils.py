@@ -7,13 +7,16 @@ def calculate_coverage(data):
     return coverage
 
 def get_labels(ticks, data):
-    '''Accesses and returns the labels that correspond to the phases displayed on the phase diagram
+    '''Accesses and returns the labels that correspond to the phases
+    displayed on the phase diagram
+
     Parameters
     ----------
     ticks : list
         Phases that are displayed
-    data  : list 
+    data  : list
         list of dictionaries
+
     Returns
     -------
     labels : list strings
@@ -27,14 +30,15 @@ def get_labels(ticks, data):
     return labels
 
 def transform_numbers(Z, ticks):
-    ''' transform numbers - Takes the phase diagram array and converts the numbers to numbers scaled 0, 1, 2, etc in order to make plotting easier
-        Parameters
-        ----------
-            Z : numpy array - surface stabilities
-            ticks : list - unique phases appearing in above array
-        Returns
-        -------
-            Z : numpy array - new array
+    ''' transform numbers - Takes the phase diagram array and converts
+    the numbers to numbers scaled 0, 1, 2, etc in order to make plotting easier
+    Parameters
+    ----------
+    Z : numpy array - surface stabilities
+    ticks : list - unique phases appearing in above array
+    Returns
+    -------
+    Z : numpy array - new array
     '''
     y = np.arange(ticks.size)
     for i in range(0, ticks.size):
@@ -45,15 +49,17 @@ def transform_numbers(Z, ticks):
 
 def fit(thermochem, T):
     '''Fit a polynominal function to thermochemical data from NIST_JANAF
+
     Parameters 
     ----------
     thermochem : array like
         NIST_JANAF thermochemical table in numpy array format
     T : array like
         full temperature range
-    Returns 
+
+    Returns
     -------
-    shift : array like 
+    shift : array like
         Entropy of adsorption species shifted to temeperature T
     '''
     z = np.polyfit(thermochem[:,0], thermochem[:,1], 3)
@@ -62,10 +68,12 @@ def fit(thermochem, T):
 
 def get_phase_data(S, nsurfaces):
     ''' get_phase_data - Determines which surface composition is most stable
+
     Parameters
     ----------
     S : 1D numpy array of surface energies
     nsurfaces : int, Total number of surfaces
+
     Returns
     -------
     X : value
@@ -83,10 +91,12 @@ def get_lowest_surface(S, nsurfaces):
 
 def read_nist(File):
     '''Read a downloaded NIST_JANAF thermochemcial table
+
     Parameters
     ----------
     File : str
         filename of table
+
     Returns
     -------
     data : array_like
@@ -98,10 +108,12 @@ def read_nist(File):
 def calculate_gibbs(data):
     '''Calculate the gibbs free energy from thermochemcial data
     obtained from the NIST_JANAF database
+
     Parameters
     ----------
     data : array like
         Full file downloaded from NIST_JANAF database
+
     Returns
     -------
     data : dictionary

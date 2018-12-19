@@ -1,5 +1,5 @@
 surfinpy\.p_vs_t
-========
+================
 
 Functions related to the generation of surface phase diagrams as a function of pressure and temperature
 
@@ -7,4 +7,3 @@ Functions related to the generation of surface phase diagrams as a function of p
     :members:
     :undoc-members:
     :show-inheritance:
-    

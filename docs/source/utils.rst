@@ -1,5 +1,5 @@
 surfinpy\.utils
-==========
+===============
 
 .. automodule:: surfinpy.utils
     :members:

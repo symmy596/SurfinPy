@@ -6,6 +6,7 @@ from surfinpy import mu_vs_mu
 
 def vectorize(AE, lnP, T):
     '''Create 2D arrays of adsorption energy, temperature and pressure values
+
     Parameters
     ----------
     AE : array like
@@ -14,6 +15,7 @@ def vectorize(AE, lnP, T):
         Pressure range
     T : array like
         Temperature range
+
     Returns
     -------
     xnew : array like
@@ -23,8 +25,6 @@ def vectorize(AE, lnP, T):
     A : array like
         2D array of adsorption energies
     '''
-    # to do 
-    # a and xnew are the same - write function for this and add to utils
     A = np.tile(AE, lnP.size)
     A = np.reshape(A, (lnP.size, T.size))
     xnew = np.tile(T, lnP.size)
@@ -38,6 +38,7 @@ def vectorize(AE, lnP, T):
 def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     '''Calculate the surface energy as a function of pressure and temperature
     for each surface calculation.
+
     Parameters
     ----------
     AE : list
@@ -53,7 +54,8 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     data : list
         list of dictionaries containing info on each surface
     nsurfaces : int
-        total number of surfaces 
+        total number of surface
+ 
     Returns
     -------
     SE_array : array like
@@ -76,6 +78,7 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
 
 def calculate_adsorption_energy(data, stoich, thermochem):
     '''From the dft data provided - calculate the adsorbation energy
+
     Parameters
     ----------
     data : list
@@ -84,6 +87,7 @@ def calculate_adsorption_energy(data, stoich, thermochem):
         info about the stoichiometric surface calculation
     termochem : float
         dft energy of adsorbing species
+
     Returns 
     -------
     AE : array like
@@ -98,13 +102,15 @@ def calculate_adsorption_energy(data, stoich, thermochem):
     return AE
 
 def inititalise(thermochem, adsorbant):
-    '''initialise the arrays 
+    '''initialise the arrays
+
     Parameters
     ----------
     thermochem : array like
         array containing NIST_JANAF thermochemical data
     adsorbant : float
         dft energy of adsorbing species
+
     Returns
     -------
     lnP : array like
@@ -126,12 +132,8 @@ def inititalise(thermochem, adsorbant):
     return lnP, logP, T, adsorbant
 
 def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
-    # to do 0
-    # In theory coverage can be calcualted from the data provided. 
-    # (nadsobant / surface area (nm)) / 2
-    # allow option with default as 0. if it is None then call a new
-    # function to calculate coverage.
     '''collects input variables and intitialises the calculation.
+
     Parameters
     ----------
     stoich : dictionary 
@@ -147,6 +149,7 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
     thermochem : array like
         Numpy array containing thermochemcial data downloaded from NIST_JANAF
         for the adsorbing species. 
+
     Returns
     -------
     '''

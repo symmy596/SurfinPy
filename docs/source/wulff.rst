@@ -1,5 +1,5 @@
 surfinpy\.wulff
-=================
+===============
 
 The module required for the generation of wulff plots.
 

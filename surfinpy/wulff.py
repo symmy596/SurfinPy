@@ -16,7 +16,6 @@ def calculate_surface_energy(stoich, data, SE, adsorbant, thermochem, T, P, cove
         if Tarr[i] == T:
             X = shift[i]
     adsorbant = adsorbant - X
-    
     AE = pt.calculate_adsorption_energy(data, stoich, adsorbant)
     Y = P * (T * R)
     SEs = np.array([SE])

@@ -1,5 +1,5 @@
-pylj modules
-============
+surfinpy modules
+================
 
 .. toctree::
    :maxdepth: 4
