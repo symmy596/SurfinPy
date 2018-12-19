@@ -1,20 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-import matplotlib.patches as mpatches
-from matplotlib.ticker import FormatStrFormatter
-from pylab import *
-from scipy.constants import codata
-import matplotlib.ticker as ticker
-from matplotlib.colors import ListedColormap
-import matplotlib as mpl
-import mpl_toolkits.axisartist as AA
-from mpl_toolkits.axes_grid1 import host_subplot
-import matplotlib
-import matplotlib.gridspec as gridspec
-from scipy.optimize import brentq
 from matplotlib.ticker import FixedFormatter
-from scipy.optimize import brentq
+import matplotlib.gridspec as gridspec
+from matplotlib.ticker import FormatStrFormatter
+import matplotlib.ticker as ticker
+from pylab import *
 
 def get_levels(X):
 
@@ -46,8 +36,8 @@ def plot_phase(x, y, phase, t, labels, XL, YL, temperature, output):
 
     CM = ax.contourf(x, y, phase, levels=levels, cmap="RdBu")
     
-    ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
-    ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
+#    ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
+#    ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
     ax.set_ylabel(YLab, fontsize=14)
     ax.set_xlabel(XLab, fontsize=14)
     ax.text(0.1, 0.95, t_lab,  fontsize=15, color="white", horizontalalignment='center', verticalalignment='center', transform = ax.transAxes)
@@ -64,7 +54,7 @@ def plot_mu_p(x, y, phase, p1, p2, t, labels, XL, YL, temperature, output):
     levels = get_levels(phase)
     ticky = get_ticks(t)
     fontsize = 10
-    rc('axes', linewidth=2) 
+#    rc('axes', linewidth=2) 
     X1Lab = "$\Delta \mu_{" + XL + "}$" + " (eV)"
     Y1Lab = "$\Delta \mu_{" + YL + "}$" + " (eV)"
     X2Lab = "Log $P_" + "{" + XL + "}$" + " 298 K (bar)"
@@ -82,18 +72,18 @@ def plot_mu_p(x, y, phase, p1, p2, t, labels, XL, YL, temperature, output):
 
     ax.set_xlabel(X1Lab, fontsize=14)
     ax.set_ylabel(Y1Lab, fontsize=14)
-    ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
-    ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))          
+ #   ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
+ #   ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))          
 
     ax2 = ax.twinx()
     ax2.set_ylim(p2[0], p2[-1])
     ax2.set_ylabel(Y2Lab, fontsize=13)
-    ax2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
+#    ax2.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
 
     ax3 = ax.twiny()
     ax3.set_xlim(p1[0], p1[-1])
     ax3.set_xlabel(X2Lab, fontsize=12)
-    ax3.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
+#    ax3.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))   
 
     ax.tick_params(labelsize=10)
     ax2.tick_params(labelsize=10)

@@ -117,7 +117,8 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
         SE = calculate_surface_energy(Xnew, Ynew, yshiftval, xshiftval, Hexcess, Oexcess, B)
         S = np.append(S, SE)
     SE_array = ut.get_phase_data(S, nsurfaces)
-    return SE_array
+    surface_energies = ut.get_lowest_surface(S, nsurfaces)
+    return SE_array, surface_energies
 
 def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0, 
               temperature=0, convert_pressure=False, output="Phase.png"):
@@ -146,19 +147,22 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
     -------
     None
     '''
-    # to do 
-    # fix plots
     data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1], 0.025, dtype="float")
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1], 0.025, dtype="float")
     X = X - xshiftval
     Y = Y - yshiftval
-    SE_array = surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval)
-    ticks = np.unique([SE_array])
-    SE_array = ut.transform_numbers(SE_array, ticks)
-    Z = np.reshape(SE_array, (Y.size, X.size))
-    labels = ut.get_labels(ticks, data)          
+    phases, surface_energies = surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval)
+
+    ticks = np.unique([phases])
+
+    SE_array = ut.transform_numbers(phases, ticks)
+
+    Z = np.reshape(phases, (Y.size, X.size))
+
+    labels = ut.get_labels(ticks, data) 
+
     if xshiftval == 0 and yshiftval == 0:
         phaseplot.plot_phase(X, Y, Z, ticks, labels, deltaX['Label'],
                              deltaY['Label'], temperature, output)
@@ -170,3 +174,5 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
         p2 = pressure(Y, temperature)
         phaseplot.plot_mu_p(X, Y, Z, p1, p2, ticks, labels, deltaX['Label'], deltaY['Label'], temperature, output)
         phaseplot.plot_pressure(p1, p2, Z, ticks, labels, deltaX['Label'], deltaY['Label'], temperature, output="pressure.png")
+
+    return surface_energies, X, Y
