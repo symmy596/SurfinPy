@@ -117,8 +117,7 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
         SE = calculate_surface_energy(Xnew, Ynew, yshiftval, xshiftval, Hexcess, Oexcess, B)
         S = np.append(S, SE)
     SE_array = ut.get_phase_data(S, nsurfaces)
-    surface_energies = ut.get_lowest_surface(S, nsurfaces)
-    return SE_array, surface_energies
+    return SE_array
 
 def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0, 
               temperature=0, convert_pressure=False, output="Phase.png"):
@@ -153,14 +152,10 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1], 0.025, dtype="float")
     X = X - xshiftval
     Y = Y - yshiftval
-    phases, surface_energies = surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval)
-
+    phases = surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval)
     ticks = np.unique([phases])
-
     SE_array = ut.transform_numbers(phases, ticks)
-
     Z = np.reshape(phases, (Y.size, X.size))
-
     labels = ut.get_labels(ticks, data) 
 
     if xshiftval == 0 and yshiftval == 0:
@@ -174,5 +169,3 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
         p2 = pressure(Y, temperature)
         phaseplot.plot_mu_p(X, Y, Z, p1, p2, ticks, labels, deltaX['Label'], deltaY['Label'], temperature, output)
         phaseplot.plot_pressure(p1, p2, Z, ticks, labels, deltaX['Label'], deltaY['Label'], temperature, output="pressure.png")
-
-    return surface_energies, X, Y

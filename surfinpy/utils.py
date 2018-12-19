@@ -1,37 +1,5 @@
 import numpy as np
 
-class System():
-    '''
-    System Information
-    This class is designed to store all of the data involved in all 
-    calculations. 
-    Specifically this includes the DFT data for each "adsorbed" surface, the
-    DFT data for the stroichiometric surface and the DFT energies for the adsorbed species. 
-    '''
-    def __init__(self, data, stoich, adsorbant=None, bulk=None, SE=None):
-        self.data = data
-        self.stoich = stoich 
-        if adsorbant:
-            self.adsorbant = adsorbant
-        if bulk:
-            self.bulk = bulk
-        if SE:
-            self.SE = SE
-        
-    def calculate_coverage(self, i):
-        return(((self.data[i]['Y'] / (self.data[i]['Area'] / 100)) / 2) *  10**18)
-    
-    def first_species(self):
-        pass
-    def second_species(self):
-        pass
-    def labels(self):
-        # already written below
-        pass
-    def adsorption_energy(self):
-        pass
-        
-
 def get_labels(ticks, data):
     '''Accesses and returns the labels that correspond to the phases displayed on the phase diagram
     Parameters
@@ -44,8 +12,6 @@ def get_labels(ticks, data):
     -------
     labels : list strings
     '''
-    # to do 
-    # add to utils
     labels = []
     for i in range(0, ticks.size):
         val = ticks[i] - 1
@@ -64,15 +30,11 @@ def transform_numbers(Z, ticks):
         -------
             Z : numpy array - new array
     '''
-    # to do 
-    # add to utils
-    counter = 0
     y = np.arange(ticks.size)
     for i in range(0, ticks.size):
         for j in range(0, Z.size):
             if Z[j] == ticks[i]:
                 Z[j] = y[i]
-    
     return Z
 
 def fit(thermochem, T):
@@ -88,8 +50,6 @@ def fit(thermochem, T):
     shift : array like 
         Entropy of adsorption species shifted to temeperature T
     '''
-    # to do
-    # add to utils
     z = np.polyfit(thermochem[:,0], thermochem[:,1], 3)
     shift = (z[0] * (T ** 3)) + (z[1] * (T ** 2)) + (z[2] * T) + z[3]
     return shift
@@ -144,7 +104,6 @@ def calculate_gibbs(data):
     temperature = data[:,0]
     deltas = data[:,1]
     H = data[:,5]
-
     DeltaS = (deltas * 0.01036) / 1000
     H = H + H[0]
     H_HT = H * 0.01036
