@@ -4,7 +4,6 @@ from matplotlib.ticker import FixedFormatter
 import matplotlib.gridspec as gridspec
 from matplotlib.ticker import FormatStrFormatter
 import matplotlib.ticker as ticker
-from pylab import *
 
 def get_levels(X):
 

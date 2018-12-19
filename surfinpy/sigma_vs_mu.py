@@ -1,7 +1,6 @@
 import numpy as np
 from surfinpy import phaseplot
 from surfinpy import p_vs_t
-from pylab import *
 from scipy.constants import codata
 
 def get_phase_data(S, nsurfaces):

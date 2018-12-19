@@ -22,7 +22,7 @@ python setup.py install
 
 ### Usage
 
-Check out the tutorials included in the examples folder. There are standard .py input files to give examples of what inputs and outputs should look like. To gain greater insight view the .ipynb tutorials using a jupyter notebook, these are a blend of python inputs and markdown explanations.  
+Check out the tutorials included in the examples folder. To gain greater insight view the .ipynb tutorials using a jupyter notebook, these are a blend of python inputs and markdown explanations.  
 
 ### Contributing 
 

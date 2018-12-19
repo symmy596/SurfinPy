@@ -1,0 +1,246 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>surfinpy.utils &#8212; surfinpy 0.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/my-styles.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="surfinpy.phaseplot" href="phaseplot.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="surfinpy-utils">
+<h1>surfinpy.utils<a class="headerlink" href="#surfinpy-utils" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-surfinpy.utils"></span><dl class="function">
+<dt id="surfinpy.utils.calculate_coverage">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">calculate_coverage</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#calculate_coverage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.calculate_coverage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="surfinpy.utils.calculate_gibbs">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">calculate_gibbs</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#calculate_gibbs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.calculate_gibbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the gibbs free energy from thermochemcial data
+obtained from the NIST_JANAF database
+:param data: Full file downloaded from NIST_JANAF database
+:type data: array like</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>data</strong> – gibbs energy as a function of temperature</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="surfinpy.utils.fit">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">fit</code><span class="sig-paren">(</span><em>thermochem</em>, <em>T</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit a polynominal function to thermochemical data from NIST_JANAF
+:param thermochem: NIST_JANAF thermochemical table in numpy array format
+:type thermochem: array like
+:param T: full temperature range
+:type T: array like</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>shift</strong> – Entropy of adsorption species shifted to temeperature T</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">array like</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="surfinpy.utils.get_labels">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">get_labels</code><span class="sig-paren">(</span><em>ticks</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#get_labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.get_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accesses and returns the labels that correspond to the phases displayed on the phase diagram
+:param ticks: Phases that are displayed
+:type ticks: list
+:param data: list of dictionaries
+:type data: list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>labels</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list strings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="surfinpy.utils.get_lowest_surface">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">get_lowest_surface</code><span class="sig-paren">(</span><em>S</em>, <em>nsurfaces</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#get_lowest_surface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.get_lowest_surface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="surfinpy.utils.get_phase_data">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">get_phase_data</code><span class="sig-paren">(</span><em>S</em>, <em>nsurfaces</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#get_phase_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.get_phase_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_phase_data - Determines which surface composition is most stable
+:param S:
+:type S: 1D numpy array of surface energies
+:param nsurfaces:
+:type nsurfaces: int, Total number of surfaces</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>X</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">value</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="surfinpy.utils.read_nist">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">read_nist</code><span class="sig-paren">(</span><em>File</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#read_nist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.read_nist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a downloaded NIST_JANAF thermochemcial table
+:param File: filename of table
+:type File: str</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>data</strong> – table as an array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">array_like</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="surfinpy.utils.transform_numbers">
+<code class="descclassname">surfinpy.utils.</code><code class="descname">transform_numbers</code><span class="sig-paren">(</span><em>Z</em>, <em>ticks</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/surfinpy/utils.html#transform_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#surfinpy.utils.transform_numbers" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform numbers - Takes the phase diagram array and converts the numbers to numbers scaled 0, 1, 2, etc in order to make plotting easier
+:param Z:
+:type Z: numpy array - surface stabilities
+:param ticks:
+:type ticks: list - unique phases appearing in above array</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>Z</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">numpy array - new array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">surfinpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Package Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pylj modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mu_vs_mu.html">surfinpy.mu_vs_mu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p_vs_t.html">surfinpy.p_vs_t</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wulff.html">surfinpy.wulff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phaseplot.html">surfinpy.phaseplot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">surfinpy.utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pylj modules</a><ul>
+      <li>Previous: <a href="phaseplot.html" title="previous chapter">surfinpy.phaseplot</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Adam R.Symington.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

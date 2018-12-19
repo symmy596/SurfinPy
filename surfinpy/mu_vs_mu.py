@@ -1,13 +1,8 @@
 import numpy as np
-#from surfinpy import phaseplot
-from pylab import *
 from scipy.constants import codata
 import sys
-
-#sys.path.append('C:\surfinpy')
-
-import phaseplot
-import utils as ut
+from surfinpy import phaseplot
+from surfinpy import utils as ut
 
 
 def pressure(X, T):
@@ -20,8 +15,6 @@ def pressure(X, T):
         -------
             pressure : numpy array - pressure values
     '''
-    # to do 
-    # add to utils
     k = codata.value('Boltzmann constant in eV/K')
     pressure = X / (k * T * 2.203)
 

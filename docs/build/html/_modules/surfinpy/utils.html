@@ -1,0 +1,223 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>surfinpy.utils &#8212; surfinpy 0.2 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for surfinpy.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="calculate_coverage"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.calculate_coverage">[docs]</a><span class="k">def</span> <span class="nf">calculate_coverage</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">coverage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="n">coverage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coverage</span><span class="p">,</span> <span class="p">(((</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span>  <span class="mi">10</span><span class="o">**</span><span class="mi">18</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">coverage</span></div>
+
+<div class="viewcode-block" id="get_labels"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.get_labels">[docs]</a><span class="k">def</span> <span class="nf">get_labels</span><span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Accesses and returns the labels that correspond to the phases displayed on the phase diagram</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ticks : list</span>
+<span class="sd">        Phases that are displayed</span>
+<span class="sd">    data  : list </span>
+<span class="sd">        list of dictionaries</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    labels : list strings</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ticks</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">ticks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">val</span><span class="p">][</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">labels</span></div>
+
+<div class="viewcode-block" id="transform_numbers"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.transform_numbers">[docs]</a><span class="k">def</span> <span class="nf">transform_numbers</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">ticks</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; transform numbers - Takes the phase diagram array and converts the numbers to numbers scaled 0, 1, 2, etc in order to make plotting easier</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            Z : numpy array - surface stabilities</span>
+<span class="sd">            ticks : list - unique phases appearing in above array</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            Z : numpy array - new array</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ticks</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ticks</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Z</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">Z</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">ticks</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">Z</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Z</span></div>
+
+<div class="viewcode-block" id="fit"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.fit">[docs]</a><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">thermochem</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Fit a polynominal function to thermochemical data from NIST_JANAF</span>
+<span class="sd">    Parameters </span>
+<span class="sd">    ----------</span>
+<span class="sd">    thermochem : array like</span>
+<span class="sd">        NIST_JANAF thermochemical table in numpy array format</span>
+<span class="sd">    T : array like</span>
+<span class="sd">        full temperature range</span>
+<span class="sd">    Returns </span>
+<span class="sd">    -------</span>
+<span class="sd">    shift : array like </span>
+<span class="sd">        Entropy of adsorption species shifted to temeperature T</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">thermochem</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">thermochem</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">**</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">shift</span></div>
+
+<div class="viewcode-block" id="get_phase_data"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.get_phase_data">[docs]</a><span class="k">def</span> <span class="nf">get_phase_data</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nsurfaces</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; get_phase_data - Determines which surface composition is most stable</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    S : 1D numpy array of surface energies</span>
+<span class="sd">    nsurfaces : int, Total number of surfaces</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    X : value</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nsurfaces</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">x</span></div>
+
+<div class="viewcode-block" id="get_lowest_surface"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.get_lowest_surface">[docs]</a><span class="k">def</span> <span class="nf">get_lowest_surface</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nsurfaces</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">nsurfaces</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span></div>
+
+<div class="viewcode-block" id="read_nist"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.read_nist">[docs]</a><span class="k">def</span> <span class="nf">read_nist</span><span class="p">(</span><span class="n">File</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Read a downloaded NIST_JANAF thermochemcial table</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    File : str</span>
+<span class="sd">        filename of table</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : array_like</span>
+<span class="sd">        table as an array</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="calculate_gibbs"><a class="viewcode-back" href="../../utils.html#surfinpy.utils.calculate_gibbs">[docs]</a><span class="k">def</span> <span class="nf">calculate_gibbs</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Calculate the gibbs free energy from thermochemcial data</span>
+<span class="sd">    obtained from the NIST_JANAF database</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : array like</span>
+<span class="sd">        Full file downloaded from NIST_JANAF database</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : dictionary</span>
+<span class="sd">        gibbs energy as a function of temperature</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">temperature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">deltas</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">DeltaS</span> <span class="o">=</span> <span class="p">(</span><span class="n">deltas</span> <span class="o">*</span> <span class="mf">0.01036</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">H</span> <span class="o">+</span> <span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">H_HT</span> <span class="o">=</span> <span class="n">H</span> <span class="o">*</span> <span class="mf">0.01036</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">H_HT</span> <span class="o">-</span> <span class="n">temperature</span> <span class="o">*</span> <span class="n">DeltaS</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span> <span class="s1">&#39;Shift&#39;</span><span class="p">:</span> <span class="n">mu</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">surfinpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Package Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pylj modules</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Adam R.Symington.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

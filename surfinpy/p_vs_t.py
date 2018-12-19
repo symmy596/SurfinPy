@@ -1,11 +1,8 @@
 import numpy as np
-#import utils as ut
-#import mu_vs_mu
 from scipy.constants import codata
 import sys
-
-import utils as ut
-import mu_vs_mu
+from surfinpy import utils as ut
+from surfinpy import mu_vs_mu
 
 def vectorize(AE, lnP, T):
     '''Create 2D arrays of adsorption energy, temperature and pressure values
