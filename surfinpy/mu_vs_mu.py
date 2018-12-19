@@ -1,8 +1,8 @@
 import numpy as np
 from scipy.constants import codata
-import sys
 from surfinpy import phaseplot
 from surfinpy import utils as ut
+
 
 def pressure(X, T):
     ''' pressure - Calculate the pressure for chemical potential values
@@ -21,6 +21,7 @@ def pressure(X, T):
 
     return pressure
 
+
 def constants(data, bulk):
     '''constants - calculate the surface energy irrespective of chemical
     potential
@@ -36,12 +37,17 @@ def constants(data, bulk):
     Oexcess : Excess for the X species
     '''
     Hexcess = data['Y'] / (data['Area'] * 2)
-    Oexcess = (data['X'] - ((bulk['O'] / bulk['M']) * data['M'])) / (2 * data['Area'])
-    B = (data['Energy'] - (data['M'] / bulk['M']) * (bulk['Energy'] / bulk['F-Units'])) / (2 * data['Area'])
+    Oexcess = (data['X'] - ((bulk['O'] / bulk['M']) *
+                            data['M'])) /
+                             (2 * data['Area'])
+    B = (data['Energy'] - (data['M'] / bulk['M']) *
+        (bulk['Energy'] / bulk['F-Units'])) / (2 * data['Area'])
     return Hexcess, Oexcess, B
+
 
 def scale(X, Xscale):
     return X * Xscale
+
 
 def calculate_surface_energy(Uo, Uh, yshiftval, xshiftval, Hexcess, Oexcess, B):
     ''' This function calculates the surface for a given chemical potential of
@@ -72,6 +78,7 @@ def calculate_surface_energy(Uo, Uh, yshiftval, xshiftval, Hexcess, Oexcess, B):
     D = scale(Hexcess, Uh)
     SE = B - C - D - yshiftval - xshiftval
     return SE
+
 
 def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
     ''' This function calculates and returns a 2D numpy array of surface energes
@@ -107,10 +114,16 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
     S = np.array([])
     for k in range(0, nsurfaces):
         Hexcess, Oexcess, B = constants(data[k], bulk)
-        SE = calculate_surface_energy(Xnew, Ynew, yshiftval, xshiftval, Hexcess, Oexcess, B)
+        SE = calculate_surface_energy(Xnew, Ynew,
+                                      yshiftval,
+                                      xshiftval,
+                                      Hexcess,
+                                      Oexcess,
+                                      B)
         S = np.append(S, SE)
     SE_array = ut.get_phase_data(S, nsurfaces)
     return SE_array
+
 
 def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
               temperature=0, convert_pressure=False, output="Phase.png"):
