@@ -3,7 +3,15 @@ import utils as ut
 import numpy as np
 from scipy.constants import codata
 
-def calculate_surface_energy(stoich, data, SE, adsorbant, thermochem, T, P, coverage=None):
+
+def calculate_surface_energy(stoich,
+                             data,
+                             SE,
+                             adsorbant,
+                             thermochem,
+                             T,
+                             P,
+                             coverage=None):
     if coverage is None:
         coverage = ut.calculate_coverage(data)
     R = codata.value('molar gas constant')
@@ -23,6 +31,3 @@ def calculate_surface_energy(stoich, data, SE, adsorbant, thermochem, T, P, cove
         S = SE + (coverage[i] / N_A) * (AE[i] - Y)
         SEs = np.append(SEs, S)
     return SEs
-
-
-

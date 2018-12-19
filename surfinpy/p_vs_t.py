@@ -1,8 +1,7 @@
 import numpy as np
 from scipy.constants import codata
-import sys
 from surfinpy import utils as ut
-from surfinpy import mu_vs_mu
+
 
 def vectorize(AE, lnP, T):
     '''Create 2D arrays of adsorption energy, temperature and pressure values
@@ -20,7 +19,7 @@ def vectorize(AE, lnP, T):
     -------
     xnew : array like
         2D array of temeoerature values
-    ynew : array like 
+    ynew : array like
         2D array of pressure values
     A : array like
         2D array of adsorption energies
@@ -34,6 +33,7 @@ def vectorize(AE, lnP, T):
     ynew = np.column_stack(ynew)
 
     return xnew, ynew, A
+
 
 def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     '''Calculate the surface energy as a function of pressure and temperature
@@ -55,7 +55,7 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
         list of dictionaries containing info on each surface
     nsurfaces : int
         total number of surface
- 
+
     Returns
     -------
     SE_array : array like
@@ -68,13 +68,13 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
         xnew, ynew, A = vectorize(AE[i], lnP, T)
         Y = (ynew * (xnew * R))
         SE_Abs_1 = (SE + (coverage[i] / N_A) * (A - Y))
-        SEABS = np.append(SEABS, SE_Abs_1) 
+        SEABS = np.append(SEABS, SE_Abs_1)
     test = np.zeros(lnP.size * T.size)
     test = test + SE
     SEABS = np.insert(SEABS, 0, test)
     SE_array = ut.get_phase_data(SEABS, nsurfaces)
-    
     return SE_array
+
 
 def calculate_adsorption_energy(data, stoich, thermochem):
     '''From the dft data provided - calculate the adsorbation energy
@@ -88,18 +88,20 @@ def calculate_adsorption_energy(data, stoich, thermochem):
     termochem : float
         dft energy of adsorbing species
 
-    Returns 
+    Returns
     -------
     AE : array like
         Adsorbtion energy of adsorbing species in each calculation
     '''
     AE = np.array([])
     for i in range(0, len(data)):
-        adsorption_energy = (data[i]["Energy"] - (stoich["Energy"] + (data[i]["Y"] * thermochem))) / data[i]["Y"]
+        adsorption_energy = (data[i]["Energy"] - (stoich["Energy"] + 
+                            (data[i]["Y"] * thermochem))) / data[i]["Y"]
         AE = np.append(AE, adsorption_energy)
     AE = AE * 96.485 * 1000
     AE = np.split(AE, len(data))
     return AE
+
 
 def inititalise(thermochem, adsorbant):
     '''initialise the arrays

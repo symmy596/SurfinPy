@@ -6,7 +6,6 @@
 surfinpy documentation
 ======================
 
-
 .. toctree::
    :maxdepth: 2
    :caption: Package Contents:
