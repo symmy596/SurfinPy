@@ -38,6 +38,27 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
     return ((slab_energy - (slab_cations / bulk['M']) * (bulk['Energy'] / bulk['F-Units'])) / (2 * area))
 
 
+def constants(data, bulk):
+    '''***** NOW DEPRACATED ******
+    Calculates and returns the constants used in the calculation
+    of 
+
+    Parameters
+    ----------
+    data : list of dictionaries containg info on each surface
+    bulk : bulk dictionary
+
+    Returns
+    -------
+    Hexcess : Excess for the Y species
+    Oexcess : Excess for the X species
+    '''
+    Hexcess = data['Y'] / (data['Area'] * 2)
+    Oexcess = (data['X'] - ((bulk['O'] / bulk['M']) * data['M'])) / (2 * data['Area'])
+    B = (data['Energy'] - (data['M'] / bulk['M']) * (bulk['Energy'] / bulk['F-Units'])) / (2 * data['Area'])
+    return Hexcess, Oexcess, B
+
+
 def scale(X, Xscale):
     return X * Xscale
 

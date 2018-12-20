@@ -4,8 +4,7 @@
    contain the root `toctree` directive.
 
 surfinpy documentation
-==================
-
+======================
 
 .. toctree::
    :maxdepth: 2
