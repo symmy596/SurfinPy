@@ -37,11 +37,13 @@ def constants(data, bulk):
     Oexcess : Excess for the X species
     '''
     Hexcess = data['Y'] / (data['Area'] * 2)
-    Oexcess = (data['X'] - ((bulk['O'] / bulk['M']) *
-                            data['M'])) /
-                             (2 * data['Area'])
-    B = (data['Energy'] - (data['M'] / bulk['M']) *
-        (bulk['Energy'] / bulk['F-Units'])) / (2 * data['Area'])
+    Oexcess = (
+        data['X'] - ((bulk['O'] / bulk['M']) * data['M'])) / (
+        2 * data['Area'])
+    B = (data['Energy'] - (
+        data['M'] / bulk['M']) * (
+        bulk['Energy'] / bulk['F-Units'])) / (
+        2 * data['Area'])
     return Hexcess, Oexcess, B
 
 
@@ -49,7 +51,8 @@ def scale(X, Xscale):
     return X * Xscale
 
 
-def calculate_surface_energy(Uo, Uh, yshiftval, xshiftval, Hexcess, Oexcess, B):
+def calculate_surface_energy(Uo, Uh, yshiftval, xshiftval,
+                             Hexcess, Oexcess, B):
     ''' This function calculates the surface for a given chemical potential of
     oxygen and hydrogen
 
@@ -105,7 +108,7 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
     -------
     SE_array  : array like
         array of surface energies matching chemcial potential values
-     ''' 
+     '''
     Xnew = np.tile(X, Y.size)
     Xnew = np.reshape(Xnew, (Y.size, X.size))
     Ynew = np.tile(Y, X.size)
@@ -160,21 +163,23 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1], 0.025, dtype="float")
     X = X - xshiftval
     Y = Y - yshiftval
-    phases = surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval)
+    phases = surface_energy_array(data, bulk, X, Y,
+                                  nsurfaces, xshiftval, yshiftval)
     ticks = np.unique([phases])
-    SE_array = ut.transform_numbers(phases, ticks)
+    phases = ut.transform_numbers(phases, ticks)
     Z = np.reshape(phases, (Y.size, X.size))
-    labels = ut.get_labels(ticks, data) 
+    labels = ut.get_labels(ticks, data)
     if xshiftval == 0 and yshiftval == 0:
         phaseplot.plot_phase(X, Y, Z, ticks, labels, deltaX['Label'],
                              deltaY['Label'], temperature, output)
-    elif convert_pressure == False:
+    elif convert_pressure is False:
         phaseplot.plot_phase(X, Y, Z, ticks, labels, deltaX['Label'],
                              deltaY['Label'], temperature, output)
-    elif convert_pressure == True:
+    elif convert_pressure is True:
         p1 = pressure(X, temperature)
         p2 = pressure(Y, temperature)
         phaseplot.plot_mu_p(X, Y, Z, p1, p2, ticks, labels, deltaX['Label'],
                             deltaY['Label'], temperature, output)
-        phaseplot.plot_pressure(p1, p2, Z, ticks, labels, deltaX['Label'],
-                                deltaY['Label'], temperature, output="pressure.png")
+        phaseplot.plot_pressure(p1, p2, Z, ticks, labels,
+                                deltaX['Label'], deltaY['Label'], temperature,
+                                output="pressure.png")
