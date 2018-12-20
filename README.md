@@ -3,6 +3,9 @@
 <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License MIT" />  
 </a>  
+  
+[![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/?badge=latest)
+
  
 SurfinPy is a python toolkit for plotting and analysis of ab initio solid state surface calculation data, built on existing python pakcages. It is hoped that these tools will provide publication ready plots (powered by Matplotlib)
 
