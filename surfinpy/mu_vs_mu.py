@@ -7,6 +7,7 @@ from surfinpy import utils as ut
 def pressure(chemical_potential, t):
     r"""Converts a given chemical potential at a specific 
     temperature (T) to a pressure value.
+
     .. math::
         P = \frac{&mu}{k * T}
 
@@ -102,58 +103,75 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
 
 def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
                              xexcess, yexcess, normalised_bulk):
-    ''' This function calculates the surface for a given chemical potential of
-    oxygen and hydrogen
+    r"""This function calculates the surface for a given chemical potential of
+    species x and species y according to
 
+    .. math::
+        \gamma_{Surf} & = \frac{1}{2S} \Bigg( E_{MO}^{slab} - \frac{N_M}{x} E_{MO}^{Bulk} \Bigg) -
+         \Delta \Gamma_O \mu_O - \Delta \Gamma_{H_2O} \mu_{H_2O} - \Delta n_O \mu_O (T) -
+         \Delta n_{H_2O} \mu_{H_2O} (T)
+
+    where S is the surface area, $E_{MO}^{slab}$ is the DFT energy of the stoichiometric slab,
+    $N_M$ is the number of cations in the structure,
+    x is the number of cations in the bulk unit cell, $E_{MO}^{Bulk}$ is the DFT energy of the bulk unit cell,
+    $\Gamma_O$ / $\Gamma_{H_2O}$ is the excess oxygen / water at the surface and $\mu_O$ / $\mu_{H_2O}$
+    is the oxygen / water chemcial potential.
+    Clearly $\Gamma$ and $\mu$ will only matter when the surface is non stoichiometric.
+    The various terms have been calculated by other functions and simplified here.
+    
     Parameters
     ----------
-    Uo : array like
-    Chemical potential of Oxygen
-    Ho : array like
-    Chemical potential of Hydrogen
-    yshiftval : float
-    shift value for y axis
+    deltamux : array like
+        Chemical potential of species x
+    deltamuy : array like
+        Chemical potential of species y
     xshiftval : float
-    shift value for x axis
-    Hexcess : float
-    Excess Y
-    Oexcess : float
-    Excess X
+        shift value for the x axis - corresponding to the 0K DFT energy or temperature corrected DFT energy
+    yshiftval : float
+        shift value for the y axis - corresponding to the 0K DFT energy or temperature corrected DFT energy
+    xexcess : float
+        Surface excess of species x
+    yexcess : float
+        Surface excess of species y
+    normalised_bulk : float
+        Slab energy normalised to the bulk value.
 
     Returns
     -------
-    SE  : Surface Energy
-    '''
+    array like:
+        2D array of surface energies as a function of chemical potential of x and y
+    """
     return (normalised_bulk - (deltamux * xexcess) - (deltamuy * yexcess) - (
         xshiftval * xexcess) - (yshiftval * yexcess))
 
 
-def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
-    ''' This function calculates and returns a 2D numpy array of surface energes
-    for a range of chemical potential values
+def evaluate_phases(data, bulk, x, y, nsurfaces, xshiftval, yshiftval):
+    """Calculates the surface energies of each phase as a function of chemical
+    potential of x and y. Then uses this data to evaluate which phase is most
+    stable at that x/y chemical potential cross section.
 
     Parameters
     ----------
     data : list
-        List containing the dictionary data for each phase
+        List containing the dictionaries for each phase
     bulk : dictionary
         dictionary containing data for bulk
-    X : dictionary
+    x : dictionary
         X axis chemical potential values
-    Y : dictionary
+    y : dictionary
         Y axis chemical potential values
     nsurfaces : int
         Number of phases
     xshiftval : float
-        shift value for x axis
+        DFT 0K energy for species x
     yshiftval : float
-        shift value for y axis
+        DFT 0K energy for species y
 
     Returns
     -------
-    SE_array  : array like
-        array of surface energies matching chemcial potential values
-     '''
+    phase_data  : array like
+        array of ints, with each int corresponding to a phase.
+    """
     Xnew = np.tile(X, Y.size)
     Xnew = np.reshape(Xnew, (Y.size, X.size))
     Ynew = np.tile(Y, X.size)
@@ -168,7 +186,6 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
         normalised_bulk = calculate_normalisation(data[k]['Energy'],
                                                   data[k]['M'], bulk,
                                                   data[k]['Area'])
-        Hexcess, Oexcess, B = constants(data[k], bulk)
         SE = calculate_surface_energy(Xnew, Ynew,
                                       xshiftval,
                                       yshiftval,
@@ -176,8 +193,8 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
                                       yexcess,
                                       normalised_bulk)
         S = np.append(S, SE)
-    SE_array = ut.get_phase_data(S, nsurfaces)
-    return SE_array
+    phase_data = ut.get_phase_data(S, nsurfaces)
+    return phase_data
 
 
 def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
@@ -207,7 +224,6 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
 
     Returns
     -------
-    None
     '''
     data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)
@@ -215,7 +231,7 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1], 0.025, dtype="float")
     X = X - xshiftval
     Y = Y - yshiftval
-    phases = surface_energy_array(data, bulk, X, Y,
+    phases = evaluate_phases(data, bulk, X, Y,
                                   nsurfaces, xshiftval, yshiftval)
     ticks = np.unique([phases])
     phases = ut.transform_numbers(phases, ticks)
