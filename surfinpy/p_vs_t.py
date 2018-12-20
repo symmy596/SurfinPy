@@ -95,8 +95,8 @@ def calculate_adsorption_energy(data, stoich, thermochem):
     '''
     AE = np.array([])
     for i in range(0, len(data)):
-        adsorption_energy = (data[i]["Energy"] - (stoich["Energy"] +
-                            (data[i]["Y"] * thermochem))) / data[i]["Y"]
+        adsorption_energy = (data[i]["Energy"] - (
+            stoich["Energy"] + (data[i]["Y"] * thermochem))) / data[i]["Y"]
         AE = np.append(AE, adsorption_energy)
     AE = AE * 96.485 * 1000
     AE = np.split(AE, len(data))
@@ -168,7 +168,6 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
     SE_array = ut.transform_numbers(SE_array, ticks)
     phase_grid = np.reshape(SE_array, (lnP.size, T.size))
     data.insert(0, stoich)
-    labels = ut.get_labels(ticks, data)
     y = logP
     x = T
     z = phase_grid
