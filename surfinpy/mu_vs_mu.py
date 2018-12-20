@@ -24,10 +24,50 @@ def pressure(chemical_potential, t):
     """
     k = codata.value('Boltzmann constant in eV/K')
     pressure = X / (k * T * 2.203)
-
     return pressure
 
+
 def calculate_excess(adsorbant, slab_cations, area, bulk, nspecies=1, check=False):
+    r"""calculates the excess of a given species at the surface. Depending on the nature
+    of the species, there are two ways to do this. If the species is a constituent part
+    of the surface, e.g. Oxygen in TiO<sub>2<\sub> then the calculation must account for 
+    the stoichiometry of that material. 
+    Using the TiO<sub>2<\sub> example
+
+    .. math::
+        \Gamma = \frac{N_O - \frac{1}{2}N_{Ti}}{2S}
+
+    where N<sub>O<\sub> is the number of oxygen in the slab, N<sub>Ti<\sub> is the number of 
+    titanium in the slab, S is the surface area and the 1/2 refers to the 2 oxygen to 1 titanium 
+    stoichiometry of TiO<sub>2<\sub>. 
+    If the species is just an external adsorbant, e.g. water or carbon dioxide then one does not 
+    need to consider the state of the surface, as there was none there to begin with. 
+
+    .. math::
+        \Gamma = \frac{N_{Water}}{2S}
+
+    where N<sub>Water<\sub> is the number of water molecules and S is the surface area.
+
+    Parameters
+    ----------
+    adsorbant : int
+        Number of species
+    slab_cations : int
+        Number of cations
+    area : float
+        Area of surface
+    bulk : dic
+        Dictonary of bulk properties
+    nspecies : int (optional)
+        number of external species
+    check : bool (optional)
+        Check if this is an external or constituent species. 
+
+    Returns
+    -------
+    float: 
+        Surface excess of given species. 
+    """
     if check is True and nspecies == 1:   
         return ((adsorbant - ((bulk['O'] / bulk['M']) * slab_cations)) / (2 * area))
     else:
@@ -36,10 +76,6 @@ def calculate_excess(adsorbant, slab_cations, area, bulk, nspecies=1, check=Fals
 
 def calculate_normalisation(slab_energy, slab_cations, bulk, area):
     return ((slab_energy - (slab_cations / bulk['M']) * (bulk['Energy'] / bulk['F-Units'])) / (2 * area))
-
-
-def scale(X, Xscale):
-    return X * Xscale
 
 
 def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
@@ -66,7 +102,8 @@ def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
     -------
     SE  : Surface Energy
     '''
-    return (normalised_bulk - (deltamux * xexcess) - (deltamuy * yexcess) - (xshiftval * xexcess) - (yshiftval * yexcess))
+    return (normalised_bulk - (deltamux * xexcess) - (deltamuy * yexcess) - (
+        xshiftval * xexcess) - (yshiftval * yexcess))
 
 
 def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
@@ -102,9 +139,13 @@ def surface_energy_array(data, bulk, X, Y, nsurfaces, xshiftval, yshiftval):
     Ynew = np.column_stack(Ynew)
     S = np.array([])
     for k in range(0, nsurfaces):
-        xexcess = calculate_excess(data[k]['X'], data[k]['M'], data[k]['Area'], bulk,  data[k]['nSpecies'], check=True)
+        xexcess = calculate_excess(data[k]['X'], data[k]['M'],
+                                   data[k]['Area'], bulk,
+                                   data[k]['nSpecies'], check=True)
         yexcess = calculate_excess(data[k]['Y'], data[k]['M'], data[k]['Area'], bulk)
-        normalised_bulk = calculate_normalisation(data[k]['Energy'], data[k]['M'], bulk, data[k]['Area'])
+        normalised_bulk = calculate_normalisation(data[k]['Energy'],
+                                                  data[k]['M'], bulk,
+                                                  data[k]['Area'])
         Hexcess, Oexcess, B = constants(data[k], bulk)
         SE = calculate_surface_energy(Xnew, Ynew,
                                       xshiftval,
