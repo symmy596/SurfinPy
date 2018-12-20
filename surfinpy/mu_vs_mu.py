@@ -32,21 +32,21 @@ def calculate_excess(adsorbant, slab_cations, area, bulk, nspecies=1, check=Fals
     of the species, there are two ways to do this. If the species is a constituent part
     of the surface, e.g. Oxygen in TiO<sub>2<\sub> then the calculation must account for 
     the stoichiometry of that material. 
-    Using the TiO<sub>2<\sub> example
+    Using the TiO_2 example
 
     .. math::
         \Gamma = \frac{N_O - \frac{1}{2}N_{Ti}}{2S}
 
-    where N<sub>O<\sub> is the number of oxygen in the slab, N<sub>Ti<\sub> is the number of 
+    where N_O is the number of oxygen in the slab, N_Ti is the number of 
     titanium in the slab, S is the surface area and the 1/2 refers to the 2 oxygen to 1 titanium 
-    stoichiometry of TiO<sub>2<\sub>. 
+    stoichiometry of TiO_2. 
     If the species is just an external adsorbant, e.g. water or carbon dioxide then one does not 
     need to consider the state of the surface, as there was none there to begin with. 
 
     .. math::
         \Gamma = \frac{N_{Water}}{2S}
 
-    where N<sub>Water<\sub> is the number of water molecules and S is the surface area.
+    where N_Water is the number of water molecules and S is the surface area.
 
     Parameters
     ----------
@@ -75,6 +75,28 @@ def calculate_excess(adsorbant, slab_cations, area, bulk, nspecies=1, check=Fals
 
 
 def calculate_normalisation(slab_energy, slab_cations, bulk, area):
+    r"""Normalises the slab energy relative to the bulk material. Thus allowing the
+    different slab calculations to be compared.
+
+    .. math::
+        Normalised_Constant = \frac{E_{Slab} - \frac{N_{Cat}}{Bulk_{Cat}} * \frac{E_{Bulk}}{N_{Units}}}{2S}
+
+    Parameters
+    ----------
+    slab_energy : float
+        Energy of the slab from DFT
+    slab_cations : int
+        Total number of cations in the slab
+    bulk : dictionary
+        Dictionary of bulk properties
+    area : float
+        Surface area
+
+    Returns
+    -------
+    float:
+        Constant normalising the slab energy to the bulk energy.
+    """
     return ((slab_energy - (slab_cations / bulk['M']) * (bulk['Energy'] / bulk['F-Units'])) / (2 * area))
 
 
