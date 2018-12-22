@@ -5,11 +5,14 @@ from surfinpy import utils as ut
 
 
 def pressure(chemical_potential, t):
-    r"""Converts a given chemical potential at a specific 
+    r"""Converts chemical potential at a specific 
     temperature (T) to a pressure value.
 
     .. math::
-        P = \frac{&mu}{k * T}
+        P = \frac{\mu}{k * T}
+
+    where P is the pressure, :math:`\mu` is the chemcial potential, k is the
+    Boltzmann constant and T is the temperature.
 
     Parameters
     ----------
@@ -21,33 +24,33 @@ def pressure(chemical_potential, t):
     Returns
     -------
     pressure : array like
-        pressure values
+        pressure values as a function of chemcial potential
     """
     k = codata.value('Boltzmann constant in eV/K')
-    pressure = X / (k * T * 2.203)
+    pressure = chemical_potential / (k * t * 2.203)
     return pressure
 
 
 def calculate_excess(adsorbant, slab_cations, area, bulk, nspecies=1, check=False):
     r"""calculates the excess of a given species at the surface. Depending on the nature
     of the species, there are two ways to do this. If the species is a constituent part
-    of the surface, e.g. Oxygen in TiO<sub>2<\sub> then the calculation must account for 
+    of the surface, e.g. Oxygen in :math:`TiO_2` then the calculation must account for 
     the stoichiometry of that material. 
-    Using the TiO_2 example
+    Using the :math:`TiO_2` example
 
     .. math::
         \Gamma = \frac{N_O - \frac{1}{2}N_{Ti}}{2S}
 
-    where N_O is the number of oxygen in the slab, N_Ti is the number of 
+    where :math:`N_O` is the number of oxygen in the slab, N_Ti is the number of 
     titanium in the slab, S is the surface area and the 1/2 refers to the 2 oxygen to 1 titanium 
-    stoichiometry of TiO_2. 
+    stoichiometry of :math:`TiO_2`. 
     If the species is just an external adsorbant, e.g. water or carbon dioxide then one does not 
     need to consider the state of the surface, as there was none there to begin with. 
 
     .. math::
         \Gamma = \frac{N_{Water}}{2S}
 
-    where N_Water is the number of water molecules and S is the surface area.
+    where :math:`N_{Water}` is the number of water molecules and S is the surface area.
 
     Parameters
     ----------
@@ -80,7 +83,14 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
     different slab calculations to be compared.
 
     .. math::
-        Normalised_Constant = \frac{E_{Slab} - \frac{N_{Cat}}{Bulk_{Cat}} * \frac{E_{Bulk}}{N_{Units}}}{2S}
+        Normalised_{Constant} = \frac{E_{Slab} - \frac{N_{Cat}}{Bulk_{Cat}} * 
+        \frac{E_{Bulk}}{N_{Units}}}{2S}
+
+    where :math:`Normalised_{Constant}' is the slab energy normalised to the bulk, 
+    :math:`E_{slab}` is the DFT slab energy, :math:`N_{Cat}' is the number of slab
+    cations, :math:`Bulk_{Cat}` is the number of bulk cations, :math:`E_{Bulk}` is 
+    the DFT bulk energy, :math:`N_{Units}` is the number of bulk formula units and S
+    is the surface area. 
 
     Parameters
     ----------
@@ -104,20 +114,18 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
 def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
                              xexcess, yexcess, normalised_bulk):
     r"""This function calculates the surface for a given chemical potential of
-    species x and species y according to
+    species x and species y which in this example is oxygen and water, according to
 
     .. math::
-        \gamma_{Surf} & = \frac{1}{2S} \Bigg( E_{MO}^{slab} - \frac{N_M}{x} E_{MO}^{Bulk} \Bigg) -
+        \gamma_{Surf} = \frac{1}{2S} \Bigg( E_{MO}^{slab} - \frac{N_M}{x} E_{MO}^{Bulk} \Bigg) -
          \Delta \Gamma_O \mu_O - \Delta \Gamma_{H_2O} \mu_{H_2O} - \Delta n_O \mu_O (T) -
          \Delta n_{H_2O} \mu_{H_2O} (T)
 
-    where S is the surface area, $E_{MO}^{slab}$ is the DFT energy of the stoichiometric slab,
-    $N_M$ is the number of cations in the structure,
-    x is the number of cations in the bulk unit cell, $E_{MO}^{Bulk}$ is the DFT energy of the bulk unit cell,
-    $\Gamma_O$ / $\Gamma_{H_2O}$ is the excess oxygen / water at the surface and $\mu_O$ / $\mu_{H_2O}$
-    is the oxygen / water chemcial potential.
-    Clearly $\Gamma$ and $\mu$ will only matter when the surface is non stoichiometric.
-    The various terms have been calculated by other functions and simplified here.
+    where S is the surface area, :math:`E_{MO}^{slab}` is the DFT energy of the stoichiometric slab,
+    :math:`N_M` is the number of cations in the structure,
+    x is the number of cations in the bulk unit cell, :math:`E_{MO}^{Bulk}` is the DFT energy of the bulk unit cell,
+    :math:`\Gamma_O`  :math:`\Gamma_{H_2O}` is the excess oxygen / water at the surface and :math:`\mu_O` 
+    :math:`\mu_{H_2O}` is the oxygen / water chemcial potential.
     
     Parameters
     ----------

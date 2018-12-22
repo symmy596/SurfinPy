@@ -6,22 +6,35 @@ from matplotlib.ticker import FormatStrFormatter
 import matplotlib.ticker as ticker
 
 def get_levels(X):
+    """Builds the levels used in the contourf plot. This is neccesary to ensure
+    that each color correpsonds to a single phase. 
 
+    Parameters
+    ----------
+    X : array like
+        2D array of ints corresponding to each phase. 
+    
+    Returns
+    -------
+    levels : array like
+        numpy array of ints
+    """
     a = np.amax(X) + 1
     b = np.amin(X) - 1
     levels = np.arange(b, a, 1)
-
     return levels
 
 def get_ticks(X):
-
+    """I have no idea what this does
+    """
     t = np.arange(X.size)
     t = t - 0.5
     ticky = t.tolist()
     return ticky
 
 def plot_phase(x, y, phase, t, labels, XL, YL, temperature, output):
-    
+    """
+    """
     levels = get_levels(phase)
     ticky = get_ticks(t)
     t_lab = str(temperature) + " K"

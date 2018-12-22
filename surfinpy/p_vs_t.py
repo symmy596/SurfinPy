@@ -31,13 +31,20 @@ def vectorize(AE, lnP, T):
     ynew = np.tile(lnP, T.size)
     ynew = np.split(ynew, T.size)
     ynew = np.column_stack(ynew)
-
     return xnew, ynew, A
 
 
 def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
-    '''Calculate the surface energy as a function of pressure and temperature
-    for each surface calculation.
+    r"""Calculates the surface energy as a function of pressure and temperature
+    for each surface system according to 
+
+    .. math::
+        \gamma_{adsorbed, T, p} & = \gamma_{bare} + (C(E_{ads, T} - RTln(\frac{p}{p^o})
+
+    where :math:`\gamma_{adsorbed, T, p}` is the surface energy of the surface with adsorbed species
+    at a given temperature and pressure, :math:`\gamma_{bare}` is the suface energy of the bare surface,
+    C is the coverage of adsorbed species, :math:`E_{ads, T}` is the adsorption energy, R is the gas constant,
+    T is the temperature, and :math:`\frac{p}{p^o}' is the partial pressure. 
 
     Parameters
     ----------
@@ -60,7 +67,7 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     -------
     SE_array : array like
         array of integers corresponding to lowest surface energies
-    '''
+    """
     R = codata.value('molar gas constant')
     N_A = codata.value('Avogadro constant')
     SEABS = np.array([])
@@ -77,7 +84,8 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
 
 
 def calculate_adsorption_energy(data, stoich, thermochem):
-    '''From the dft data provided - calculate the adsorbation energy
+    '''From the dft data provided - calculate the adsorbation energy of a species
+    at the surface.
 
     Parameters
     ----------
@@ -104,7 +112,7 @@ def calculate_adsorption_energy(data, stoich, thermochem):
 
 
 def inititalise(thermochem, adsorbant):
-    '''initialise the arrays
+    '''Builds the numpy arrays for each calculation.
 
     Parameters
     ----------
@@ -117,9 +125,9 @@ def inititalise(thermochem, adsorbant):
     -------
     lnP : array like
         numpy array of pressure values
-    logP : array like
+    logP : array like (hard coded range -13 - 5.0)
         log of lnP
-    T : array like
+    T : array like (hard coded range 2 - 1000 K)
         array of temperature values
     adsrobant : array like
         dft values of adsorbant scaled to temperature
@@ -128,7 +136,6 @@ def inititalise(thermochem, adsorbant):
     shift = ut.fit(thermochem, T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant = adsorbant - shift
-
     logP = np.arange(-13, 5.5, 0.1)
     lnP = np.log(10 ** logP)
     return lnP, logP, T, adsorbant

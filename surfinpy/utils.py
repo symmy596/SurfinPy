@@ -2,6 +2,18 @@ import numpy as np
 
 
 def calculate_coverage(data):
+    """Calcualte the coverage of the adsorbing species on each surface. 
+
+    Parameters
+    ----------
+    data : list
+        list of dictionaries containing info on each surface calculation
+
+    Returns
+    -------
+    coverage : array like
+        numpy array of coverage values in units of :math:`n/nm^2`    
+    """
     coverage = np.array([])
     for i in range(0, len(data)):
         coverage = np.append(coverage, (((data[i]['Y'] / (
@@ -10,19 +22,20 @@ def calculate_coverage(data):
 
 
 def get_labels(ticks, data):
-    '''Accesses and returns the labels that correspond to the phases
-    displayed on the phase diagram
+    '''Reads the phase diagram data and returns the labels that correspond
+    to the phases displayed on the phase diagram.
 
     Parameters
     ----------
     ticks : list
-        Phases that are displayed
+        Phases that are displayed.
     data  : list
-        list of dictionaries
+        list of dictionaries.
 
     Returns
     -------
-    labels : list strings
+    labels : list
+        list of labels. 
     '''
     labels = []
     for i in range(0, ticks.size):
@@ -36,13 +49,18 @@ def get_labels(ticks, data):
 def transform_numbers(Z, ticks):
     ''' transform numbers - Takes the phase diagram array and converts
     the numbers to numbers scaled 0, 1, 2, etc in order to make plotting easier
+    
     Parameters
     ----------
-    Z : numpy array - surface stabilities
-    ticks : list - unique phases appearing in above array
+    Z : array like 
+        array of integers
+    ticks : list
+        unique phases
+
     Returns
     -------
-    Z : numpy array - new array
+    Z : array like
+        Normalised to a continuous set of numbers.
     '''
     y = np.arange(ticks.size)
     for i in range(0, ticks.size):
@@ -73,28 +91,26 @@ def fit(thermochem, T):
 
 
 def get_phase_data(S, nsurfaces):
-    ''' get_phase_data - Determines which surface composition is most stable
+    ''' Determines which surface composition is most stable at a
+    given x and y value.
 
     Parameters
     ----------
-    S : 1D numpy array of surface energies
-    nsurfaces : int, Total number of surfaces
+    S : array like
+        2D array of surface energies
+    nsurfaces : int
+        Total number of surfaces
 
     Returns
     -------
-    X : value
+    x : array like
+        array of ints corresponding to the position of
+        the lowest phase
     '''
     S = np.split(S, nsurfaces)
     S = np.column_stack(S)
     x = np.argmin(S, axis=1) + 1
     return x
-
-
-def get_lowest_surface(S, nsurfaces):
-    S = np.split(S, nsurfaces)
-    S = np.column_stack(S)
-    y = np.amin(S, axis=1)
-    return y
 
 
 def read_nist(File):
