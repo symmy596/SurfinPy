@@ -16,7 +16,7 @@ surfinpy documentation
    :maxdepth: 1
    :caption: Help:
 
-    using_surfinpy.rst
+   using_surfinpy.rst
 
 .. include:: ../README.rst
 
