@@ -14,7 +14,9 @@ surfinpy documentation
 
 .. toctree::
    :maxdepth: 1
-   :caption: Help:s
+   :caption: Help:
+
+    using_surfinpy
 
 .. include:: ../README.rst
 
