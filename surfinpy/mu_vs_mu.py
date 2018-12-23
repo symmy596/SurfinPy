@@ -126,7 +126,7 @@ def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
     x is the number of cations in the bulk unit cell, :math:`E_{MO}^{Bulk}` is the DFT energy of the bulk unit cell,
     :math:`\Gamma_O`  :math:`\Gamma_{H_2O}` is the excess oxygen / water at the surface and :math:`\mu_O` 
     :math:`\mu_{H_2O}` is the oxygen / water chemcial potential.
-    
+
     Parameters
     ----------
     deltamux : array like

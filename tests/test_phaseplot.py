@@ -1,9 +1,7 @@
 import numpy as np
 import numpy.testing as npt
 import sys 
-
-import surfinpy as sp 
-import phaseplot as pp
+from surfinpy import phaseplot as pp
 from numpy.testing import assert_almost_equal, assert_equal
 
 
@@ -19,4 +17,4 @@ def test_get_ticks():
     expected = [-0.5, 0.5, 1.5, 2.5, 3.5]
     assert tick == expected
 
-https://matplotlib.org/devel/testing.html
+#https://matplotlib.org/devel/testing.html
