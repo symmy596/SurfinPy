@@ -1,5 +1,5 @@
-import p_vs_t as pt
-import utils as ut
+from surfinpy import p_vs_t as pt
+from surfinpy import utils as ut
 import numpy as np
 from scipy.constants import codata
 
