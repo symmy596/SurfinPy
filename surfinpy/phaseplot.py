@@ -126,9 +126,7 @@ def tvp_plot(x, y, z, t, labels=None, output="Phase.png"):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    fontsize = 10
-    rc('axes', linewidth=2) 
-    
+    fontsize = 10    
     CM = ax.contourf(x, y, z, cmap="RdBu")
     ax.set_xlabel('Temperature (K)', fontsize=14, fontweight="bold")
     ax.set_ylabel("log P (bar)", fontsize=14, fontweight="bold")

@@ -180,10 +180,10 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, xshiftval, yshiftval):
     phase_data  : array like
         array of ints, with each int corresponding to a phase.
     """
-    Xnew = np.tile(X, Y.size)
-    Xnew = np.reshape(Xnew, (Y.size, X.size))
-    Ynew = np.tile(Y, X.size)
-    Ynew = np.split(Ynew, X.size)
+    Xnew = np.tile(x, y.size)
+    Xnew = np.reshape(Xnew, (y.size, x.size))
+    Ynew = np.tile(y, x.size)
+    Ynew = np.split(Ynew, x.size)
     Ynew = np.column_stack(Ynew)
     S = np.array([])
     for k in range(0, nsurfaces):

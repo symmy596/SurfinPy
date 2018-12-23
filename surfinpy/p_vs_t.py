@@ -82,8 +82,15 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     SE_array = ut.get_phase_data(SEABS, nsurfaces)
     return SE_array
 
+def convert_adsorption_energy_units(AE):
+    return (AE * 96.485 * 1000)
 
-def calculate_adsorption_energy(data, stoich, thermochem):
+
+def calculate_adsorption_energy(adsorbed_energy, slab_energy, n_species, thermochem):
+    return ((adsorbed_energy - (slab_energy + (n_species * thermochem))) / n_species)
+
+
+def adsorption_energy(data, stoich, thermochem):
     '''From the dft data provided - calculate the adsorbation energy of a species
     at the surface.
 
@@ -103,14 +110,15 @@ def calculate_adsorption_energy(data, stoich, thermochem):
     '''
     AE = np.array([])
     for i in range(0, len(data)):
-        adsorption_energy = (data[i]["Energy"] - (
-            stoich["Energy"] + (data[i]["Y"] * thermochem))) / data[i]["Y"]
-        AE = np.append(AE, adsorption_energy)
-    AE = AE * 96.485 * 1000
+        AE = np.append(AE, (calculate_adsorption_energy(data[i]["Energy"],
+                                                        stoich["Energy"],
+                                                        data[i]["Y"],
+                                                        thermochem)))
+    AE = convert_adsorption_energy_units(AE)
     AE = np.split(AE, len(data))
     return AE
 
-
+    
 def inititalise(thermochem, adsorbant):
     '''Builds the numpy arrays for each calculation.
 
@@ -167,7 +175,7 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
         coverage = ut.calculate_coverage(data)
     lnP, logP, T, thermochem = inititalise(thermochem, adsorbant)
     nsurfaces = len(data) + 1
-    AE = calculate_adsorption_energy(data, stoich, thermochem)
+    AE = adsorption_energy(data, stoich, thermochem)
     SE_array = calculate_surface_energy(AE, lnP, T,
                                         coverage, SE, data,
                                         nsurfaces)
