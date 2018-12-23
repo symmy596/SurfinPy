@@ -1,8 +1,8 @@
 # SurfinPy
+ 
+[![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/?badge=latest)  ![Version](https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000) 
+[![Coverage Status](https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=Development)](https://coveralls.io/github/symmy596/SurfinPy?branch=Development)
 
-<a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License MIT" />  
-</a>  
  
 SurfinPy is a python toolkit for plotting and analysis of ab initio solid state surface calculation data, built on existing python pakcages. It is hoped that these tools will provide publication ready plots (powered by Matplotlib)
 
@@ -22,7 +22,7 @@ python setup.py install
 
 ### Usage
 
-Check out the tutorials included in the examples folder. There are standard .py input files to give examples of what inputs and outputs should look like. To gain greater insight view the .ipynb tutorials using a jupyter notebook, these are a blend of python inputs and markdown explanations.  
+Check out the tutorials included in the examples folder. To gain greater insight view the .ipynb tutorials using a jupyter notebook, these are a blend of python inputs and markdown explanations.  
 
 ### Contributing 
 

@@ -1,8 +1,0 @@
-build/
-dist/
-.ipynb_checkpoints/
-examples/.ipynb_heckpoints/
-surfinpy.egg-info/
-surfinpy/__pycache__/
-
-*.ipynb

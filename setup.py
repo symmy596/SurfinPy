@@ -20,7 +20,7 @@ if __name__ == "__main__":
         author='Adam R. Symington',
         author_email='ars44@bath.ac.uk',
         license='MIT license',
-        packages=['surfinpy','tests'],
+        packages=['surfinpy'],
         zip_safe=False,
         install_requires=['scipy','numpy'],
         classifiers=['Programming Language :: Python',
