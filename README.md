@@ -2,6 +2,7 @@
  
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/?badge=latest)  ![Version](https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000) 
 [![Coverage Status](https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=Development)](https://coveralls.io/github/symmy596/SurfinPy?branch=Development)
+[![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
 
  
 SurfinPy is a python toolkit for plotting and analysis of ab initio solid state surface calculation data, built on existing python pakcages. It is hoped that these tools will provide publication ready plots (powered by Matplotlib)
