@@ -3,38 +3,7 @@ from scipy.constants import codata
 from surfinpy import utils as ut
 
 
-def vectorize(AE, lnP, T):
-    '''Create 2D arrays of adsorption energy, temperature and pressure values
-
-    Parameters
-    ----------
-    AE : array like
-        adsorption energies at varying temerature
-    lnP : array like
-        Pressure range
-    T : array like
-        Temperature range
-
-    Returns
-    -------
-    xnew : array like
-        2D array of temeoerature values
-    ynew : array like
-        2D array of pressure values
-    A : array like
-        2D array of adsorption energies
-    '''
-    A = np.tile(AE, lnP.size)
-    A = np.reshape(A, (lnP.size, T.size))
-    xnew = np.tile(T, lnP.size)
-    xnew = np.reshape(xnew, (lnP.size, T.size))
-    ynew = np.tile(lnP, T.size)
-    ynew = np.split(ynew, T.size)
-    ynew = np.column_stack(ynew)
-    return xnew, ynew, A
-
-
-def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
+def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
     r"""Calculates the surface energy as a function of pressure and temperature
     for each surface system according to 
 
@@ -71,16 +40,16 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, data, nsurfaces):
     R = codata.value('molar gas constant')
     N_A = codata.value('Avogadro constant')
     SEABS = np.array([])
-    for i in range(0, len(AE)):
-        xnew, ynew, A = vectorize(AE[i], lnP, T)
-        Y = (ynew * (xnew * R))
-        SE_Abs_1 = (SE + (coverage[i] / N_A) * (A - Y))
+    xnew = ut.build_xgrid(T, lnP)
+    ynew = ut.build_ygrid(T, lnP)
+    for i in range(0, (nsurfaces - 1)):
+        SE_Abs_1 = (SE + (coverage[i] / N_A) * (AE[i] - (ynew * (xnew * R))))
         SEABS = np.append(SEABS, SE_Abs_1)
-    test = np.zeros(lnP.size * T.size)
-    test = test + SE
-    SEABS = np.insert(SEABS, 0, test)
-    SE_array = ut.get_phase_data(SEABS, nsurfaces)
-    return SE_array
+    surface_energy_array = np.zeros(lnP.size * T.size)
+    surface_energy_array = surface_energy_array + SE
+    SEABS = np.insert(SEABS, 0, surface_energy_array)
+    phase_data = ut.get_phase_data(SEABS, nsurfaces)
+    return phase_data
 
 def convert_adsorption_energy_units(AE):
     return (AE * 96.485 * 1000)
@@ -177,7 +146,7 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
     nsurfaces = len(data) + 1
     AE = adsorption_energy(data, stoich, thermochem)
     SE_array = calculate_surface_energy(AE, lnP, T,
-                                        coverage, SE, data,
+                                        coverage, SE,
                                         nsurfaces)
     ticks = np.unique([SE_array])
     SE_array = ut.transform_numbers(SE_array, ticks)

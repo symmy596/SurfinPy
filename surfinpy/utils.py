@@ -1,6 +1,17 @@
 import numpy as np
 
 
+def build_xgrid(x, y):
+    xnew = np.tile(x, y.size)
+    xnew = np.reshape(xnew, (y.size, x.size))
+    return xnew
+
+def build_ygrid(x, y):
+    ynew = np.tile(y, x.size)
+    ynew = np.split(ynew, x.size)
+    ynew = np.column_stack(ynew)
+    return ynew
+
 def calculate_coverage(data):
     """Calcualte the coverage of the adsorbing species on each surface. 
 

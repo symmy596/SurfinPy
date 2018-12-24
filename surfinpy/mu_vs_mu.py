@@ -180,11 +180,8 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, xshiftval, yshiftval):
     phase_data  : array like
         array of ints, with each int corresponding to a phase.
     """
-    Xnew = np.tile(x, y.size)
-    Xnew = np.reshape(Xnew, (y.size, x.size))
-    Ynew = np.tile(y, x.size)
-    Ynew = np.split(Ynew, x.size)
-    Ynew = np.column_stack(Ynew)
+    xnew = ut.build_xgrid(x, y)
+    ynew = ut.build_ygrid(x, y)
     S = np.array([])
     for k in range(0, nsurfaces):
         xexcess = calculate_excess(data[k]['X'], data[k]['M'],
@@ -194,7 +191,7 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, xshiftval, yshiftval):
         normalised_bulk = calculate_normalisation(data[k]['Energy'],
                                                   data[k]['M'], bulk,
                                                   data[k]['Area'])
-        SE = calculate_surface_energy(Xnew, Ynew,
+        SE = calculate_surface_energy(xnew, ynew,
                                       xshiftval,
                                       yshiftval,
                                       xexcess,

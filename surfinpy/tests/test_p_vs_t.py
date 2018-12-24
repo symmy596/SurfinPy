@@ -8,8 +8,14 @@ from numpy.testing import assert_almost_equal, assert_equal
 
 class Testp_vs_t(unittest.TestCase):
     def test_calculate_surface_energy(self):
-        pass
-
+        AE = np.array([-1.0, -2.0])
+        lnP = np.arange(1, 10)
+        T = np.arange(1, 10)
+        coverage = np.array([-10.0*10**18, -20.0*10**18])
+        SE = 1.0
+        nsurfaces = 2        
+        x = p_vs_t.calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces)
+        assert_almost_equal(x[0], 1.)
 
     def test_convert_adsorption_energy(self):
         x = p_vs_t.convert_adsorption_energy_units(1)
