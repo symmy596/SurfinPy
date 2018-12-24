@@ -10,8 +10,10 @@ from numpy.testing import assert_almost_equal, assert_equal, assert_approx_equal
 test_data = os.path.join(os.path.dirname(__file__), 'H2O.txt')
 
 class TestUtils(unittest.TestCase):
-   ## def setUp(self):
-     #  self.testdata = open(test_data).read()
+ 
+ 
+    def setUp(self):
+        self.testdata = open(test_data).read()
 
 
     def test_calculate_coverage(self):
@@ -50,8 +52,16 @@ class TestUtils(unittest.TestCase):
         assert np.array_equal(a, expected)
 
 
+    def test_read_nist(self):
+        x = ut.read_nist(test_data)
+        assert x[1,0] == 100
+        assert x[10,0] == 1000
+        assert x[1,1] == 1
+
+
     def test_fit(self):
-        data = np.array([[1, 1, 1],
+        data = np.array([[0, 0, 0],
+                         [1, 1, 1],
                          [2, 2, 2],
                          [3, 3, 3],
                          [4, 3, 5],
@@ -60,3 +70,9 @@ class TestUtils(unittest.TestCase):
         x = ut.fit(data, y)
         expected = np.array([1.0142, 1.9424, 3.0844, 4.94])
         assert_almost_equal(x, expected, decimal=2)
+
+
+    def test_calculate_gibbs(self):
+        x = ut.read_nist(test_data)
+        data = ut.calculate_gibbs(x)
+        assert_almost_equal(data['Shift'][1], 0.050764)

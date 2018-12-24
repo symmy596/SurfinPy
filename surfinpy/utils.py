@@ -85,6 +85,7 @@ def fit(thermochem, T):
     shift : array like
         Entropy of adsorption species shifted to temeperature T
     '''
+    thermochem =  np.delete(thermochem, (0), axis=0)
     z = np.polyfit(thermochem[:, 0], thermochem[:, 2], 3)
     f = np.poly1d(z)
     shift = f(T)
@@ -127,7 +128,7 @@ def read_nist(File):
     data : array_like
         table as an array
     '''
-    data = np.genfromtxt(File, skip_header=3)
+    data = np.genfromtxt(File, skip_header=2)
     return data
 
 
