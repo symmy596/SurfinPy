@@ -1,0 +1,9 @@
+.cache/
+.vscode/
+build/
+dist/
+examples/.ipynb_checkpoints/
+examples/Untitled.ipynb
+surfinpy.egg-info/
+surfinpy/__pycache__/
+surfinpy/tests/__pycache__/
