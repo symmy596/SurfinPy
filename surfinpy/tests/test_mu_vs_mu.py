@@ -33,3 +33,25 @@ class Testmu_vs_mu(unittest.TestCase):
         x = mu_vs_mu.calculate_surface_energy(1, 2, 3, 4, 5, 6, 7)
         expected = -49
         assert x == expected
+
+
+    def test_evaluate_phases(self):
+        xshiftval = 0
+        yshiftval = 0
+        deltaX = {'Range': [0, 10],  'Label': 'O'}
+        deltaY = {'Range': [0, 10], 'Label': 'H_2O'}
+        bulk = {'M' : 1, 'O' : 2, 'Energy' : -100.00, 'F-Units' : 1}
+        pure = {'M': 24, 'X': 48, 'Y': 0, 'Area': 60.22, 'Energy': -570.0,   'Label': 'Stoich',  'nSpecies': 1}
+        H2O =  {'M': 24, 'X': 48, 'Y': 2, 'Area': 60.22, 'Energy': -600.0,   'Label': '1 Water', 'nSpecies': 1}
+        data = [pure, H2O]
+        data = sorted(data, key=lambda k: (k['Y']))
+        nsurfaces = len(data)
+        X = np.arange(deltaX['Range'][0], deltaX['Range'][1], 0.025, dtype="float")
+        Y = np.arange(deltaY['Range'][0], deltaY['Range'][1], 0.025, dtype="float")
+        X = X - xshiftval
+        Y = Y - yshiftval
+        phase = mu_vs_mu.evaluate_phases(data, bulk, X, Y,
+                                 nsurfaces, xshiftval, yshiftval)
+        expected_phase = np.zeros(X.size * Y.size)
+        expected_phase = expected_phase + 2
+        assert_almost_equal(phase, expected_phase)                     
