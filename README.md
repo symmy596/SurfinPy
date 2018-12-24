@@ -5,7 +5,7 @@
 <a href='https://coveralls.io/github/symmy596/SurfinPy'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg' alt='Coverage Status' /></a>
 ![Version](https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/symmy596/Surfinpy/issues)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
  
