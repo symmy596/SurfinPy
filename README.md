@@ -9,7 +9,7 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
  
-SurfinPy is a python toolkit for plotting and analysis of ab initio solid state surface calculation data, built on existing python pakcages. It is hoped that these tools will provide publication ready plots (powered by Matplotlib)
+SurfinPy is a python toolkit for the analysis and plotting of ab initio solid state surface calculation data. It is hoped that these tools will provide publication ready plots (powered by Matplotlib). 
 
 ### Installation
 
@@ -23,6 +23,8 @@ python setup.py build
 
 python setup.py install
 
+python setup.py test
+
 ```
 
 ### Usage
@@ -32,4 +34,13 @@ Check out the tutorials included in the examples folder. To gain greater insight
 ### Contributing 
 
 If you are interested in contributing to surfinpy please fork the repository and get started. If you want to find a good issue to get you in the door as a contributor, check out the issues marked as good first issue in the GitHub issue tracker.
+  
+### Author
+
+* Adam R.Symington
+  
+### Acknowledgements
+  
+* [Prof Stephen C.Parker](http://people.bath.ac.uk/chsscp/) - (Bath University)
+* Joshua Tse (Huddersfield Uniersity)
 
