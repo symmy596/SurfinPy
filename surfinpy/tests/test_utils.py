@@ -1,11 +1,19 @@
 import numpy as np
 import numpy.testing as npt
 import sys 
+import os
 from surfinpy import utils as ut
 import unittest
 from numpy.testing import assert_almost_equal, assert_equal, assert_approx_equal
 
+
+test_data = os.path.join(os.path.dirname(__file__), 'H2O.txt')
+
 class TestUtils(unittest.TestCase):
+   ## def setUp(self):
+     #  self.testdata = open(test_data).read()
+
+
     def test_calculate_coverage(self):
         H2O = {'M': 24, 'X': 48, 'Y': 2, 'Area': 60.22, 'Energy': -621.877140,  'Label': '1.66 - $Ce^{4+}$'}
         H2O_2 = {'M': 24, 'X': 48, 'Y': 4, 'Area': 60.22, 'Energy': -670.229520, 'Label': '3.32 - $Ce^{4+}$'}
@@ -14,12 +22,6 @@ class TestUtils(unittest.TestCase):
         expected = np.array([1.66057788*10**18, 3.32115576*10**18])
         assert_approx_equal(expected[0], x[0], significant=8)
         assert_approx_equal(expected[1], x[1], significant=8)
-
-    def test_get_phase_data(self):
-        X = np.arange(30)
-        a = ut.get_phase_data(X, 3)
-        expected = np.ones(10)
-        assert np.array_equal(a, expected)
 
 
     def test_get_labels(self):
@@ -41,13 +43,20 @@ class TestUtils(unittest.TestCase):
         assert np.array_equal(Z, expected)
 
 
+    def test_get_phase_data(self):
+        X = np.arange(30)
+        a = ut.get_phase_data(X, 3)
+        expected = np.ones(10)
+        assert np.array_equal(a, expected)
+
+
     def test_fit(self):
-        pass
-
-
-    def test_read_nist(self):
-        pass
-
-
-    def test_calculate_gibbs(self):
-        pass
+        data = np.array([[1, 1, 1],
+                         [2, 2, 2],
+                         [3, 3, 3],
+                         [4, 3, 5],
+                         [5, 3, 8]])
+        y = np.array([1, 2, 3, 4])
+        x = ut.fit(data, y)
+        expected = np.array([1.0142, 1.9424, 3.0844, 4.94])
+        assert_almost_equal(x, expected, decimal=2)

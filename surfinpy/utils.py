@@ -86,7 +86,8 @@ def fit(thermochem, T):
         Entropy of adsorption species shifted to temeperature T
     '''
     z = np.polyfit(thermochem[:, 0], thermochem[:, 2], 3)
-    shift = (z[0] * (T ** 3)) + (z[1] * (T ** 2)) + (z[2] * T) + z[3]
+    f = np.poly1d(z)
+    shift = f(T)
     return shift
 
 
@@ -144,6 +145,7 @@ def calculate_gibbs(data):
     data : dictionary
         gibbs energy as a function of temperature
     '''
+    #There may be a bug here - deltas is column 2?
     temperature = data[:, 0]
     deltas = data[:, 1]
     H = data[:, 5]
