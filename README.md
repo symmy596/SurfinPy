@@ -2,7 +2,7 @@
  
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/?badge=latest)
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
-[![Coverage Status](https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master)](https://coveralls.io/github/symmy596/SurfinPy?branch=master&service=github)
+<a href='https://coveralls.io/github/symmy596/SurfinPy'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg' alt='Coverage Status' /></a>
 ![Version](https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/symmy596/Surfinpy/issues)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
