@@ -6,10 +6,6 @@ import unittest
 from numpy.testing import assert_almost_equal, assert_equal
 
 class Testmu_vs_mu(unittest.TestCase):
-    def test_pressure(self):
-        a = mu_vs_mu.pressure(1, 1)
-        expected = 5267.59
-        assert_almost_equal(a, expected, decimal=2)
 
 
     def test_calculate_excess(self):

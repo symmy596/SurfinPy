@@ -65,11 +65,11 @@ class Testp_vs_t(unittest.TestCase):
         nsurfaces = 2
         adsorbant = -10.0
         thermochem = ut.read_nist(test_data)
-        x, y, z = p_vs_t.calculate(stoich, data, SE, adsorbant, thermochem)
+        system = p_vs_t.calculate(stoich, data, SE, adsorbant, thermochem)
         expectedx = np.arange(2, 1000)
         expectedy = np.arange(-13, 5.5, 0.1)
         expectedz = np.zeros(((expectedy.size), (expectedx.size)))
-        assert_almost_equal(x, expectedx)
-        assert_almost_equal(y, expectedy)
-        assert_almost_equal(z, expectedz)
+        assert_almost_equal(system.x, expectedx)
+        assert_almost_equal(system.y, expectedy)
+        assert_almost_equal(system.z, expectedz)
 

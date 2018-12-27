@@ -1,11 +1,12 @@
 import numpy as np
 from scipy.constants import codata
 from surfinpy import utils as ut
+from surfinpy import pvt_plot
 
 
 def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
     r"""Calculates the surface energy as a function of pressure and temperature
-    for each surface system according to 
+    for each surface system according to
 
     .. math::
         \gamma_{adsorbed, T, p} & = \gamma_{bare} + (C(E_{ads, T} - RTln(\frac{p}{p^o})
@@ -13,7 +14,7 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
     where :math:`\gamma_{adsorbed, T, p}` is the surface energy of the surface with adsorbed species
     at a given temperature and pressure, :math:`\gamma_{bare}` is the suface energy of the bare surface,
     C is the coverage of adsorbed species, :math:`E_{ads, T}` is the adsorption energy, R is the gas constant,
-    T is the temperature, and :math:`\frac{p}{p^o}' is the partial pressure. 
+    T is the temperature, and :math:`\frac{p}{p^o}' is the partial pressure.
 
     Parameters
     ----------
@@ -51,11 +52,43 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
     phase_data = ut.get_phase_data(SEABS, nsurfaces)
     return phase_data
 
+
 def convert_adsorption_energy_units(AE):
+    """Converts the adsorption energy into units of
+    KJ/mol
+
+    Parameters
+    ----------
+    AE : array like
+        array of adsorption energies
+
+    Returns
+    -------
+    array like
+        array of adsorption energies in units of KJ/mol
+    """
     return (AE * 96.485 * 1000)
 
 
 def calculate_adsorption_energy(adsorbed_energy, slab_energy, n_species, thermochem):
+    """calculates the adsorption energy in units of eV
+
+    Parameters
+    ----------
+    adsorbed_energy : float
+        slab energy of slab and adsorbed species from DFT
+    slab_energy : float
+        bare slab energy from DFT
+    n_species : int
+        number of adsorbed species at the surface
+    thermochem : float
+        free energy of adsorbed species.
+
+    Returns
+    -------
+    float
+        adsorption energy
+    """
     return ((adsorbed_energy - (slab_energy + (n_species * thermochem))) / n_species)
 
 
@@ -110,7 +143,7 @@ def inititalise(thermochem, adsorbant):
         dft values of adsorbant scaled to temperature
     '''
     T = np.arange(2, 1000)
-    shift = ut.fit(thermochem, T)
+    shift = ut.fit(thermochem[:,0], thermochem[:,2], T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant = adsorbant - shift
     logP = np.arange(-13, 5.5, 0.1)
@@ -139,6 +172,8 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
 
     Returns
     -------
+    system : class object
+        plotting object
     '''
     if coverage is None:
         coverage = ut.calculate_coverage(data)
@@ -155,4 +190,5 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
     y = logP
     x = T
     z = phase_grid
-    return x, y, z
+    system = pvt_plot.PVTPlot(x, y, z)
+    return system

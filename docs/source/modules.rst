@@ -7,5 +7,6 @@ surfinpy modules
    mu_vs_mu
    p_vs_t
    wulff
-   phaseplot
+   chemical_potential_plot
+   pvt_plt
    utils

@@ -67,12 +67,32 @@ class TestUtils(unittest.TestCase):
                          [4, 3, 5],
                          [5, 3, 8]])
         y = np.array([1, 2, 3, 4])
-        x = ut.fit(data, y)
+        x = ut.fit(data[:,0], data[:,2], y)
         expected = np.array([1.0142, 1.9424, 3.0844, 4.94])
         assert_almost_equal(x, expected, decimal=2)
 
 
     def test_calculate_gibbs(self):
         x = ut.read_nist(test_data)
-        data = ut.calculate_gibbs(x)
-        assert_almost_equal(data['Shift'][1], 0.050764)
+        y = ut.calculate_gibbs(5, 5, 5)
+        assert_almost_equal(y, 0.051541)
+    
+
+    def test_pressure(self):
+        a = ut.pressure(1, 1)
+        expected = 5267.59
+        assert_almost_equal(a, expected, decimal=2)
+
+
+    def test_get_levels(self):
+        X = np.arange(5)
+        levels = ut.get_levels(X)
+        expected = np.array([-1, 0, 1, 2, 3, 4])
+        assert np.array_equal(levels, expected)
+
+
+    def test_get_ticks(self):
+        X = np.arange(5)
+        tick = ut.get_ticks(X)
+        expected = [-0.5, 0.5, 1.5, 2.5, 3.5]
+        assert tick == expected

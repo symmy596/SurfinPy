@@ -1,51 +1,24 @@
 import numpy as np
 from scipy.constants import codata
-from surfinpy import phaseplot
+from surfinpy import chemical_potential_plot
 from surfinpy import utils as ut
-
-
-def pressure(chemical_potential, t):
-    r"""Converts chemical potential at a specific 
-    temperature (T) to a pressure value.
-
-    .. math::
-        P = \frac{\mu}{k * T}
-
-    where P is the pressure, :math:`\mu` is the chemcial potential, k is the
-    Boltzmann constant and T is the temperature.
-
-    Parameters
-    ----------
-    chemical_potential : array like
-        delta mu values
-    t : int
-        temperature
-
-    Returns
-    -------
-    pressure : array like
-        pressure values as a function of chemcial potential
-    """
-    k = codata.value('Boltzmann constant in eV/K')
-    pressure = chemical_potential / (k * t * 2.203)
-    return pressure
 
 
 def calculate_excess(adsorbant, slab_cations, area, bulk, nspecies=1, check=False):
     r"""calculates the excess of a given species at the surface. Depending on the nature
     of the species, there are two ways to do this. If the species is a constituent part
-    of the surface, e.g. Oxygen in :math:`TiO_2` then the calculation must account for 
-    the stoichiometry of that material. 
+    of the surface, e.g. Oxygen in :math:`TiO_2` then the calculation must account for
+    the stoichiometry of that material.
     Using the :math:`TiO_2` example
 
     .. math::
         \Gamma = \frac{N_O - \frac{1}{2}N_{Ti}}{2S}
 
-    where :math:`N_O` is the number of oxygen in the slab, N_Ti is the number of 
-    titanium in the slab, S is the surface area and the 1/2 refers to the 2 oxygen to 1 titanium 
-    stoichiometry of :math:`TiO_2`. 
-    If the species is just an external adsorbant, e.g. water or carbon dioxide then one does not 
-    need to consider the state of the surface, as there was none there to begin with. 
+    where :math:`N_O` is the number of oxygen in the slab, N_Ti is the number of
+    titanium in the slab, S is the surface area and the 1/2 refers to the 2 oxygen to 1 titanium
+    stoichiometry of :math:`TiO_2`.
+    If the species is just an external adsorbant, e.g. water or carbon dioxide then one does not
+    need to consider the state of the surface, as there was none there to begin with.
 
     .. math::
         \Gamma = \frac{N_{Water}}{2S}
@@ -65,14 +38,14 @@ def calculate_excess(adsorbant, slab_cations, area, bulk, nspecies=1, check=Fals
     nspecies : int (optional)
         number of external species
     check : bool (optional)
-        Check if this is an external or constituent species. 
+        Check if this is an external or constituent species.
 
     Returns
     -------
-    float: 
-        Surface excess of given species. 
+    float:
+        Surface excess of given species.
     """
-    if check is True and nspecies == 1:   
+    if check is True and nspecies == 1:
         return ((adsorbant - ((bulk['O'] / bulk['M']) * slab_cations)) / (2 * area))
     else:
         return (adsorbant / (area * 2))
@@ -83,14 +56,14 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
     different slab calculations to be compared.
 
     .. math::
-        Normalised_{Constant} = \frac{E_{Slab} - \frac{N_{Cat}}{Bulk_{Cat}} * 
+        Normalised_{Constant} = \frac{E_{Slab} - \frac{N_{Cat}}{Bulk_{Cat}} *
         \frac{E_{Bulk}}{N_{Units}}}{2S}
 
-    where :math:`Normalised_{Constant}' is the slab energy normalised to the bulk, 
+    where :math:`Normalised_{Constant}' is the slab energy normalised to the bulk,
     :math:`E_{slab}` is the DFT slab energy, :math:`N_{Cat}' is the number of slab
-    cations, :math:`Bulk_{Cat}` is the number of bulk cations, :math:`E_{Bulk}` is 
+    cations, :math:`Bulk_{Cat}` is the number of bulk cations, :math:`E_{Bulk}` is
     the DFT bulk energy, :math:`N_{Units}` is the number of bulk formula units and S
-    is the surface area. 
+    is the surface area.
 
     Parameters
     ----------
@@ -124,7 +97,7 @@ def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
     where S is the surface area, :math:`E_{MO}^{slab}` is the DFT energy of the stoichiometric slab,
     :math:`N_M` is the number of cations in the structure,
     x is the number of cations in the bulk unit cell, :math:`E_{MO}^{Bulk}` is the DFT energy of the bulk unit cell,
-    :math:`\Gamma_O`  :math:`\Gamma_{H_2O}` is the excess oxygen / water at the surface and :math:`\mu_O` 
+    :math:`\Gamma_O`  :math:`\Gamma_{H_2O}` is the excess oxygen / water at the surface and :math:`\mu_O`
     :math:`\mu_{H_2O}` is the oxygen / water chemcial potential.
 
     Parameters
@@ -202,9 +175,34 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, xshiftval, yshiftval):
     return phase_data
 
 
+def temperature_correction(nist_file, temperature):
+    """Use experimental data to correct the DFT free energy of an adsorbing species
+    to a specific temperature.
+
+    Parameters
+    ----------
+    nist_file : array like
+        numpy array containing experiemntal data from NIST_JANAF
+    temperature : int
+        Temperature to correct to
+    
+    Returns
+    -------
+    gibbs : float
+        correct free energy
+    """
+    nist_data = ut.read_nist(nist_file)
+    h0 = nist_data[0,4]
+    fitted_s = ut.fit(nist_data[:,0], nist_data[:,2], np.arange(1, 1000))
+    fitted_h = ut.fit(nist_data[:,0], nist_data[:,4], np.arange(1, 1000))
+    fitted_h = fitted_h + h0
+    gibbs = ut.calculate_gibbs(np.arange(1,1000), fitted_s, fitted_h)
+    return gibbs[(temperature - 1)]
+ 
+
 def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
               temperature=0, convert_pressure=False, output="Phase.png"):
-    '''Initialise the surface energy calculation.
+    """Initialise the surface energy calculation.
 
     Parameters
     ----------
@@ -229,7 +227,7 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
 
     Returns
     -------
-    '''
+    """
     data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1], 0.025, dtype="float")
@@ -237,22 +235,11 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
     X = X - xshiftval
     Y = Y - yshiftval
     phases = evaluate_phases(data, bulk, X, Y,
-                                  nsurfaces, xshiftval, yshiftval)
+                             nsurfaces, xshiftval, yshiftval)
     ticks = np.unique([phases])
     phases = ut.transform_numbers(phases, ticks)
     Z = np.reshape(phases, (Y.size, X.size))
     labels = ut.get_labels(ticks, data)
-    if xshiftval == 0 and yshiftval == 0:
-        phaseplot.plot_phase(X, Y, Z, ticks, labels, deltaX['Label'],
-                             deltaY['Label'], temperature, output)
-    elif convert_pressure is False:
-        phaseplot.plot_phase(X, Y, Z, ticks, labels, deltaX['Label'],
-                             deltaY['Label'], temperature, output)
-    elif convert_pressure is True:
-        p1 = pressure(X, temperature)
-        p2 = pressure(Y, temperature)
-        phaseplot.plot_mu_p(X, Y, Z, p1, p2, ticks, labels, deltaX['Label'],
-                            deltaY['Label'], temperature, output)
-        phaseplot.plot_pressure(p1, p2, Z, ticks, labels,
-                                deltaX['Label'], deltaY['Label'], temperature,
-                                output="pressure.png")
+    system = chemical_potential_plot.ChemicalPotentialPlot(X, Y, Z, labels, ticks ,deltaX['Label'],
+                             deltaY['Label'])
+    return system
