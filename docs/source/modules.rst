@@ -8,5 +8,5 @@ surfinpy modules
    p_vs_t
    wulff
    chemical_potential_plot
-   pvt_plt
+   pvt_plot
    utils
