@@ -7,10 +7,8 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/symmy596/Surfinpy/issues)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-
  
-
-SurfinPy is a python toolkit for the analysis and plotting of ab initio solid state surface calculation data. It is hoped that these tools will provide publication ready plots (powered by Matplotlib). 
+SurfinPy is a python toolkit for the analysis and plotting of ab initio solid state slab calculation data. It is hoped that these tools will provide publication ready plots (powered by Matplotlib). 
 
 ### Installation
 
@@ -30,7 +28,7 @@ python setup.py test
 
 ### Usage
 
-Check out the tutorials included in the examples folder. To gain greater insight view the .ipynb tutorials using a jupyter notebook, these are a blend of python inputs and markdown explanations.  
+To gain greater insight view the .ipynb tutorials using a jupyter notebook. Tutorial_0.ipynb contains an explanation of background theory and tutorials 1-5 contain examples of usage as well as explanations of the theory. 
 
 ### Contributing 
 
