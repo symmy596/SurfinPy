@@ -5,16 +5,19 @@ from surfinpy import pvt_plot
 
 
 def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
-    r"""Calculates the surface energy as a function of pressure and temperature
-    for each surface system according to
+    r"""Calculates the surface energy as a function of pressure and
+    temperature for each surface system according to
 
     .. math::
-        \gamma_{adsorbed, T, p} & = \gamma_{bare} + (C(E_{ads, T} - RTln(\frac{p}{p^o})
+        \gamma_{adsorbed, T, p} & = \gamma_{bare} + (C(E_{ads, T} -
+        RTln(\frac{p}{p^o})
 
-    where :math:`\gamma_{adsorbed, T, p}` is the surface energy of the surface with adsorbed species
-    at a given temperature and pressure, :math:`\gamma_{bare}` is the suface energy of the bare surface,
-    C is the coverage of adsorbed species, :math:`E_{ads, T}` is the adsorption energy, R is the gas constant,
-    T is the temperature, and :math:`\frac{p}{p^o}' is the partial pressure.
+    where :math:`\gamma_{adsorbed, T, p}` is the surface energy of the surface
+    with adsorbed species at a given temperature and pressure,
+    :math:`\gamma_{bare}` is the suface energy of the bare surface,
+    C is the coverage of adsorbed species, :math:`E_{ads, T}` is the
+    adsorption energy, R is the gas constant, T is the temperature, and
+    :math:`\frac{p}{p^o}' is the partial pressure.
 
     Parameters
     ----------
@@ -54,8 +57,7 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
 
 
 def convert_adsorption_energy_units(AE):
-    """Converts the adsorption energy into units of
-    KJ/mol
+    """Converts the adsorption energy into units of KJ/mol
 
     Parameters
     ----------
@@ -70,7 +72,8 @@ def convert_adsorption_energy_units(AE):
     return (AE * 96.485 * 1000)
 
 
-def calculate_adsorption_energy(adsorbed_energy, slab_energy, n_species, thermochem):
+def calculate_adsorption_energy(adsorbed_energy, slab_energy, n_species,
+                                thermochem):
     """calculates the adsorption energy in units of eV
 
     Parameters
@@ -89,12 +92,13 @@ def calculate_adsorption_energy(adsorbed_energy, slab_energy, n_species, thermoc
     float
         adsorption energy
     """
-    return ((adsorbed_energy - (slab_energy + (n_species * thermochem))) / n_species)
+    return ((adsorbed_energy - (slab_energy + (n_species * thermochem))) /
+            n_species)
 
 
 def adsorption_energy(data, stoich, thermochem):
-    '''From the dft data provided - calculate the adsorbation energy of a species
-    at the surface.
+    '''From the dft data provided - calculate the adsorbation energy of a
+    species at the surface.
 
     Parameters
     ----------
@@ -120,7 +124,7 @@ def adsorption_energy(data, stoich, thermochem):
     AE = np.split(AE, len(data))
     return AE
 
-    
+
 def inititalise(thermochem, adsorbant):
     '''Builds the numpy arrays for each calculation.
 
@@ -143,7 +147,7 @@ def inititalise(thermochem, adsorbant):
         dft values of adsorbant scaled to temperature
     '''
     T = np.arange(2, 1000)
-    shift = ut.fit(thermochem[:,0], thermochem[:,2], T)
+    shift = ut.fit(thermochem[:, 0], thermochem[:, 2], T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant = adsorbant - shift
     logP = np.arange(-13, 5.5, 0.1)

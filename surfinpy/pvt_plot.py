@@ -1,9 +1,4 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.ticker import FixedFormatter
-import matplotlib.gridspec as gridspec
-from matplotlib.ticker import FormatStrFormatter
-import matplotlib.ticker as ticker
 
 
 class PVTPlot:
@@ -35,8 +30,7 @@ class PVTPlot:
         """
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        fontsize = 10    
-        CM = ax.contourf(self.x, self.y, self.z, cmap=colourmap)
+        ax.contourf(self.x, self.y, self.z, cmap=colourmap)
         ax.set_xlabel('Temperature (K)', fontsize=14, fontweight="bold")
         ax.set_ylabel("log P (bar)", fontsize=14, fontweight="bold")
         ax.axhline(y=1.01, color="black", linestyle='--', alpha=0.8)
@@ -45,4 +39,4 @@ class PVTPlot:
         plt.tight_layout()
         plt.savefig(output, dpi=600)
         plt.show()
-        plt.close()   
+        plt.close()

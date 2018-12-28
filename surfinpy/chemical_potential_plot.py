@@ -1,10 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.ticker import FixedFormatter
 import matplotlib.gridspec as gridspec
-from matplotlib.ticker import FormatStrFormatter
-import matplotlib.ticker as ticker
 from surfinpy import utils as ut
+
 
 class ChemicalPotentialPlot:
     """Class that plots a phase diagram as a function of chemical potential.
@@ -54,19 +51,19 @@ class ChemicalPotentialPlot:
         YLab = "$\Delta \mu_{" + self.ylabel + "}$" + " (eV)"
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        fontsize = 10
         CM = ax.contourf(self.x, self.y, self.z, levels=levels, cmap=colourmap)
         ax.set_ylabel(YLab, fontsize=14)
         ax.set_xlabel(XLab, fontsize=14)
         ax.text(0.1, 0.95, temperature_label,  fontsize=15, color="white",
-                horizontalalignment='center', verticalalignment='center', transform = ax.transAxes)
+                horizontalalignment='center', verticalalignment='center',
+                transform=ax.transAxes)
         ax.tick_params(labelsize=12)
         cbar = fig.colorbar(CM, ticks=ticky, pad=0.1)
         cbar.ax.set_yticklabels(self.labels)
         plt.tight_layout()
         plt.savefig(output, dpi=600)
         plt.show()
- 
+
     def plot_mu_p(self, temperature, output="phase.png", colourmap="RdBu"):
         """ Plots a phase diagram  with two sets of axis, one as a function of
         chemical potential and the second is as a function of pressure.
@@ -85,14 +82,13 @@ class ChemicalPotentialPlot:
         temperature_label = str(temperature) + " K"
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
-        fontsize = 10
         X1Lab = "$\Delta \mu_{" + self.xlabel + "}$" + " (eV)"
         Y1Lab = "$\Delta \mu_{" + self.ylabel + "}$" + " (eV)"
         X2Lab = "Log $P_" + "{" + self.xlabel + "}$" + " 298 K (bar)"
         Y2Lab = "Log $P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
         fig = plt.figure(dpi=96, facecolor='#eeeeee', tight_layout=1)
         ax = fig.add_subplot(121)
-        gs = gridspec.GridSpec(1, 2, width_ratios=[.95, .05] )
+        gs = gridspec.GridSpec(1, 2, width_ratios=[.95, .05])
         ax, axR = plt.subplot(gs[0]), plt.subplot(gs[1])
         CM = ax.contourf(self.x, self.y, self.z, levels=levels, cmap=colourmap)
         ax.set_xlabel(X1Lab, fontsize=14)
@@ -106,8 +102,9 @@ class ChemicalPotentialPlot:
         ax.tick_params(labelsize=10)
         ax2.tick_params(labelsize=10)
         ax3.tick_params(labelsize=10)
-        ax.text(0.13, 0.95, temperature_label,  fontsize=15, color="white", horizontalalignment='center',
-                verticalalignment='center', transform = ax.transAxes)
+        ax.text(0.13, 0.95, temperature_label,  fontsize=15, color="white",
+                horizontalalignment='center', verticalalignment='center',
+                transform=ax.transAxes)
         cbar = fig.colorbar(CM, extend='both', cax=axR, ticks=ticky)
         cbar.ax.set_yticklabels(self.labels)
         axR.set_xlabel('$H_2O$ $nm^{-2}$', fontsize=12)
@@ -135,12 +132,12 @@ class ChemicalPotentialPlot:
         YLab = "Log $P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        fontsize = 10
         CM = ax.contourf(p1, p2, self.z, levels=levels, cmap=colourmap)
         ax.set_ylabel(YLab, fontsize=14)
         ax.set_xlabel(XLab, fontsize=14)
-        ax.text(0.1, 0.95, temperature_label,  fontsize=15, color="white", horizontalalignment='center',
-                verticalalignment='center', transform = ax.transAxes)
+        ax.text(0.1, 0.95, temperature_label,  fontsize=15, color="white",
+                horizontalalignment='center', verticalalignment='center',
+                transform=ax.transAxes)
         ax.tick_params(labelsize=12)
         cbar = fig.colorbar(CM, ticks=ticky, pad=0.1)
         cbar.ax.set_yticklabels(self.labels)

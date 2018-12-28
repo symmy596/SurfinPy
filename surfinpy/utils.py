@@ -3,7 +3,7 @@ from scipy.constants import codata
 
 
 def pressure(chemical_potential, t):
-    r"""Converts chemical potential at a specific 
+    r"""Converts chemical potential at a specific
     temperature (T) to a pressure value.
 
     .. math::
@@ -48,6 +48,7 @@ def build_xgrid(x, y):
     xnew = np.reshape(xnew, (y.size, x.size))
     return xnew
 
+
 def build_ygrid(x, y):
     """Builds a 2D grip of values for the y axis.
 
@@ -68,8 +69,9 @@ def build_ygrid(x, y):
     ynew = np.column_stack(ynew)
     return ynew
 
+
 def calculate_coverage(data):
-    """Calcualte the coverage of the adsorbing species on each surface. 
+    """Calcualte the coverage of the adsorbing species on each surface.
 
     Parameters
     ----------
@@ -79,7 +81,7 @@ def calculate_coverage(data):
     Returns
     -------
     coverage : array like
-        numpy array of coverage values in units of :math:`n/nm^2`    
+        numpy array of coverage values in units of :math:`n/nm^2`
     """
     coverage = np.array([])
     for i in range(0, len(data)):
@@ -102,7 +104,7 @@ def get_labels(ticks, data):
     Returns
     -------
     labels : list
-        list of labels. 
+        list of labels.
     '''
     labels = []
     for i in range(0, ticks.size):
@@ -115,11 +117,12 @@ def get_labels(ticks, data):
 
 def transform_numbers(Z, ticks):
     ''' transform numbers - Takes the phase diagram array and converts
-    the numbers to numbers scaled 0, 1, 2, etc in order to make plotting easier
-    
+    the numbers to numbers scaled 0, 1, 2, etc in order to make plotting
+    easier
+
     Parameters
     ----------
-    Z : array like 
+    Z : array like
         array of integers
     ticks : list
         unique phases
@@ -154,8 +157,8 @@ def fit(x, y, t):
     shift : array like
         data fitted from x and y to t
     '''
-    x =  np.delete(x, (0), axis=0)
-    y =  np.delete(y, (0), axis=0)
+    x = np.delete(x, (0), axis=0)
+    y = np.delete(y, (0), axis=0)
     z = np.polyfit(x, y, 3)
     f = np.poly1d(z)
     shift = f(t)
@@ -227,14 +230,14 @@ def calculate_gibbs(t, s, h):
 
 
 def get_levels(X):
-    """Builds the levels used in the contourf plot. This is neccesary to ensure
-    that each color correpsonds to a single phase. 
+    """Builds the levels used in the contourf plot. This is neccesary to
+    ensure that each color correpsonds to a single phase.
 
     Parameters
     ----------
     X : array like
-        2D array of ints corresponding to each phase. 
-    
+        2D array of ints corresponding to each phase.
+
     Returns
     -------
     levels : array like
