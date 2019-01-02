@@ -84,8 +84,8 @@ class ChemicalPotentialPlot:
         ticky = ut.get_ticks(self.ticks)
         X1Lab = "$\Delta \mu_{" + self.xlabel + "}$" + " (eV)"
         Y1Lab = "$\Delta \mu_{" + self.ylabel + "}$" + " (eV)"
-        X2Lab = "Log $P_" + "{" + self.xlabel + "}$" + " 298 K (bar)"
-        Y2Lab = "Log $P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
+        X2Lab = "$P_" + "{" + self.xlabel + "}$" + " 298 K (bar)"
+        Y2Lab = "$P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
         fig = plt.figure(dpi=96, facecolor='#eeeeee', tight_layout=1)
         ax = fig.add_subplot(121)
         gs = gridspec.GridSpec(1, 2, width_ratios=[.95, .05])
@@ -128,8 +128,8 @@ class ChemicalPotentialPlot:
         temperature_label = str(temperature) + " K"
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
-        XLab = "Log $P_" + "{" + self.xlabel + "}$" + " 298 K (bar)"
-        YLab = "Log $P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
+        XLab = "$P_" + "{" + self.xlabel + "}$" + " 298 K (bar)"
+        YLab = "$P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
         fig = plt.figure()
         ax = fig.add_subplot(111)
         CM = ax.contourf(p1, p2, self.z, levels=levels, cmap=colourmap)
