@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-
 class PVTPlot:
     """Class for plotting of temperature vs pressure phase diagrams.
 
@@ -30,9 +29,9 @@ class PVTPlot:
         """
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        ax.contourf(self.x, self.y, self.z, cmap=colourmap)
-        ax.set_xlabel('Temperature (K)', fontsize=14, fontweight="bold")
-        ax.set_ylabel("log P (bar)", fontsize=14, fontweight="bold")
+        ax.contourf(self.x, self.y, self.z, cmap=colourmap)        
+        ax.set_xlabel('Temperature (K)', fontsize=14)
+        ax.set_ylabel("log P (bar)", fontsize=14)
         ax.axhline(y=1.01, color="black", linestyle='--', alpha=0.8)
         ax.axvline(x=298.15, color="black", linestyle='--', alpha=0.8)
         ax.tick_params(labelsize=14)
