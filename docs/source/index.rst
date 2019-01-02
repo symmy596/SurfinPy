@@ -7,18 +7,18 @@ surfinpy documentation
 ======================
 
 .. toctree::
+   :maxdepth: 1
+   :caption: surfinpy:
+
+   theory.rst
+   using_surfinpy.rst
+   example_plots.rst
+
+.. toctree::
    :maxdepth: 2
    :caption: Package Contents:
 
    modules
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Help:
-
-   using_surfinpy.rst
-   theory.rst
-   example_plots.rst
 
 .. include:: ../README.rst
 

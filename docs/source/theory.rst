@@ -3,7 +3,8 @@ theory
 
 Before using this code you will need to generate the relevant data. `surfinpy` is a python module to generate surface phase diagrams from DFT calculation data. 
 `surfinpy` has the capability to generate phase diagrams as a function of chemical potential of two species e.g. water and carbon dioxide. In such an example 
-the user would require calculations with varying concentrations of water, carbon dioxide and water/carbon dioxide on a surface. 
+the user would require calculations with varying concentrations of water, carbon dioxide and water/carbon dioxide on a surface. Assuming that you have generating enough
+data and reliable data then you are ready to use `surfinpy`.
 
 The physical quantity that is used to define the stability of a surface with a given composition is its surface energy :math:`\gamma` (J :math:`m^{-2}`). 
 At its core, surfinpy is a code that calculates the surface energy of different slabs and uses these surface energies to build a phase diagram.
