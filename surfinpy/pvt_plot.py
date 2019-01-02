@@ -17,7 +17,8 @@ class PVTPlot:
         self.y = y
         self.z = z
 
-    def plot(self, output="Phase.png", colourmap="RdBu"):
+    def plot(self, output="Phase.png", colourmap="RdBu",
+             atmospheric_conditions=[1.0, 298.15]):
         """plots phase diagram
 
         Parameters
@@ -26,14 +27,18 @@ class PVTPlot:
             output filename
         colourmap : str
             colourmap for phase diagram
+        atmospheric_conditions : list
+            location of bars showing atmospheric conditions
         """
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.contourf(self.x, self.y, self.z, cmap=colourmap)        
         ax.set_xlabel('Temperature (K)', fontsize=14)
         ax.set_ylabel("log P (bar)", fontsize=14)
-        ax.axhline(y=1.01, color="black", linestyle='--', alpha=0.8)
-        ax.axvline(x=298.15, color="black", linestyle='--', alpha=0.8)
+        ax.axhline(y=atmospheric_conditions[0], color="black",
+                   linestyle='--', alpha=0.8)
+        ax.axvline(x=atmospheric_conditions[1], color="black",
+                   linestyle='--', alpha=0.8)
         ax.tick_params(labelsize=14)
         plt.tight_layout()
         plt.savefig(output, dpi=600)
