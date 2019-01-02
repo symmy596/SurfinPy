@@ -49,7 +49,7 @@ def calculate_excess(adsorbant, slab_cations, area, bulk,
         Surface excess of given species.
     """
     if check is True and nspecies == 1:
-        return ((adsorbant - ((bulk['O'] / bulk['M']) *
+        return ((adsorbant - ((bulk['Anion'] / bulk['Cation']) *
                  slab_cations)) / (2 * area))
     else:
         return (adsorbant / (area * 2))
@@ -85,11 +85,11 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
     float:
         Constant normalising the slab energy to the bulk energy.
     """
-    return ((slab_energy - (slab_cations / bulk['M']) * (bulk['Energy'] /
+    return ((slab_energy - (slab_cations / bulk['Cation']) * (bulk['Energy'] /
             bulk['F-Units'])) / (2 * area))
 
 
-def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
+def calculate_surface_energy(deltamux, deltamuy, x_energy, y_energy,
                              xexcess, yexcess, normalised_bulk):
     r"""This function calculates the surface for a given chemical potential of
     species x and species y which in this example is oxygen and water,
@@ -136,10 +136,10 @@ def calculate_surface_energy(deltamux, deltamuy, xshiftval, yshiftval,
         chemical potential of x and y
     """
     return (normalised_bulk - (deltamux * xexcess) - (deltamuy * yexcess) - (
-        xshiftval * xexcess) - (yshiftval * yexcess))
+        x_energy * xexcess) - (y_energy * yexcess))
 
 
-def evaluate_phases(data, bulk, x, y, nsurfaces, xshiftval, yshiftval):
+def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
     """Calculates the surface energies of each phase as a function of chemical
     potential of x and y. Then uses this data to evaluate which phase is most
     stable at that x/y chemical potential cross section.
@@ -170,17 +170,17 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, xshiftval, yshiftval):
     ynew = ut.build_ygrid(x, y)
     S = np.array([])
     for k in range(0, nsurfaces):
-        xexcess = calculate_excess(data[k]['X'], data[k]['M'],
+        xexcess = calculate_excess(data[k]['X'], data[k]['Cation'],
                                    data[k]['Area'], bulk,
                                    data[k]['nSpecies'], check=True)
-        yexcess = calculate_excess(data[k]['Y'], data[k]['M'],
+        yexcess = calculate_excess(data[k]['Y'], data[k]['Cation'],
                                    data[k]['Area'], bulk)
         normalised_bulk = calculate_normalisation(data[k]['Energy'],
-                                                  data[k]['M'], bulk,
+                                                  data[k]['Cation'], bulk,
                                                   data[k]['Area'])
         SE = calculate_surface_energy(xnew, ynew,
-                                      xshiftval,
-                                      yshiftval,
+                                      x_energy,
+                                      y_energy,
                                       xexcess,
                                       yexcess,
                                       normalised_bulk)
@@ -214,7 +214,7 @@ def temperature_correction(nist_file, temperature):
     return gibbs[(temperature - 1)]
 
 
-def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
+def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
               temperature=0, convert_pressure=False, output="Phase.png"):
     """Initialise the surface energy calculation.
 
@@ -248,10 +248,10 @@ def calculate(data, bulk, deltaX, deltaY, xshiftval=0, yshiftval=0,
                   0.025, dtype="float")
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1],
                   0.025, dtype="float")
-    X = X - xshiftval
-    Y = Y - yshiftval
+    X = X - x_energy
+    Y = Y - y_energy
     phases = evaluate_phases(data, bulk, X, Y,
-                             nsurfaces, xshiftval, yshiftval)
+                             nsurfaces, x_energy, y_energy)
     ticks = np.unique([phases])
     phases = ut.transform_numbers(phases, ticks)
     Z = np.reshape(phases, (Y.size, X.size))
