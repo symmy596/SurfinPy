@@ -17,6 +17,7 @@ surfinpy documentation
    :caption: Help:
 
    using_surfinpy.rst
+   theory.rst
    example_plots.rst
 
 .. include:: ../README.rst
