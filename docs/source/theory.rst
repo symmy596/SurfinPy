@@ -6,6 +6,9 @@ Before using this code you will need to generate the relevant data. `surfinpy` i
 the user would require calculations with varying concentrations of water, carbon dioxide and water/carbon dioxide on a surface. Assuming that you have generating enough
 data and reliable data then you are ready to use `surfinpy`.
 
+Chemical potential
+------------------
+
 The physical quantity that is used to define the stability of a surface with a given composition is its surface energy :math:`\gamma` (J :math:`m^{-2}`). 
 At its core, surfinpy is a code that calculates the surface energy of different slabs and uses these surface energies to build a phase diagram.
 In this exmplantion of theory we will use the example of water adsorbing onto a surface of :math:`TiO_2` containing oxygen vacancies.
@@ -50,3 +53,25 @@ finally, chemical potential can be converted to pressure values according to
     P = \frac{\mu_O}{k_B T}
 
 where P is the pressure, :math:`\mu` is the chemical potential of oxygen, :math:`k_B` is the Boltzmnann constant and T is the temperature. 
+
+Pressure vs temperature
+-----------------------
+
+`Surfinpy` has the functionality to generate phase diagrams as a function of pressure vs temperature based upon the methodology used in Molinari et al. 
+(J. Phys. Chem. C  116, 12, 7073-7082) according to
+
+.. math::
+\gamma_{adsorbed, T, P} = \gamma_{bare} + ( C ( E_{ads, T} - RTln(\frac{p}{p^o})
+
+where :math:`\gamma_{adsorbed, T, p}` is the surface energy of the surface with adsorbed species at temperature (T) and pressure (P), 
+:math:`\gamma_{bare}` is the suface energy of the bare surface, C is the coverage of adsorbed species, :math:`E_{ads}` is the adsorption energy, 
+
+.. math::
+E_{ads, T} =  E_{slab, adsorbant} - (E_{slab, bare} + n_{H_2O} E_{H_2O, T}) / n_{H_2O}
+
+where :math:`E_{slab, adsorbant}` is the energy of the surface and the adsorbed species, :math:`n_{H_2O}` is he number of adsorbed species, 
+
+.. math::
+E_{H_2O, (T)} = E_{H_2O, (g)} - TS_{(T)}
+
+where :math:`S_{(T)}` is the experimental entropy of gaseous water in the standard state.
