@@ -61,17 +61,17 @@ Pressure vs temperature
 (J. Phys. Chem. C  116, 12, 7073-7082) according to
 
 .. math::
-\gamma_{adsorbed, T, P} = \gamma_{bare} + ( C ( E_{ads, T} - RTln(\frac{p}{p^o})
+    \gamma_{adsorbed, T, P} = \gamma_{bare} + ( C ( E_{ads, T} - RTln(\frac{p}{p^o})
 
 where :math:`\gamma_{adsorbed, T, p}` is the surface energy of the surface with adsorbed species at temperature (T) and pressure (P), 
 :math:`\gamma_{bare}` is the suface energy of the bare surface, C is the coverage of adsorbed species, :math:`E_{ads}` is the adsorption energy, 
 
 .. math::
-E_{ads, T} =  E_{slab, adsorbant} - (E_{slab, bare} + n_{H_2O} E_{H_2O, T}) / n_{H_2O}
+    E_{ads, T} =  E_{slab, adsorbant} - (E_{slab, bare} + n_{H_2O} E_{H_2O, T}) / n_{H_2O}
 
 where :math:`E_{slab, adsorbant}` is the energy of the surface and the adsorbed species, :math:`n_{H_2O}` is he number of adsorbed species, 
 
 .. math::
-E_{H_2O, (T)} = E_{H_2O, (g)} - TS_{(T)}
+    E_{H_2O, (T)} = E_{H_2O, (g)} - TS_{(T)}
 
 where :math:`S_{(T)}` is the experimental entropy of gaseous water in the standard state.
