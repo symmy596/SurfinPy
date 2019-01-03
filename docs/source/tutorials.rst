@@ -1,6 +1,8 @@
 Tutorials
 =========
 
+These tutorials are replicated in jupyter notebook form and contained within `examples <https://github.com/symmy596/SurfinPy/tree/master/examples>`_.
+
 .. toctree::
    :maxdepth: 1
 

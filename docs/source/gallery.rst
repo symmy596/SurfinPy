@@ -1,7 +1,8 @@
 Gallery
 =======
 
-The gallery is a preview of some of the plots available in ``surfinpy``. 
+The gallery is a preview of some of the plots available in ``surfinpy``. Clicking on a plot will provide a link to a tutorial 
+for generating the plot. 
 
 chemical potential
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
