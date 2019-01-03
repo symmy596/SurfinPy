@@ -2,7 +2,7 @@
   
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/)
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
-<a href='https://coveralls.io/github/symmy596/SurfinPy'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg' alt='Coverage Status' /></a>
+<a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
 ![Version](https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/symmy596/Surfinpy/issues)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
@@ -49,8 +49,6 @@ surfinpy is a Python 3 package and requires a typical scientific Python stack. U
 
 To build from source:
 
-.. code-block:: bash
-
     pip install -r requirements.txt
 
     python setup.py build
@@ -63,10 +61,9 @@ To build from source:
 ### Documentation
 
 To build the documentation from scratch 
-
-.. code-block:: bash
-    cd docs
-    make html
+  
+    cd docs   
+    make html   
 
 ### License
 
@@ -87,14 +84,14 @@ surfinpy is compatible with Python 3.5+ and relies on a number of open source py
 ### Bugs 
 
 
-There may be bugs. If you think you've caught one, please report it on the `Issue Tracker <https://github.com/symmy596/SurfinPy/issues>`_.
+There may be bugs. If you think you've caught one, please report it on the [Issue Tracker](https://github.com/symmy596/SurfinPy/issues).
 This is also the place to propose new ideas for features or ask questions about the design of surfinpy. Poor documentation is considered a bug 
 so feel free to request improvements.
 
 ### Code contributions
 
 We welcome help in improving and extending the package. This is managed through Github pull requests; for external contributions we prefer the
-`"fork and pull" <https://guides.github.com/activities/forking/>`__
+["fork and pull"](https://guides.github.com/activities/forking/)__
 workflow while core developers use branches in the main repository:
 
    1. First open an Issue to discuss the proposed contribution. This
