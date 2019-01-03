@@ -1,5 +1,6 @@
-# SurfinPy
-  
+SurfinPy
+========
+
 .. image::  https://readthedocs.org/projects/surfinpy/badge/?version=latest
     :target: https://surfinpy.readthedocs.io/en/latest/
     :alt: Documentation Status
@@ -8,8 +9,8 @@
     :target: https://travis-ci.com/symmy596/SurfinPy
     :alt: Build Status
 
-.. image:: https://coveralls.io/github/symmy596/SurfinPy
-    :target: https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg
+.. image:: https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg
+    :target: https://coveralls.io/github/symmy596/SurfinPy
     :alt: Coverage Status
 
 .. image:: https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000
@@ -137,12 +138,14 @@ workflow while core developers use branches in the main repository:
 For further information please contact Adam Symington, ars44@bath.ac.uk
 
   
-### Author
+Author
+~~~~~~
 
 * Adam R.Symington
   
-### Acknowledgements
-  
-* [Prof Stephen C.Parker](http://people.bath.ac.uk/chsscp/) - (Bath University)
-* Joshua Tse (Huddersfield Uniersity)
+Acknowledgements
+~~~~~~~~~~~~~~~~
+
+* Prof Stephen C.Parker - Bath University
+* Joshua Tse - Huddersfield Uniersity
 
