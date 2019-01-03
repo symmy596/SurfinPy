@@ -66,7 +66,9 @@ Documentation
 To build the documentation from scratch 
 
 .. code-block:: bash
+
     cd docs
+    
     make html
 
 License

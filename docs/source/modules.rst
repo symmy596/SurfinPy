@@ -1,5 +1,5 @@
-surfinpy Modules
-================
+Modules
+=======
 
 .. toctree::
    :maxdepth: 4

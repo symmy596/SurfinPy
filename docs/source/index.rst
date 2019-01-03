@@ -5,15 +5,13 @@ surfinpy
 
 .. toctree::
    :maxdepth: 1
-   :caption: surfinpy:
 
    theory.rst
-   using_surfinpy.rst
    example_plots.rst
+   using_surfinpy.rst
 
 .. toctree::
    :maxdepth: 2
-   :caption: Package Contents:
 
    modules
 
