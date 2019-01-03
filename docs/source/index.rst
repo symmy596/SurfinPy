@@ -6,6 +6,8 @@
 surfinpy documentation
 ======================
 
+.. include:: ../README.rst
+
 .. toctree::
    :maxdepth: 1
    :caption: surfinpy:
@@ -20,10 +22,10 @@ surfinpy documentation
 
    modules
 
-.. include:: ../README.rst
+
 
 indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

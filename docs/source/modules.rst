@@ -1,4 +1,4 @@
-surfinpy modules
+surfinpy Modules
 ================
 
 .. toctree::

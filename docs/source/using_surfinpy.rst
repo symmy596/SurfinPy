@@ -1,4 +1,4 @@
-using surfinpy
+Using surfinpy
 ==============
 
 The are number of ways to get and use surfinpy

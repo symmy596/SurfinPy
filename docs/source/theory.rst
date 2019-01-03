@@ -1,4 +1,4 @@
-theory
+Theory
 ======
 
 Before using this code you will need to generate the relevant data. `surfinpy` is a python module to generate surface phase diagrams from DFT calculation data. 

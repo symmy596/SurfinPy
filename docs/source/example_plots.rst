@@ -1,4 +1,4 @@
-example plots
+Example plots
 =============
 
 Example of a phase diagram as a function of chemical potential
