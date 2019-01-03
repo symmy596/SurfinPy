@@ -1,5 +1,5 @@
-
-
+# SurfinPy
+  
 .. image::  https://readthedocs.org/projects/surfinpy/badge/?version=latest
     :target: https://surfinpy.readthedocs.io/en/latest/
     :alt: Documentation Status
@@ -7,6 +7,27 @@
 .. image:: https://travis-ci.com/symmy596/SurfinPy.svg?branch=master
     :target: https://travis-ci.com/symmy596/SurfinPy
     :alt: Build Status
+
+.. image:: https://coveralls.io/github/symmy596/SurfinPy
+    :target: https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg
+    :alt: Coverage Status
+
+.. image:: https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000
+    :target: https://img.shields.io/badge/Version-0.2.2-blue.svg?maxAge=2592000
+    :alt: Version
+
+.. image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+    :target: https://github.com/symmy596/Surfinpy/issues
+    :alt: Issues
+
+.. image:: http://img.shields.io/badge/license-MIT-brightgreen.svg
+    :target: http://opensource.org/licenses/MIT
+    :alt: License
+
+.. image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
+    :target: https://www.python.org/
+    :alt: made-with-python
+
 
 This is the documentation for the open-source python project, `surfinpy`.
 A library designed to facilitate the generation of publication ready surface phase diagrams from ab initio calculations.
@@ -114,3 +135,14 @@ workflow while core developers use branches in the main repository:
 
 
 For further information please contact Adam Symington, ars44@bath.ac.uk
+
+  
+### Author
+
+* Adam R.Symington
+  
+### Acknowledgements
+  
+* [Prof Stephen C.Parker](http://people.bath.ac.uk/chsscp/) - (Bath University)
+* Joshua Tse (Huddersfield Uniersity)
+

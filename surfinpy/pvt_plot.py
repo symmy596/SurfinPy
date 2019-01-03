@@ -17,7 +17,7 @@ class PVTPlot:
         self.y = y
         self.z = z
 
-    def plot(self, output="Phase.png", colourmap="RdBu",
+    def plot(self, output="Phase.png", colourmap="RdBu", set_style="ggplot",
              atmospheric_conditions=[1.0, 298.15]):
         """plots phase diagram
 
@@ -30,6 +30,7 @@ class PVTPlot:
         atmospheric_conditions : list
             location of bars showing atmospheric conditions
         """
+        plt.style.use(set_style)
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.contourf(self.x, self.y, self.z, cmap=colourmap)        

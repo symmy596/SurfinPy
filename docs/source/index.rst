@@ -1,5 +1,5 @@
-surfinpy documentation
-======================
+surfinpy
+========
 
 .. include:: ../README.rst
 
