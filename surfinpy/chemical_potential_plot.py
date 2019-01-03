@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from surfinpy import utils as ut
 
-
 class ChemicalPotentialPlot:
     """Class that plots a phase diagram as a function of chemical potential.
 
@@ -32,7 +31,8 @@ class ChemicalPotentialPlot:
         self.xlabel = xlabel
         self.ylabel = ylabel
 
-    def plot_phase(self, temperature=0, output="phase.png", colourmap="RdBu"):
+    def plot_phase(self, temperature=0, output="phase.png", colourmap="viridis",
+                   set_style="default"):
         """ Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
@@ -44,6 +44,7 @@ class ChemicalPotentialPlot:
         colourmap : str
             colourmap for the plot
         """
+        plt.style.use(set_style)
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
         temperature_label = str(temperature) + " K"
@@ -64,7 +65,8 @@ class ChemicalPotentialPlot:
         plt.savefig(output, dpi=600)
         plt.show()
 
-    def plot_mu_p(self, temperature, output="phase.png", colourmap="RdBu"):
+    def plot_mu_p(self, temperature, output="phase.png", colourmap="viridis",
+                  set_style="default"):
         """ Plots a phase diagram  with two sets of axis, one as a function of
         chemical potential and the second is as a function of pressure.
 
@@ -77,6 +79,7 @@ class ChemicalPotentialPlot:
         colourmap : str
             colourmap for the plot
         """
+        plt.style.use(set_style)
         p1 = ut.pressure(self.x, temperature)
         p2 = ut.pressure(self.y, temperature)
         temperature_label = str(temperature) + " K"
@@ -111,7 +114,8 @@ class ChemicalPotentialPlot:
         plt.savefig(output, dpi=600)
         plt.show()
 
-    def plot_pressure(self, temperature, output="phase.png", colourmap="RdBu"):
+    def plot_pressure(self, temperature, output="phase.png", colourmap="viridis",
+                      set_style="default"):
         """ Plots a phase diagram as a function of pressure.
 
         Parameters
@@ -123,6 +127,7 @@ class ChemicalPotentialPlot:
         colourmap : str
             colourmap for the plot
         """
+        plt.style.use(set_style)
         p1 = ut.pressure(self.x, temperature)
         p2 = ut.pressure(self.y, temperature)
         temperature_label = str(temperature) + " K"

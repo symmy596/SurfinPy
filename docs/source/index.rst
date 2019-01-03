@@ -7,7 +7,8 @@ surfinpy
    :maxdepth: 1
 
    theory.rst
-   example_plots.rst
+   gallery.rst
+   tutorials.rst
    using_surfinpy.rst
 
 .. toctree::

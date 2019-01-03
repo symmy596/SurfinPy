@@ -25,7 +25,7 @@ The main features include:
    
    - Use experimental data combined with ab inition data to generate a pvt plot of the state of a surface.  
 
-3. **Use calculated surface energies to built crystal morphologies.**  
+3. **Use calculated surface energies to build crystal morphologies.**  
    
    - Use the surface energies produced by surfinpy and Pymatgen to built particle morphologies.  
    - Evaulate how a particles shape changes with temperature and pressure.   
