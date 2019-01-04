@@ -92,7 +92,7 @@ The with these surface energies we can build a particle morphology using pymatge
     wulffshape.show(color_set="RdBu", direction=(1.00, 0.25, 0.25))
 
 
-.. image:: Figures/Wulff.png
+.. image:: Figures/Tutorial_3/Wulff.png
     :height: 300px
     :align: center
 

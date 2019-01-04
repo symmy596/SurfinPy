@@ -49,7 +49,7 @@ Usage
                               coverage)
     system.plot()
 
-.. image:: Figures/pvt_default.png
+.. image:: Figures/Tutorial_2/First.png
     :height: 300px
     :align: center
 
@@ -62,6 +62,6 @@ Alternatively you can also tweak the style
                 set_style="dark_background",
                 colourmap="PiYG")
 
-.. image:: Figures/dark_pvt.png
+.. image:: Figures/Tutorial_2/Second.png
     :height: 300px
     :align: center

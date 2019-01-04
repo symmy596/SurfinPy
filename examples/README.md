@@ -2,7 +2,10 @@
   
 #### Author - Adam Symington
 
-###### Contained here are 5 tutorials for using surfinpy in your research. 
+##### Contained here are 5 tutorials for using surfinpy in your research. 
+
+It should be noted that these are generic examples to demonstrate the functionality of the code. This section will be updated in due course
+with example of how `surfinpy` has been used in published work.
 
 
 - Tutorial 1 - Guide to generating a phase diagram for a surface as a function of the chemical potetnial of two variable species

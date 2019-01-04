@@ -30,11 +30,29 @@ The input data needs to be contained within a dictionary.
 First we have created the dictionary for the bulk data, where ``Cation`` is the number of cations, ``Anion`` is the number of anions, 
 ``Energy`` is the DFT energy and ``F-Units`` is the number of formula units.
 
+.. code-block:: python
+
+    bulk = {'Cation' : Cations in Bulk Unit Cell, 
+            'Anion' : Anions in Bulk Unit Cell, 
+            'Energy' :  Energy of Bulk Calculation, 
+            'F-Units' : Formula units in Bulk Calculation}
+
 Next we create the surface dictionaries - one for each surface or "phase". ``Cation`` is the number of cations, 
 ``X`` is in this case the number of oxygen species (corresponding to the X axis of the phase diagram), 
 ``Y`` is the number of in this case water molecules (corresponding to the Y axis of our phase diagram), 
 ``Area`` is the surface area, ``Energy`` is the DFT energy, ``Label`` is the label for the surface (appears on the phase diagram) and
 finally ``nSpecies`` is the number of adsorbin species (In this case we have a surface with oxygen vacancies and adsorbing water molecules - so nSpecies is 1).
+
+.. code-block:: python
+
+    surface = {'Cation': Cations in Slab,
+               'X': Number of Species X in Slab, 
+               'Y': Number of Species Y in Slab,
+               'Area': Surface area in the slab,
+               'Energy': Energy of Slab,
+               'Label': Label for phase,
+               'nSpecies': How many species are non stoichiometric}
+
 
 This data needs to be contained within a list. DOn't worry about the order, surfinpy will sort that out for you. 
 
@@ -43,33 +61,38 @@ Again these exist in a dictionary. ``Range`` corresponds to the range of chemcia
 
 .. code-block:: python
 
+    deltaX = {'Range': Range of Chemical Potential,
+              'Label': Species Label}
+
+
+.. code-block:: python
+
     from surfinpy import mu_vs_mu
 
     bulk = {'Cation' : 1, 'Anion' : 2, 'Energy' : -780.0, 'F-Units' : 4}
 
-    pure =     {'Cation': 24, 'X': 48, 'Y': 0, 'Area': 60.0, 
+    pure =     {'Cation': 24, 'X': 48, 'Y': 0, 'Area': 60.0,
                 'Energy': -575.0,   'Label': 'Stoich',  'nSpecies': 1}
-    H2O =      {'Cation': 24, 'X': 48, 'Y': 2, 'Area': 60.0, 
-                'Energy': -610.0,   'Label': '1 Water', 'nSpecies': 1}
+    H2O =      {'Cation': 24, 'X': 48, 'Y': 2, 'Area': 60.0,
+                'Energy': -612.0,   'Label': '1 Water', 'nSpecies': 1}
     H2O_2 =    {'Cation': 24, 'X': 48, 'Y': 4, 'Area': 60.0, 
                 'Energy': -640.0,   'Label': '2 Water', 'nSpecies': 1}
-    H2O_3 =    {'Cation': 24, 'X': 48, 'Y': 8, 'Area': 60.0, 
-                'Energy': -700.0,   'Label': '3 Water', 'nSpecies': 1}
+    H2O_3 =    {'Cation': 24, 'X': 48, 'Y': 8, 'Area': 60.0,
+                'Energy': -676.0,   'Label': '3 Water', 'nSpecies': 1}
     Vo =       {'Cation': 24, 'X': 46, 'Y': 0, 'Area': 60.0, 
-                'Energy': -560.0,   'Label': 'Vo', 'nSpecies': 1}
+                'Energy': -558.0,   'Label': 'Vo', 'nSpecies': 1}
     H2O_Vo =   {'Cation': 24, 'X': 46, 'Y': 2, 'Area': 60.0, 
-                'Energy': -590.0,  'Label': 'Vo + 1 Water', 'nSpecies': 1}
+                'Energy': -594.0,  'Label': 'Vo + 1 Water', 'nSpecies': 1}
     H2O_Vo_2 = {'Cation': 24, 'X': 46, 'Y': 4, 'Area': 60.0, 
-                'Energy': -620.0,  'Label': 'Vo + 2 Water', 'nSpecies': 1}
+                'Energy': -624.0,  'Label': 'Vo + 2 Water', 'nSpecies': 1}
     H2O_Vo_3 = {'Cation': 24, 'X': 46, 'Y': 6, 'Area': 60.0, 
-                'Energy': -660.0, 'Label': 'Vo + 3 Water', 'nSpecies': 1}
+                'Energy': -640.0, 'Label': 'Vo + 3 Water', 'nSpecies': 1}
     H2O_Vo_4 = {'Cation': 24, 'X': 46, 'Y': 8, 'Area': 60.0, 
-                'Energy': -680.0, 'Label': 'Vo + 4 Water', 'nSpecies': 1}
+                'Energy': -670.0, 'Label': 'Vo + 4 Water', 'nSpecies': 1}
 
-    data = [pure, H2O_2, H2O_Vo, H2O,  H2O_Vo_2,
-            H2O_3, H2O_Vo_3,  H2O_Vo_4, Vo]
+    data = [pure, H2O_2, H2O_Vo, H2O,  H2O_Vo_2, H2O_3, H2O_Vo_3,  H2O_Vo_4, Vo]
 
-    deltaX = {'Range': [ -10, -4],  'Label': 'O'}
+    deltaX = {'Range': [ -12, -6],  'Label': 'O'}
     deltaY = {'Range': [ -19, -12], 'Label': 'H_2O'}
 
 This data will be used in all subsequent examples and will not be declared again. Once the data has been declared it is a simple
@@ -81,7 +104,7 @@ two line process to generate the diagram.
     system.plot_phase()
 
 
-.. image:: Figures/default.png
+.. image:: Figures/Tutorial_1/First.png
     :height: 300px
     :align: center
 
@@ -115,7 +138,7 @@ see an example of how you can tweak the style and colourmap of the plot.
     Oxygen_exp = mu_vs_mu.temperature_correction("O2.txt", 298)
     Water_exp = mu_vs_mu.temperature_correction("H2O.txt", 298)
 
-    Oxygen_corrected = (-9.08 + -0.86 + Oxygen_exp) / 2 
+    Oxygen_corrected = (-9.08 + -0.86 + Oxygen_exp) 
     Water_corrected = -14.84 + 0.55 + Water_exp
 
     system =  mu_vs_mu.calculate(data, bulk, deltaX, deltaY, 
@@ -124,7 +147,7 @@ see an example of how you can tweak the style and colourmap of the plot.
     system.plot_phase(temperature=298, set_style="fast", 
                       colourmap="RdBu")
 
-.. image:: Figures/fast.png
+.. image:: Figures/Tutorial_1/Second.png
     :height: 300px
     :align: center
 
@@ -147,7 +170,7 @@ where P is the pressure, :math:`\mu` is the chemical potential of oxygen, :math:
     Oxygen_exp = mu_vs_mu.temperature_correction("O2.txt", 298)
     Water_exp = mu_vs_mu.temperature_correction("H2O.txt", 298)
 
-    Oxygen_corrected = (-9.08 + -0.86 + Oxygen_exp) / 2 
+    Oxygen_corrected = (-9.08 + -0.86 + Oxygen_exp) 
     Water_corrected = -14.84 + 0.55 + Water_exp
 
     system =  mu_vs_mu.calculate(data, bulk, deltaX, deltaY, 
@@ -156,7 +179,7 @@ where P is the pressure, :math:`\mu` is the chemical potential of oxygen, :math:
     system.plot_mu_p(output="Example_ggrd", colourmap="RdYlGn", 
                      temperature=298)
 
-.. image:: Figures/Example_ggrd.png
+.. image:: Figures/Tutorial_1/Third.png
     :height: 300px
     :align: center
 
@@ -167,7 +190,7 @@ where P is the pressure, :math:`\mu` is the chemical potential of oxygen, :math:
                      colourmap="RdYlGn", 
                      temperature=298)
 
-.. image:: Figures/Example_dark_mp.png
+.. image:: Figures/Tutorial_1/Fourth.png
     :height: 300px
     :align: center
 
@@ -178,6 +201,6 @@ where P is the pressure, :math:`\mu` is the chemical potential of oxygen, :math:
                          colourmap="PuBu", 
                          temperature=298)
 
-.. image:: Figures/Example_dark_rdgn.png
+.. image:: Figures/Tutorial_1/Filth.png
     :height: 300px
     :align: center
