@@ -8,7 +8,6 @@
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
-
 This is the documentation for the open-source python project, `surfinpy`.
 A library designed to facilitate the generation of publication ready surface phase diagrams from ab initio calculations.
 surfinpy is built on existing python packages that those in the solid state physics/chemistry community should already be familiar with. 
