@@ -5,27 +5,28 @@ from surfinpy import utils as ut
 
 def calculate_excess(adsorbant, slab_cations, area, bulk,
                      nspecies=1, check=False):
-    r"""calculates the excess of a given species at the surface.
+    r"""Calculates the excess of a given species at the surface.
     Depending on the nature of the species, there are two ways to do this.
     If the species is a constituent part of the surface, e.g.
     Oxygen in :math:`TiO_2` then the calculation must account for
     the stoichiometry of that material. Using the :math:`TiO_2` example
 
     .. math::
-        \Gamma = \frac{N_O - \frac{1}{2}N_{Ti}}{2S}
+        \Gamma_O = \frac{1}{2A} \Bigg( nO_{Slab} - \frac{nO_{Bulk}}
+        {nTi_{Bulk}}nTi_{Slab}  \Bigg)
 
-    where :math:`N_O` is the number of oxygen in the slab,
-    N_Ti is the number of titanium in the slab,
-    S is the surface area and the 1/2 refers to the 2 oxygen to 1 titanium
-    stoichiometry of :math:`TiO_2`.
+    where :math:`nO_{Slab}` is the number of oxygen in the slab,
+    :math:`nO_{Bulk}` is the number of oxygen in the bulk,
+    A is the surface area, :math:`nTi_{Bulk}` is the number of Ti in
+    the bulk and :math:`nTi_{Slab}` is the number of Ti in the slab. 
     If the species is just an external adsorbant, e.g. water or carbon dioxide
     then one does not need to consider the state of the surface,
     as there was none there to begin with.
 
     .. math::
-        \Gamma = \frac{N_{Water}}{2S}
+        \Gamma_{H_2O} = \frac{nH_2O}{2A}
 
-    where :math:`N_{Water}` is the number of water molecules and S is the
+    where :math:`nH_2O` is the number of water molecules and A is the
     surface area.
 
     Parameters
@@ -60,14 +61,14 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
     Thus allowing the different slab calculations to be compared.
 
     .. math::
-        Normalised_{Constant} = \frac{E_{Slab} - \frac{N_{Cat}}{Bulk_{Cat}} *
-        \frac{E_{Bulk}}{N_{Units}}}{2S}
+        Energy = \frac{1}{2A} \Bigg( E_{MO}^{slab} -
+        \frac{nCat_{slab}}{nCat_{Bulk}} E_{MO}^{Bulk} \Bigg)
 
-    where :math:`Normalised_{Constant}' is the slab energy normalised to the
-    bulk, :math:`E_{slab}` is the DFT slab energy, :math:`N_{Cat}' is the
-    number of slab cations, :math:`Bulk_{Cat}` is the number of bulk cations,
-    :math:`E_{Bulk}` is the DFT bulk energy, :math:`N_{Units}` is the number
-    of bulk formula units and S is the surface area.
+    where Energy is the slab energy normalised to the
+    bulk, :math:`E_{MO}^{slab}` is the DFT slab energy, :math:`nCat_{slab}`
+     is the number of slab cations, :math:`nCat_{Bulk}` is the number of bulk
+    cations, :math:`E_{MO}^{Bulk}` is the DFT bulk energy A is the surface
+    area.
 
     Parameters
     ----------
@@ -91,21 +92,19 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
 
 def calculate_surface_energy(deltamux, deltamuy, x_energy, y_energy,
                              xexcess, yexcess, normalised_bulk):
-    r"""This function calculates the surface for a given chemical potential of
-    species x and species y which in this example is oxygen and water,
-    according to
+    r"""Calculates the surface for a given chemical potential of
+    species x and species y for a single phase.
 
     .. math::
         \gamma_{Surf} = \frac{1}{2S} \Bigg( E_{MO}^{slab} -
-        \frac{N_M}{x} E_{MO}^{Bulk} \Bigg) -
-         \Delta \Gamma_O \mu_O - \Delta \Gamma_{H_2O} \mu_{H_2O} -
-         \Delta n_O \mu_O (T) -
-         \Delta n_{H_2O} \mu_{H_2O} (T)
+        \frac{nCat_{Slab}}{nCat_{Bulk}} E_{MO}^{Bulk} \Bigg) -
+         \Gamma_O \mu_O - \Gamma_{H_2O} \mu_{H_2O} -
+         \Gamma_O  \mu_O (T) - \Gamma_{H_2O} \mu_{H_2O} (T)
 
     where S is the surface area, :math:`E_{MO}^{slab}` is the DFT energy of
-    the stoichiometric slab, :math:`N_M` is the number of cations in the
-    structure, x is the number of cations in the bulk unit cell,
-    :math:`E_{MO}^{Bulk}` is the DFT energy of the bulk unit cell,
+    the stoichiometric slab, :math:`nCat_{Slab}` is the number of cations
+    in the slab, :math:`nCat_{Slab}` is the number of cations in the bulk
+    unit cell, :math:`E_{MO}^{Bulk}` is the DFT energy of the bulk unit cell,
     :math:`\Gamma_O`  :math:`\Gamma_{H_2O}` is the excess oxygen / water at
     the surface and :math:`\mu_O` :math:`\mu_{H_2O}` is the oxygen /
     water chemcial potential.
@@ -116,12 +115,10 @@ def calculate_surface_energy(deltamux, deltamuy, x_energy, y_energy,
         Chemical potential of species x
     deltamuy : array like
         Chemical potential of species y
-    xshiftval : float
-        shift value for the x axis - corresponding to the
-        0K DFT energy or temperature corrected DFT energy
-    yshiftval : float
-        shift value for the y axis - corresponding to the
-        0K DFT energy or temperature corrected DFT energy
+    x_energy : float
+        DFT energy or temperature corrected DFT energy
+    y_energy : float
+        DFT energy or temperature corrected DFT energy
     xexcess : float
         Surface excess of species x
     yexcess : float
@@ -156,9 +153,9 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
         Y axis chemical potential values
     nsurfaces : int
         Number of phases
-    xshiftval : float
+    x_energy : float
         DFT 0K energy for species x
-    yshiftval : float
+    y_energy : float
         DFT 0K energy for species y
 
     Returns
@@ -215,32 +212,32 @@ def temperature_correction(nist_file, temperature):
 
 
 def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
-              temperature=0, convert_pressure=False, output="Phase.png"):
+              temperature=0, output="Phase_Diagram.png"):
     """Initialise the surface energy calculation.
 
     Parameters
     ----------
     data : list
-        List containing the dictionary data for each phase
+        List of dictionaries for each phase
     bulk : dictionary
-        Dctionary containing data for bulk
+        Dictionary containing data for bulk
     deltaX : dictionary
-        X axis chemical potential values
+        Range of chemical potential/label for species X 
     DeltaY : dictionary
-        Y axis chemical potential values
-    xshiftval : float
+        Range of chemical potential/label for species Y 
+    x_energy : float
         DFT energy of adsorbing species
-    yshiftval : float
+    y_energy : float
         DFT energy of adsorbing species
     temperature : int
         Temperature
-    convert_pressure : bool
-        Parameter to turn on conversion of chemical potential to pressure
     output : str
         Output file name
 
     Returns
     -------
+    system : class obj
+        Plotting object
     """
     data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)
