@@ -1,7 +1,11 @@
 import numpy as np
 from surfinpy import mu_vs_mu
+from surfinpy import utils as ut
 import unittest
 from numpy.testing import assert_almost_equal
+import os
+
+test_data = os.path.join(os.path.dirname(__file__), 'H2O.txt')
 
 
 class Testmu_vs_mu(unittest.TestCase):
@@ -50,3 +54,7 @@ class Testmu_vs_mu(unittest.TestCase):
         expected_phase = np.zeros(X.size * Y.size)
         expected_phase = expected_phase + 2
         assert_almost_equal(phase, expected_phase)
+
+    def test_temperature_correction(self):
+        y = mu_vs_mu.temperature_correction(test_data, 100)
+        assert_almost_equal(y, 0.006078349650349607)
