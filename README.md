@@ -58,6 +58,10 @@ To build from source:
 
     python setup.py test
 
+Or alternatively install with pip
+
+    pip install surfinpy
+
 
 ### Documentation
 
