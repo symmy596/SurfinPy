@@ -1,9 +1,9 @@
 Theory
 ======
 
-`surfinpy` is a python module to generate surface phase diagrams from DFT calculation data. 
+`surfinpy` is a Python module to generate surface phase diagrams from DFT calculation data. 
 Before using this code you will need to generate the relevant data. 
-`surfinpy` has the capability to generate phase diagrams as a function of chemical potential of two species e.g. water and carbon dioxide. In such an example 
+`surfinpy` has the capability to generate phase diagrams as a function of chemical potential of two varying surface species e.g. water and carbon dioxide. In such an example 
 the user would require calculations with varying concentrations of water, carbon dioxide and water/carbon dioxide on a surface. Assuming that you have generated enough, 
 reliable data then you are ready to use `surfinpy`.
 
@@ -11,16 +11,16 @@ Surface Energy
 --------------
 
 The physical quantity that is used to define the stability of a surface with a given composition is its surface energy :math:`\gamma` (J :math:`m^{-2}`). 
-At its core, surfinpy is a code that calculates the surface energy of different slabs at varying chemical potential and 
+At its core, `surfinpy` is a code that calculates the surface energy of different slabs at varying chemical potential and 
 uses these surface energies to construct a phase diagram.
-In this exmplantion of theory we will use the example of water adsorbing onto a surface of :math:`TiO_2` containing oxygen vacancies.
-In such an example there are two variables, water concentration and oxygen vacancy concentration. We are able to calculate the surface energy according to 
+In this explantion of theory we will use the example of water adsorbing onto a surface of :math:`TiO_2` containing oxygen vacancies.
+In such an example there are two variables, water concentration and oxygen concentration. We are able to calculate the surface energy according to 
 
 .. math::
     \gamma_{Surf} = \frac{1}{2A} \Bigg( E_{TiO_2}^{slab} - \frac{nTi_{slab}}{nTi_{Bulk}} E_{TiO_2}^{Bulk} \Bigg) - \Gamma_O \mu_O - \Gamma_{H_2O} \mu_{H_2O} ,
 
 where A is the surface area, :math:`E_{TiO_2}^{slab}` is the DFT energy of the slab, :math:`nTi_{Slab}` is the number of cations in the slab, 
-:math:`nTi_{Bulk}` is the number of cations in the bulk unit cell and :math:`E_{TiO_2}^{Bulk}` is the DFT energy of the bulk unit cell and
+:math:`nTi_{Bulk}` is the number of cations in the bulk unit cell, :math:`E_{TiO_2}^{Bulk}` is the DFT energy of the bulk unit cell,
 
 .. math::
     \Gamma_O = \frac{1}{2A} \Bigg( nO_{Slab} - \frac{nO_{Bulk}}{nTi_{Bulk}}nTi_{Slab}  \Bigg) ,
@@ -60,9 +60,9 @@ Pressure
 Chemical potential can be converted to pressure values according to
 
 .. math::
-    P = \frac{\mu_O}{k_B T}
+    P = \frac{\mu_X}{k_B T}
 
-where P is the pressure, :math:`\mu` is the chemical potential of oxygen, :math:`k_B` is the Boltzmnann constant and T is the temperature. 
+where P is the pressure, :math:`\mu` is the chemical potential of species X, :math:`k_B` is the Boltzmnann constant and T is the temperature. 
 
 Pressure vs temperature
 -----------------------

@@ -2,8 +2,8 @@ Chemical Potential
 ==================
 
 The physical quantity that is used to define the stability of a surface with a given composition is its surface energy :math:`\gamma` (J :math:`m^{-2}`). 
-At its core, surfinpy is a code that calculates the surface energy of different slabs and uses these surface energies to build a phase diagram.
-In this exmplantion of theory we will use the example of water adsorbing onto a surface of :math:`TiO_2` containing oxygen vacancies.
+At its core, `surfinpy` is a code that calculates the surface energy of different slabs and uses these surface energies to build a phase diagram.
+In this explantion of theory we will use the example of water adsorbing onto a surface of :math:`TiO_2` containing oxygen vacancies.
 In such an example there are two variables, water concentration and oxygen vacancy concentration. We are able to calculate the surface energy according to 
 
 .. math::
@@ -25,7 +25,7 @@ Clearly :math:`\Gamma` and :math:`mu` will only matter when the surface is non s
 Usage
 ~~~~~
 
-The first thing to do is input the data that we have generated from our DFT simulations. 
+The first thing to do is input the data that we have generated from our DFT calculations. 
 The input data needs to be contained within a dictionary.
 First we have created the dictionary for the bulk data, where ``Cation`` is the number of cations, ``Anion`` is the number of anions, 
 ``Energy`` is the DFT energy and ``F-Units`` is the number of formula units.
@@ -37,11 +37,12 @@ First we have created the dictionary for the bulk data, where ``Cation`` is the 
             'Energy' :  Energy of Bulk Calculation, 
             'F-Units' : Formula units in Bulk Calculation}
 
-Next we create the surface dictionaries - one for each surface or "phase". ``Cation`` is the number of cations, 
+Next we create the slab dictionaries - one for each slab calculation or "phase". ``Cation`` is the number of cations, 
 ``X`` is in this case the number of oxygen species (corresponding to the X axis of the phase diagram), 
 ``Y`` is the number of in this case water molecules (corresponding to the Y axis of our phase diagram), 
 ``Area`` is the surface area, ``Energy`` is the DFT energy, ``Label`` is the label for the surface (appears on the phase diagram) and
-finally ``nSpecies`` is the number of adsorbin species (In this case we have a surface with oxygen vacancies and adsorbing water molecules - so nSpecies is 1).
+finally ``nSpecies`` is the number of adsorbing species (In this case we have a surface with oxygen vacancies and adsorbing water molecules -
+so nSpecies is 1 as oxygen vacancies are not an adsorbing species, they are a constituent part of the surface).
 
 .. code-block:: python
 
@@ -54,7 +55,7 @@ finally ``nSpecies`` is the number of adsorbin species (In this case we have a s
                'nSpecies': How many species are non stoichiometric}
 
 
-This data needs to be contained within a list. DOn't worry about the order, surfinpy will sort that out for you. 
+This data needs to be contained within a list. Don't worry about the order, `surfinpy` will sort that out for you. 
 
 We also need to declare the range in chemical potential that we want to consider. 
 Again these exist in a dictionary. ``Range`` corresponds to the range of chemcial potential values to be considered and ``Label`` is the axis label.
@@ -112,7 +113,7 @@ Temperature
 ~~~~~~~~~~~
 
 The previous phase diagram is at 0K. It is possible to use experimental data from the NIST_JANAF database to make the chemical potential a temperature dependent
-term and thus generate a phase diagram at a temperature (T). This is done according to
+term and thus generate a phase diagram at a temperature (T). Using oxygen as an example, this is done according to
 
 .. math::
     \gamma_{Surf} = \frac{1}{2A} \Bigg( E_{TiO_2}^{slab} - \frac{nTi_{Slab}}{nTi_{Bulk}} E_{TiO_2}^{Bulk} \Bigg) - \Gamma_O \mu_O - \Gamma_{H_2O} \mu_{H_2O} - n_O \mu_O (T) - n_{H_2O} \mu_{H_2O} (T) 
@@ -128,7 +129,7 @@ Gibbs energy for oxygen gas and $\Delta$ :math:`G_{O_2}` ( :math:`\Delta` T, Exp
 .. math::
     \Delta G_{O_2} ( \Delta T, Exp)  = \frac{1}{2} [H(T, {O_2}) -  H(0 K, {O_2})] -  \frac{1}{2} T[S(T, {O_2}])
 
-surfinpy has a built in function to read a NIST_JANAF table and calculate this temperature_correction for you. In the following example you will also 
+`surfinpy` has a built in function to read a NIST_JANAF table and calculate this temperature_correction for you. In the following example you will also 
 see an example of how you can tweak the style and colourmap of the plot.
 
 .. code-block:: python

@@ -2,14 +2,14 @@ Particle Morphology
 ===================
 
 It is sometimes useful to use surface energies in order to generate particle morphologies. 
-This tutorial demonstrates how to obtain surface energies for surfaces containing adsorbed species using surfinpy. 
+This tutorial demonstrates how to obtain surface energies for surfaces containing adsorbed species using `surfinpy`. 
 With these you can then generate a wulff construction using `pymatgen <https://www.sciencedirect.com/science/article/pii/S0927025612006295?via%3Dihub>`_. 
 A Wulff construction is a method to determine the equilibrium shape of a crystal. 
 So by calculating the surface energies of multiple different surfaces, at different temperature and pressure values we can generate a particle morphology for the material,
 in the prescence of an adsorbing species, at a specific temperature and pressure. 
 
 `surfinpy` has a module called wulff that will return a surface energy at a given temperature and pressure value. 
-These can then be used in conjunction with pymatgen for a wulff construction. 
+These can then be used in conjunction with Pymatgen for a wulff construction. 
 So first we need to declare the data for each surface and calculate the surface energies. 
 As an aside, it is possible to provide multiple coverages, the return will be an array of surface energies, 
 corresponding to each surface coverage, you would then select the minimum value with `np.amin()`

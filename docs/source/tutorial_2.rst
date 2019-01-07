@@ -1,8 +1,8 @@
 Pressure vs Temperature
 =======================
 
-`Surfinpy` has the functionality to generate phase diagrams as a function of pressure vs temperature based upon the methodology used in Molinari et al. 
-(J. Phys. Chem. C  116, 12, 7073-7082) according to
+`Surfinpy` has the functionality to generate phase diagrams as a function of pressure vs temperature based upon the methodology used in `Molinari et al 
+<https://pubs.acs.org/doi/abs/10.1021/jp300576b>`_ according to
 
 .. math::
     \gamma_{adsorbed, T, P} = \gamma_{bare} + ( C ( E_{ads, T} - RTln(\frac{p}{p^o})
