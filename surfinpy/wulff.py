@@ -72,8 +72,8 @@ def calculate_surface_energy(stoich,
     R = codata.value('molar gas constant')
     N_A = codata.value('Avogadro constant')
     lnP = np.log(10 ** P)
-    AE = pt.adsorption_energy(data, stoich, adsorbant)
     adsorbant = temperature_correction(T, thermochem, adsorbant)
+    AE = pt.adsorption_energy(data, stoich, adsorbant)
     SEs = np.array([SE])
     for i in range(0, len(data)):
         S = SE + (coverage[i] / N_A) * (AE[i] - (lnP * (T * R)))
