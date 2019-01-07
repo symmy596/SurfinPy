@@ -24,6 +24,6 @@ class TestWulff(unittest.TestCase):
         x = ut.read_nist(test_data)
         y = wulff.calculate_surface_energy(stoich, data, 1.0, -10.0, x, 100, 2)
         assert_almost_equal(y[0], 1.0)
-        assert_almost_equal(y[1], -9.6917, decimal=4)
+        assert_almost_equal(y[1], -9.6914, decimal=4)
 
 
