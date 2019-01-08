@@ -1,6 +1,6 @@
 # SurfinPy
 
-<img src="https://github.com/symmy596/SurfinPy/blob/master/logo/Logo.png?raw=true" width="60%"/>
+<div style="text-align:center"><img src="https://github.com/symmy596/SurfinPy/blob/master/logo/Logo.png?raw=true" width="40%"/></div>
 
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/)
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
