@@ -1,7 +1,7 @@
 
-..image:: https://github.com/symmy596/SurfinPy/blob/master/logo/Logo.png
-    :height: 300px
+..image:: https://github.com/symmy596/SurfinPy/blob/master/logo/Logo.png?raw=true
     :align: center
+
 .. image::  https://readthedocs.org/projects/surfinpy/badge/?version=latest
     :target: https://surfinpy.readthedocs.io/en/latest/
     :alt: Documentation Status
