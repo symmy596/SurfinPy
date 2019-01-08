@@ -16,6 +16,9 @@ authors:
 - name: Marco Molinari
   orcid: 0000-0001-7144-6075
   affiliation: 2
+- name: Arnaud Marmier
+  orcid: 
+  affiliation: 3
 - name: Stephen C. Parker
   orcid: 0000-0003-3804-0975
   affiliation: 1
@@ -24,6 +27,8 @@ affiliations:
   index: 1
 - name: Department of Chemistry, University of Huddersfield
   index: 2
+- name: University of the West of England
+  index: 3
 date: 24 December 2018
 bibliography: paper.bib
 ---
