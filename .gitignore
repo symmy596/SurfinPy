@@ -8,3 +8,4 @@ surfinpy.egg-info
 surfinpy/__pycache__
 surfinpy/tests/__pycache__
 docs/build
+paper/latex
