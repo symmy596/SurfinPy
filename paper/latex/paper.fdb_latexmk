@@ -1,17 +1,17 @@
 # Fdb version 3
-["bibtex paper"] 1547114857 "paper.aux" "paper.bbl" "paper" 1547817569
+["bibtex paper"] 1547820806 "paper.aux" "paper.bbl" "paper" 1547820807
   "/usr/share/texlive/texmf-dist/bibtex/bst/achemso/achemso.bst" 1537133790 30160 573faaf67f08eea0cc82974d78843d59 ""
-  "acs-paper.bib" 1547817569 306 2ec6e2c563f7f14bcefed0d36c308168 ""
-  "paper.aux" 1547817569 1033 08bce2821111c709e10ce0613be365fa ""
+  "acs-paper.bib" 1547820807 306 2ec6e2c563f7f14bcefed0d36c308168 ""
+  "paper.aux" 1547820807 1080 0be681019dd1433d7996c95e7c5f41df ""
   "paper.bcf" 0 -1 0 ""
   "paper.bib" 1546261454 1768 ad4be6487765ac4da0189f9cbf6c2098 ""
   (generated)
-  "paper.blg"
   "paper.bbl"
-["pdflatex"] 1547817568 "/home/adam/data/adam/progs/Surfpy/V0.5/paper/latex/paper.tex" "paper.pdf" "paper" 1547817569
+  "paper.blg"
+["pdflatex"] 1547820807 "/home/adam/data/adam/progs/Surfpy/V0.5/paper/latex/paper.tex" "paper.pdf" "paper" 1547820807
   "/dev/null" 1546876106 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/etc/texmf/web2c/texmf.cnf" 1544090577 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/adam/data/adam/progs/Surfpy/V0.5/paper/latex/paper.tex" 1547817568 4348 578a188f9eaf9872e9ef0bba6e028b9b ""
+  "/home/adam/data/adam/progs/Surfpy/V0.5/paper/latex/paper.tex" 1547820805 4388 0779b9999c50ecbd8dd3460e123518fc ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -99,9 +99,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1545044285 34566 ab5be96bde1a5acfd4f881dbe566b5fb ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1546874997 3037392 8dc1b9b1925c1fcb1188012c1cd4a964 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1546875018 4224829 62f2a3e57f158b31341e799e34ddb3e5 ""
-  "paper.aux" 1547817569 1033 08bce2821111c709e10ce0613be365fa ""
-  "paper.bbl" 1547114857 3447 9a4d8a59fec5ff1925450f04d3908c17 "bibtex paper"
-  "paper.tex" 1547817568 4348 578a188f9eaf9872e9ef0bba6e028b9b ""
+  "paper.aux" 1547820807 1080 0be681019dd1433d7996c95e7c5f41df ""
+  "paper.bbl" 1547820807 3447 9a4d8a59fec5ff1925450f04d3908c17 "bibtex paper"
+  "paper.tex" 1547820805 4388 0779b9999c50ecbd8dd3460e123518fc ""
   (generated)
   "paper.aux"
   "paper.pdf"
