@@ -7,12 +7,8 @@
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/)
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
 <a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
-[![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549518.svg)](https://doi.org/10.5281/zenodo.2549518)
 ![Version](https://img.shields.io/badge/Version-0.8-blue.svg?maxAge=2592000)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/symmy596/Surfinpy/issues)
-[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
 This is the documentation for the open-source Python project - `surfinpy`.
 A library designed to facilitate the generation of publication ready surface phase diagrams from ab initio calculations.
