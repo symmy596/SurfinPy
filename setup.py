@@ -1,9 +1,9 @@
 __author__ = "Adam R. Symington"
-__copyright__ = "Copyright Adam R.Symington (2018)"
-__version__ = "0.7"
+__copyright__ = "Copyright Adam R.Symington (2019)"
+__version__ = "0.8"
 __maintainer__ = "Adam R. Symington"
 __email__ = "ars44s@bath.ac.uk"
-__date__ = "04/09/2018"
+__date__ = "25/01/2019"
 
 from setuptools import setup
 import os
@@ -13,7 +13,7 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
 if __name__ == "__main__":
     setup(
         name='surfinpy',
-        version='0.7',
+        version='0.8',
         description='Surface Phase Diagram Plotting Tools',
         long_description=open(os.path.join(module_dir, 'README.md')).read(),
         url='https://github.com/symmy596/SurfinPy',
