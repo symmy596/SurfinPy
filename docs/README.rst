@@ -61,6 +61,11 @@ To build from source:
 
     python setup.py test
 
+Or alternatively install with pip
+
+.. code-block:: bash
+
+    pip install surfinpy
 
 Documentation
 -------------
