@@ -147,7 +147,7 @@ def inititalise(thermochem, adsorbant):
     adsrobant_t : array like
         dft values of adsorbant scaled to temperature
     '''
-    T = np.arange(2, 2000)
+    T = np.arange(2, 1000)
     shift = ut.fit(thermochem[:, 0], thermochem[:, 2], T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant_t = adsorbant - shift
