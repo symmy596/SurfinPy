@@ -16,6 +16,7 @@ if __name__ == "__main__":
         version='0.8',
         description='Surface Phase Diagram Plotting Tools',
         long_description=open(os.path.join(module_dir, 'README.md')).read(),
+        long_description_content_type="text/markdown”,
         url='https://github.com/symmy596/SurfinPy',
         author='Adam R. Symington',
         author_email='ars44@bath.ac.uk',
