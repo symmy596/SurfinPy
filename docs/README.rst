@@ -1,5 +1,5 @@
-
-..image:: https://github.com/symmy596/SurfinPy/blob/master/logo/Logo.png?raw=true
+.. image:: Source/Figures/Logo.png
+    :height: 300px
     :align: center
 
 .. image::  https://readthedocs.org/projects/surfinpy/badge/?version=latest
