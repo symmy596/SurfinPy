@@ -23,7 +23,7 @@ if __name__ == "__main__":
         license='MIT license',
         packages=['surfinpy'],
         zip_safe=False,
-        install_requires=['scipy', 'numpy'],
+        install_requires=['scipy', 'numpy', 'jupyter', 'pymatgen', 'numpy', 'matplotlib', 'coverage', 'coveralls'],
         classifiers=['Programming Language :: Python',
                      'Development Status :: 5 - Production/Stable',
                      'Intended Audience :: Science/Research',
