@@ -42,7 +42,7 @@ Thus understanding the state of surface is crucial for a wide range of problems 
 the state of the surface and the surrounding environmental condtions.
 Examples include particle morphologies in solid state batteries [@Canepa2018];
 determining the concentration of adsorbed water at a surface depending on synthesis conditions [@Molinari2012] [@Tegner2017];
-catalytic reactions [Reuter2003]; or determing the effect of dopants and impurities on the surface stability.  
+catalytic reactions [@Reuter2003]; or determing the effect of dopants and impurities on the surface stability.  
 
 Computational modelling can be used to generate surface phase diagrams from energy minimisation data.
 One common research question is how water adsorption affects the surface and material properties.
@@ -54,6 +54,8 @@ A further degree of complexity can be introduced by considering surface defects 
 Using surface defects as an example, it is important to consider the relationship between the defective surface, the stoichiometric surface and the adsorbing water molecules.
 A surface phase diagram can be contructed as a function of the chemcial potential of the adsorbing spcies (water) and the surface defect
 (e.g. oxygen if oxygen vacancies are being considered). This is done using the method of Marmier [@Marmier2004].
+
+![This figure illustrates an example phase diagram as a function of chemical potential (a), and as a function of temperature and pressure (b).\label{fig:example}](Figure_1.png)
 
 # `surfinpy`
 
