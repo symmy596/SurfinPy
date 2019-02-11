@@ -17,7 +17,7 @@
 
 [![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
 
-<a href='https://gitter.im/pylj/Lobby'>
+<a href='https://gitter.im/Surfinpy/Lobby'>
 <img src='https://badges.gitter.im/gitterHQ/gitter.png' alt='Gitter chat' /></a>
 
 This is the documentation for the open-source Python project - `surfinpy`.
