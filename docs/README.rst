@@ -1,4 +1,4 @@
-.. image:: Source/Figures/Logo.png
+.. image:: source/Figures/Logo.png
     :height: 300px
     :align: center
 
