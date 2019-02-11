@@ -1,4 +1,5 @@
-.. image:: source/Figures/Logo.png
+
+.. image:: https://github.com/symmy596/SurfinPy/blob/master/logo/Logo.png
     :height: 300px
     :align: center
 
