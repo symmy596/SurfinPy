@@ -10,6 +10,10 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549518.svg)](https://doi.org/10.5281/zenodo.2549518)
 ![Version](https://img.shields.io/badge/Version-0.8-blue.svg?maxAge=2592000)
 
+[![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
+
+[![Gitter chat](https://gitter.im/Surfinpy/Lobby#)](https://gitter.im/gitterHQ/gitter)
+
 This is the documentation for the open-source Python project - `surfinpy`.
 A library designed to facilitate the generation of publication ready surface phase diagrams from ab initio calculations.
 surfinpy is built on existing Python packages that those in the solid state physics/chemistry community should already be familiar with. 
@@ -83,6 +87,11 @@ To build the documentation from scratch
 - Pymatgen
 
 ## Contributing
+
+### Support
+
+If you have questions regarding any aspect of the software then please get in touch with the developer Adam Symington via email - ars44@bath.ac.uk. 
+Alternatively you can create 
 
 ### Bugs
 
