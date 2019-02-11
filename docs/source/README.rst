@@ -98,6 +98,12 @@ Detailed requirements
 Contributing
 ------------
 
+Contact
+~~~~~~~
+
+If you have questions regarding any aspect of the software then please get in touch with the developer Adam Symington via email - ars44@bath.ac.uk. 
+Alternatively you can create an issue on the `Issue Tracker <https://github.com/symmy596/SurfinPy/issues>`_ or you can discuss your questions on our `gitter channel <https://gitter.im/Surfinpy/Lobby>`_.
+
 Bugs 
 ~~~~
 

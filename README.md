@@ -5,18 +5,13 @@
 </p>
 
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/)
-
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
-
 <a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'>
-<img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
+<img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a> 
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549518.svg)](https://doi.org/10.5281/zenodo.2549518)
-
 ![Version](https://img.shields.io/badge/Version-0.8-blue.svg?maxAge=2592000)
-
 [![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
-
 <a href='https://gitter.im/Surfinpy/Lobby'>
 <img src='https://badges.gitter.im/gitterHQ/gitter.png' alt='Gitter chat' /></a>
 
@@ -94,10 +89,10 @@ To build the documentation from scratch
 
 ## Contributing
 
-### Support
+### Contact
 
 If you have questions regarding any aspect of the software then please get in touch with the developer Adam Symington via email - ars44@bath.ac.uk. 
-Alternatively you can create 
+Alternatively you can create an issue on the [Issue Tracker](https://github.com/symmy596/SurfinPy/issues) or you can discuss your questions on our [gitter channel](https://gitter.im/Surfinpy/Lobby).
 
 ### Bugs
 
