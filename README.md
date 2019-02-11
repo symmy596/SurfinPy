@@ -12,7 +12,7 @@
 
 [![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
 
-[![Gitter chat](https://gitter.im/Surfinpy/Lobby#)](https://gitter.im/gitterHQ/gitter)
+[![Gitter chat](https://gitter.im/SurfinPy/Lobby)](https://gitter.im/gitterHQ/gitter)
 
 This is the documentation for the open-source Python project - `surfinpy`.
 A library designed to facilitate the generation of publication ready surface phase diagrams from ab initio calculations.
