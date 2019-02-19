@@ -10,13 +10,15 @@ import os
 
 module_dir = os.path.dirname(os.path.abspath(__file__))
 
+with open('README.rst', 'r') as file:
+    long_description = file.read()
+
 if __name__ == "__main__":
     setup(
         name='surfinpy',
         version='1.0',
         description='Surface Phase Diagram Plotting Tools',
-        long_description=open(os.path.join(module_dir, 'README.md')).read(),
-        long_description_content_type='text/markdown', 
+        long_description=long_description,
         url='https://github.com/symmy596/SurfinPy',
         author='Adam R. Symington',
         author_email='ars44@bath.ac.uk',
