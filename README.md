@@ -10,7 +10,9 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549518.svg)](https://doi.org/10.5281/zenodo.2549518)
 ![Version](https://img.shields.io/badge/Version-0.8-blue.svg?maxAge=2592000)
+
 [![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
+
 <a href='https://gitter.im/Surfinpy/Lobby'>
 <img src='https://badges.gitter.im/gitterHQ/gitter.png' alt='Gitter chat' /></a>
 
