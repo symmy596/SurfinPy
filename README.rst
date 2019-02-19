@@ -10,7 +10,7 @@ SurfinPy
     :alt: Build Status
 
 .. image:: https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master
-:target: https://coveralls.io/github/symmy596/SurfinPy?branch=master
+    :target: https://coveralls.io/github/symmy596/SurfinPy?branch=master
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.2549518.svg
    :target: https://doi.org/10.5281/zenodo.2549518
