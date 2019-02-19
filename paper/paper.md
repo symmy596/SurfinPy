@@ -53,14 +53,14 @@ Once the free energy is known under different constants, the phase which is most
 A further degree of complexity can be introduced by considering surface defects, e.g., vacancies or interstitials, or other adsorbants, e.g., carbon dioxide.
 Using surface defects as an example, it is important to consider the relationship between the defective surface, the stoichiometric surface and the adsorbing water molecules.
 A surface phase diagram can be constructed as a function of the chemcial potential of the adsorbing species (water) and the surface defect
-(e.g., oxygen, if oxygen vacancies are being considered). This is done using the method of Marmier & Parker (2004)[-@Marmier2004].
+(e.g., oxygen, if oxygen vacancies are being considered). This is done using the method of Marmier & Parker[-@Marmier2004].
 
 ![An example phase diagram as a function of chemical potential (a), and as a function of temperature and pressure (b).\label{fig:example}](Figure_1.png)
 
 # `surfinpy`
 
 `surfinpy` is a Python module for generating surface phase diagrams from DFT data. 
-It contains two core modules for generating surface phase diagrams using both the methods employed in Molinari *et al* (2012) [-@Molinari2012] and Marmier *et al* (2004)[-@Marmier2004].
+It contains two core modules for generating surface phase diagrams using both the methods employed in Molinari *et al* [-@Molinari2012] and Marmier *et al* [-@Marmier2004].
 These allow fast generation of temperature vs. pressure phase diagrams and phase diagrams as a function of chemcial potential of species A and B.
 The plotting classes take the outputs of the calculation modules and generate phase diagrams using `matplotlib`.
 `surfinpy` is aimed towards theoretical solid state physicist who have a basic familiarity with Python.
