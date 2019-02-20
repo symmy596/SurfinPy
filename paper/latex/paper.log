@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.7)  11 FEB 2019 10:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.7)  20 FEB 2019 14:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -556,20 +556,24 @@ e
 Package chemgreek Info: Activating mapping `default' on line 22.
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 25--28
+
+ []
+
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 <../Figure_1.png, id=14, 578.16pt x 199.947pt>
 File: ../Figure_1.png Graphic file (type png)
 <use ../Figure_1.png>
-Package pdftex.def Info: ../Figure_1.png  used on input line 47.
+Package pdftex.def Info: ../Figure_1.png  used on input line 51.
 (pdftex.def)             Requested size: 433.62pt x 149.95987pt.
  [2 <../Figure_1.png>]
 (./paper.bbl [3]) [4] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
  15522 strings out of 492615
  282553 string characters out of 6131391
- 348508 words of memory out of 5000000
+ 349508 words of memory out of 5000000
  19313 multiletter control sequences out of 15000+600000
  540106 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -583,7 +587,7 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paper.pdf (4 pages, 152334 bytes).
+Output written on paper.pdf (4 pages, 153975 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream
