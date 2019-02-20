@@ -8,7 +8,7 @@
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
 <a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2573647.svg)](https://doi.org/10.5281/zenodo.2573647)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2573646.svg)](https://doi.org/10.5281/zenodo.2573646)
 ![Version](https://img.shields.io/badge/Version-1.0-blue.svg?maxAge=2592000)
 [![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
 <a href='https://gitter.im/Surfinpy/Lobby'>
