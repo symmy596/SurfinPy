@@ -59,8 +59,8 @@ A surface phase diagram can be constructed as a function of the chemcial potenti
 
 # `surfinpy`
 
-`surfinpy` is a Python module for generating surface phase diagrams from DFT data. 
-It contains two core modules for generating surface phase diagrams using both the methods employed in Molinari *et al* [-@Molinari2012] and Marmier *et al* [-@Marmier2004].
+`surfinpy` is a Python module for generating surface phase diagrams from DFT data.
+It contains two core modules for generating surface phase diagrams using both the methods employed in @Molinari2012 and Marmier @Marmier2004.
 These allow fast generation of temperature vs. pressure phase diagrams and phase diagrams as a function of chemcial potential of species A and B.
 The plotting classes take the outputs of the calculation modules and generate phase diagrams using `matplotlib`.
 `surfinpy` is aimed towards theoretical solid state physicist who have a basic familiarity with Python.

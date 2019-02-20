@@ -156,6 +156,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 OUTPUT paper.pdf
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT ../Figure_1.png
+INPUT ../Figure_1.png
+INPUT ../Figure_1.png
 INPUT paper.bbl
 INPUT paper.bbl
 INPUT paper.aux
