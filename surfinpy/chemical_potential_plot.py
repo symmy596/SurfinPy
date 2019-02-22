@@ -31,25 +31,35 @@ class ChemicalPotentialPlot:
         self.xlabel = xlabel
         self.ylabel = ylabel
 
-    def plot_phase(self, temperature=None, output="phase.png", colourmap="viridis",
+    def plot_phase(self, temperature=None, xlabel=None, ylabel=None, output="phase.png", colourmap="viridis",
                    set_style="default"):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
         ----------
         temperature : int (optional)
-            temperature
+            Temperature. Default=None
+        xlabel: str (optional)
+            Set a custom x-axis label. Default=None
+        ylabel: str (optional)
+            Set a custom y-axis label. Default=None
         output : str (optional)
-            output filename
+            Output filename. Default='phase.png'
         colourmap : str
-            colourmap for the plot
+            Colourmap for the plot. Default='viridis'
         """
         plt.style.use(set_style)
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
         temperature_label = str(temperature) + " K"
-        XLab = "$\Delta \mu_{\mathrm{" + self.xlabel + "}}$" + " (eV)"
-        YLab = "$\Delta \mu_{\mathrm{" + self.ylabel + "}}$" + " (eV)"
+        if xlabel:
+            XLab = xlabel
+        else:
+            XLab = "$\Delta \mu_{\mathrm{" + self.xlabel + "}}$" + " (eV)"
+        if ylabel:
+            YLab = ylabel
+        else:
+            YLab = "$\Delta \mu_{\mathrm{" + self.ylabel + "}}$" + " (eV)"
         fig = plt.figure()
         ax = fig.add_subplot(111)
         CM = ax.contourf(self.x, self.y, self.z, levels=levels, cmap=colourmap)
