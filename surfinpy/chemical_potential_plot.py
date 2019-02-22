@@ -31,7 +31,7 @@ class ChemicalPotentialPlot:
         self.xlabel = xlabel
         self.ylabel = ylabel
 
-    def plot_phase(self, temperature=0, output="phase.png", colourmap="viridis",
+    def plot_phase(self, temperature=None, output="phase.png", colourmap="viridis",
                    set_style="default"):
         """Plots a simple phase diagram as a function of chemical potential.
 
@@ -55,9 +55,10 @@ class ChemicalPotentialPlot:
         CM = ax.contourf(self.x, self.y, self.z, levels=levels, cmap=colourmap)
         ax.set_ylabel(YLab, fontsize=14)
         ax.set_xlabel(XLab, fontsize=14)
-        ax.text(0.1, 0.95, temperature_label,  fontsize=15, color="white",
-                horizontalalignment='center', verticalalignment='center',
-                transform=ax.transAxes)
+        if temperature:
+            ax.text(0.1, 0.95, temperature_label,  fontsize=15, color="white",
+                    horizontalalignment='center', verticalalignment='center',
+                    transform=ax.transAxes)
         ax.tick_params(labelsize=12)
         cbar = fig.colorbar(CM, ticks=ticky, pad=0.1)
         cbar.ax.set_yticklabels(self.labels)
