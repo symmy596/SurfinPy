@@ -32,7 +32,7 @@ class ChemicalPotentialPlot:
         self.ylabel = ylabel
 
     def plot_phase(self, temperature=None, xlabel=None, ylabel=None, output="phase.png", colourmap="viridis",
-                   set_style="default"):
+                   set_style="default", figsize=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
@@ -45,8 +45,10 @@ class ChemicalPotentialPlot:
             Set a custom y-axis label. Default=None
         output : str (optional)
             Output filename. Default='phase.png'
-        colourmap : str
+        colourmap : str (optional)
             Colourmap for the plot. Default='viridis'
+        figsize : tuple (optional)
+            Set a custom figure size. Default=None
         """
         plt.style.use(set_style)
         levels = ut.get_levels(self.z)
@@ -60,7 +62,7 @@ class ChemicalPotentialPlot:
             YLab = ylabel
         else:
             YLab = "$\Delta \mu_{\mathrm{" + self.ylabel + "}}$" + " (eV)"
-        fig = plt.figure()
+        fig = plt.figure(figsize=figsize)
         ax = fig.add_subplot(111)
         CM = ax.contourf(self.x, self.y, self.z, levels=levels, cmap=colourmap)
         ax.set_ylabel(YLab, fontsize=14)
