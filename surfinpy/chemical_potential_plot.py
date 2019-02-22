@@ -18,9 +18,9 @@ class ChemicalPotentialPlot:
     ticks : list
         list of phases
     xlabel : str
-        x axis label
+        species name for x axis label
     ylabel : str
-        y axis label
+        species name for y axis label
     """
     def __init__(self, x, y, z, labels, ticks, xlabel, ylabel):
         self.x = x
@@ -33,7 +33,7 @@ class ChemicalPotentialPlot:
 
     def plot_phase(self, temperature=0, output="phase.png", colourmap="viridis",
                    set_style="default"):
-        """ Plots a simple phase diagram as a function of chemical potential.
+        """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
         ----------
@@ -48,8 +48,8 @@ class ChemicalPotentialPlot:
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
         temperature_label = str(temperature) + " K"
-        XLab = "$\Delta \mu_{" + self.xlabel + "}$" + " (eV)"
-        YLab = "$\Delta \mu_{" + self.ylabel + "}$" + " (eV)"
+        XLab = "$\Delta \mu_{\mathrm{" + self.xlabel + "}}$" + " (eV)"
+        YLab = "$\Delta \mu_{\mathrm{" + self.ylabel + "}}$" + " (eV)"
         fig = plt.figure()
         ax = fig.add_subplot(111)
         CM = ax.contourf(self.x, self.y, self.z, levels=levels, cmap=colourmap)
@@ -85,10 +85,10 @@ class ChemicalPotentialPlot:
         temperature_label = str(temperature) + " K"
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
-        X1Lab = "$\Delta \mu_{" + self.xlabel + "}$" + " (eV)"
-        Y1Lab = "$\Delta \mu_{" + self.ylabel + "}$" + " (eV)"
-        X2Lab = "$P_" + "{" + self.xlabel + "}$" + " 298 K (bar)"
-        Y2Lab = "$P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
+        X1Lab = "$\Delta \mu_{\mathrm{" + self.xlabel + "}}$" + " (eV)"
+        Y1Lab = "$\Delta \mu_{\mathrm{" + self.ylabel + "}}$" + " (eV)"
+        X2Lab = "$P_" + "{\mathrm{" + self.xlabel + "}}$" + " 298 K (bar)"
+        Y2Lab = "$P_" + "{\mathrm{" + self.ylabel + "}}$" + " 298 K (bar)"
         fig = plt.figure(dpi=96, facecolor='#eeeeee', tight_layout=1)
         ax = fig.add_subplot(121)
         gs = gridspec.GridSpec(1, 2, width_ratios=[.95, .05])
@@ -133,8 +133,8 @@ class ChemicalPotentialPlot:
         temperature_label = str(temperature) + " K"
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
-        XLab = "$P_" + "{" + self.xlabel + "}$" + " 298 K (bar)"
-        YLab = "$P_" + "{" + self.ylabel + "}$" + " 298 K (bar)"
+        XLab = "$P_" + "{\mathrm{" + self.xlabel + "}}$" + " 298 K (bar)"
+        YLab = "$P_" + "{\mathrm{" + self.ylabel + "}}$" + " 298 K (bar)"
         fig = plt.figure()
         ax = fig.add_subplot(111)
         CM = ax.contourf(p1, p2, self.z, levels=levels, cmap=colourmap)
