@@ -3,7 +3,7 @@
 branch = True
 omit = 
     surfinpy/_testutils.py
-    srfinpy/tests/*
+    surfinpy/tests/*
 
 [report]
 # Regexes for lines to exclude from consideration
