@@ -50,7 +50,8 @@ class ChemicalPotentialPlot:
         figsize : tuple (optional)
             Set a custom figure size. Default=None
         """
-        plt.style.use(set_style)
+        if set_style:
+            plt.style.use(set_style)
         levels = ut.get_levels(self.z)
         ticky = ut.get_ticks(self.ticks)
         temperature_label = str(temperature) + " K"
@@ -92,7 +93,8 @@ class ChemicalPotentialPlot:
         colourmap : str
             colourmap for the plot
         """
-        plt.style.use(set_style)
+        if set_style:
+            plt.style.use(set_style)
         p1 = ut.pressure(self.x, temperature)
         p2 = ut.pressure(self.y, temperature)
         temperature_label = str(temperature) + " K"
@@ -140,7 +142,8 @@ class ChemicalPotentialPlot:
         colourmap : str
             colourmap for the plot
         """
-        plt.style.use(set_style)
+        if set_style:
+            plt.style.use(set_style)
         p1 = ut.pressure(self.x, temperature)
         p2 = ut.pressure(self.y, temperature)
         temperature_label = str(temperature) + " K"
