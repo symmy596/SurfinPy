@@ -30,7 +30,8 @@ class PVTPlot:
         atmospheric_conditions : list
             location of bars showing atmospheric conditions
         """
-        plt.style.use(set_style)
+        if set_style:
+            plt.style.use(set_style)
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.contourf(self.x, self.y, self.z, cmap=colourmap)        
