@@ -126,7 +126,7 @@ def adsorption_energy(data, stoich, adsorbant_t):
     return AE
 
 
-def inititalise(thermochem, adsorbant):
+def inititalise(thermochem, adsorbant, max_t):
     '''Builds the numpy arrays for each calculation.
 
     Parameters
@@ -147,7 +147,7 @@ def inititalise(thermochem, adsorbant):
     adsrobant_t : array like
         dft values of adsorbant scaled to temperature
     '''
-    T = np.arange(2, 1000)
+    T = np.arange(2, max_t)
     shift = ut.fit(thermochem[:, 0], thermochem[:, 2], T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant_t = adsorbant - shift
@@ -156,7 +156,7 @@ def inititalise(thermochem, adsorbant):
     return lnP, logP, T, adsorbant_t
 
 
-def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
+def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, coverage=None):
     '''Collects input variables and intitialises the calculation.
 
     Parameters
@@ -174,6 +174,8 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
     thermochem : array like
         Numpy array containing thermochemcial data downloaded from NIST_JANAF
         for the adsorbing species.
+    max_t : int
+        Maximum temperature in the phase diagram
 
     Returns
     -------
@@ -182,7 +184,7 @@ def calculate(stoich, data, SE, adsorbant, thermochem, coverage=None):
     '''
     if coverage is None:
         coverage = ut.calculate_coverage(data)
-    lnP, logP, T, adsorbant_t = inititalise(thermochem, adsorbant)
+    lnP, logP, T, adsorbant_t = inititalise(thermochem, adsorbant, max_t)
     nsurfaces = len(data) + 1
     AE = adsorption_energy(data, stoich, adsorbant_t)
     SE_array = calculate_surface_energy(AE, lnP, T,
