@@ -126,7 +126,7 @@ def adsorption_energy(data, stoich, adsorbant_t):
     return AE
 
 
-def inititalise(thermochem, adsorbant, max_t):
+def inititalise(thermochem, adsorbant, max_t, min_p, max_p):
     '''Builds the numpy arrays for each calculation.
 
     Parameters
@@ -135,6 +135,12 @@ def inititalise(thermochem, adsorbant, max_t):
         array containing NIST_JANAF thermochemical data
     adsorbant : float
         dft energy of adsorbing species
+    max_t : int
+        Maximum temperature of phase diagram
+    min_p : int
+        Minimum pressure of phase diagram
+    max_p : int
+        Maximum pressure of phase diagram
 
     Returns
     -------
@@ -151,12 +157,12 @@ def inititalise(thermochem, adsorbant, max_t):
     shift = ut.fit(thermochem[:, 0], thermochem[:, 2], T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant_t = adsorbant - shift
-    logP = np.arange(-13, 5.5, 0.1)
+    logP = np.arange(min_p, max_p, 0.1)
     lnP = np.log(10 ** logP)
     return lnP, logP, T, adsorbant_t
 
 
-def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, coverage=None):
+def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, min_p=-13, max_p=5.5, coverage=None):
     '''Collects input variables and intitialises the calculation.
 
     Parameters
@@ -176,6 +182,10 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, coverage=None
         for the adsorbing species.
     max_t : int
         Maximum temperature in the phase diagram
+    min_p : int
+        Minimum pressure of phase diagram
+    max_p : int
+        Maximum pressure of phase diagram
 
     Returns
     -------
@@ -184,7 +194,7 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, coverage=None
     '''
     if coverage is None:
         coverage = ut.calculate_coverage(data)
-    lnP, logP, T, adsorbant_t = inititalise(thermochem, adsorbant, max_t)
+    lnP, logP, T, adsorbant_t = inititalise(thermochem, adsorbant, max_t, min_p, max_p)
     nsurfaces = len(data) + 1
     AE = adsorption_energy(data, stoich, adsorbant_t)
     SE_array = calculate_surface_energy(AE, lnP, T,
