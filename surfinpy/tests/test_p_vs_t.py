@@ -49,7 +49,7 @@ class Testp_vs_t(unittest.TestCase):
 
     def test_initialise(self):
         x = ut.read_nist(test_data)
-        a, b, c, d = p_vs_t.inititalise(x, -10.0, 1000)
+        a, b, c, d = p_vs_t.inititalise(x, -10.0, 1000, -13, 5.5)
         assert_almost_equal(d[0], -10.000, decimal=3)
         assert_almost_equal(d[1], -10.000, decimal=3)
         assert_almost_equal(d[-1], -10.103, decimal=3)
