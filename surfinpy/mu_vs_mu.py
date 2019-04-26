@@ -182,8 +182,8 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
                                       yexcess,
                                       normalised_bulk)
         S = np.append(S, SE)
-    phase_data = ut.get_phase_data(S, nsurfaces)
-    return phase_data
+    phase_data, SE = ut.get_phase_data(S, nsurfaces)
+    return phase_data, SE
 
 
 def temperature_correction(nist_file, temperature):
@@ -247,7 +247,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
                   0.025, dtype="float")
     X = X - x_energy
     Y = Y - y_energy
-    phases = evaluate_phases(data, bulk, X, Y,
+    phases, SE = evaluate_phases(data, bulk, X, Y,
                              nsurfaces, x_energy, y_energy)
     ticks = np.unique([phases])
     phases = ut.transform_numbers(phases, ticks)

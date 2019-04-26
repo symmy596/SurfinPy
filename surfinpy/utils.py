@@ -185,7 +185,8 @@ def get_phase_data(S, nsurfaces):
     S = np.split(S, nsurfaces)
     S = np.column_stack(S)
     x = np.argmin(S, axis=1) + 1
-    return x
+    SE = np.amin(S, axis=1)
+    return x, SE
 
 
 def read_nist(File):

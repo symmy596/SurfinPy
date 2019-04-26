@@ -49,7 +49,7 @@ class Testmu_vs_mu(unittest.TestCase):
                       dtype="float")
         X = X - xshiftval
         Y = Y - yshiftval
-        phase = mu_vs_mu.evaluate_phases(data, bulk, X, Y,
+        phase, SE = mu_vs_mu.evaluate_phases(data, bulk, X, Y,
                                          nsurfaces, xshiftval, yshiftval)
         expected_phase = np.zeros(X.size * Y.size)
         expected_phase = expected_phase + 2

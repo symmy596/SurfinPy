@@ -49,7 +49,7 @@ class Testp_vs_t(unittest.TestCase):
 
     def test_initialise(self):
         x = ut.read_nist(test_data)
-        a, b, c, d = p_vs_t.inititalise(x, -10.0, 1000)
+        a, b, c, d = p_vs_t.inititalise(x, -10.0, 1000, -13, 5.5)
         assert_almost_equal(d[0], -10.000, decimal=3)
         assert_almost_equal(d[1], -10.000, decimal=3)
         assert_almost_equal(d[-1], -10.103, decimal=3)
@@ -66,7 +66,7 @@ class Testp_vs_t(unittest.TestCase):
         SE = 1.0
         adsorbant = -10.0
         thermochem = ut.read_nist(test_data)
-        system = p_vs_t.calculate(stoich, data, SE, adsorbant, thermochem)
+        system, SE = p_vs_t.calculate(stoich, data, SE, adsorbant, thermochem)
         expectedx = np.arange(2, 1000)
         expectedy = np.arange(-13, 5.5, 0.1)
         expectedz = np.zeros(((expectedy.size), (expectedx.size)))

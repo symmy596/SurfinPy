@@ -46,7 +46,7 @@ class TestUtils(unittest.TestCase):
 
     def test_get_phase_data(self):
         X = np.arange(30)
-        a = ut.get_phase_data(X, 3)
+        a, b = ut.get_phase_data(X, 3)
         expected = np.ones(10)
         assert np.array_equal(a, expected)
 

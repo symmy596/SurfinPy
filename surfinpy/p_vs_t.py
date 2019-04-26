@@ -52,8 +52,8 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
     surface_energy_array = np.zeros(lnP.size * T.size)
     surface_energy_array = surface_energy_array + SE
     SEABS = np.insert(SEABS, 0, surface_energy_array)
-    phase_data = ut.get_phase_data(SEABS, nsurfaces)
-    return phase_data
+    phase_data, SE = ut.get_phase_data(SEABS, nsurfaces)
+    return phase_data, SE
 
 
 def convert_adsorption_energy_units(AE):
@@ -197,7 +197,7 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, min_p=-13, ma
     lnP, logP, T, adsorbant_t = inititalise(thermochem, adsorbant, max_t, min_p, max_p)
     nsurfaces = len(data) + 1
     AE = adsorption_energy(data, stoich, adsorbant_t)
-    SE_array = calculate_surface_energy(AE, lnP, T,
+    SE_array, SE = calculate_surface_energy(AE, lnP, T,
                                         coverage, SE,
                                         nsurfaces)
     ticks = np.unique([SE_array])
@@ -208,4 +208,4 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, min_p=-13, ma
     x = T
     z = phase_grid
     system = pvt_plot.PVTPlot(x, y, z)
-    return system
+    return system, SE
