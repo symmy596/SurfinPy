@@ -162,7 +162,8 @@ def inititalise(thermochem, adsorbant, max_t, min_p, max_p):
     return lnP, logP, T, adsorbant_t
 
 
-def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, min_p=-13, max_p=5.5, coverage=None):
+def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, 
+              min_p=-13, max_p=5.5, coverage=None, transform=True):
     '''Collects input variables and intitialises the calculation.
 
     Parameters
@@ -197,15 +198,17 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000, min_p=-13, ma
     lnP, logP, T, adsorbant_t = inititalise(thermochem, adsorbant, max_t, min_p, max_p)
     nsurfaces = len(data) + 1
     AE = adsorption_energy(data, stoich, adsorbant_t)
-    SE_array, SE = calculate_surface_energy(AE, lnP, T,
+    SE_array, SEABS = calculate_surface_energy(AE, lnP, T,
                                         coverage, SE,
                                         nsurfaces)
     ticks = np.unique([SE_array])
-    SE_array = ut.transform_numbers(SE_array, ticks)
+    if transform is True:
+        SE_array = ut.transform_numbers(SE_array, ticks)
+    
     phase_grid = np.reshape(SE_array, (lnP.size, T.size))
     data.insert(0, stoich)
     y = logP
     x = T
     z = phase_grid
     system = pvt_plot.PVTPlot(x, y, z)
-    return system, SE
+    return system, SEABS
