@@ -2,6 +2,7 @@ import numpy as np
 import os
 from surfinpy import p_vs_t
 from surfinpy import utils as ut
+from surfinpy.data import DataSet
 import unittest
 from numpy.testing import assert_almost_equal
 
@@ -35,12 +36,12 @@ class Testp_vs_t(unittest.TestCase):
         assert_almost_equal(expected, x, decimal=4)
 
     def test_adsorption_energy(self):
-        stoich = {'M': 24, 'X': 48, 'Y': 0, 'Area': 60.22,
-                  'Energy': -535.660075, 'Label': '0.00 - $Ce^{4+}$'}
-        H2O = {'M': 24, 'X': 48, 'Y': 2, 'Area': 60.22,
-               'Energy': -621.877140,  'Label': '1.66 - $Ce^{4+}$'}
-        H2O_2 = {'M': 24, 'X': 48, 'Y': 4, 'Area': 60.22,
-                 'Energy': -670.229520, 'Label': '3.32 - $Ce^{4+}$'}
+        stoich = DataSet(cation = 24, x = 48, y = 0, area = 60.22, 
+                                     energy = -535.660075, label = "Stoich")
+        H2O = DataSet(cation = 24, x = 48, y = 2, area = 60.22, 
+                                     energy = -621.877140, label = "Stoich")
+        H2O_2 = DataSet(cation = 24, x = 48, y = 4, area = 60.22, 
+                                     energy = -670.229520, label = "Stoich")
         data = [H2O, H2O_2]
         x = p_vs_t.adsorption_energy(data, stoich, -10.0)
         expected = [np.array([-3194476.7582625]),
@@ -56,12 +57,13 @@ class Testp_vs_t(unittest.TestCase):
         assert_almost_equal(d[-2], -10.103, decimal=3)
 
     def test_calculate(self):
-        stoich = {'M': 24, 'X': 48, 'Y': 0, 'Area': 60.22,
-                  'Energy': -530.0, 'Label': '0'}
-        H2O = {'M': 24, 'X': 48, 'Y': 2, 'Area': 60.22,
-               'Energy': -620.0,  'Label': '1'}
-        H2O_2 = {'M': 24, 'X': 48, 'Y': 4, 'Area': 60.22,
-                 'Energy': -670.0, 'Label': '2'}
+        stoich = DataSet(cation = 24, x = 48, y = 0, area = 60.22, 
+                                     energy = -530.0, label = "Stoich")
+        H2O = DataSet(cation = 24, x = 48, y = 2, area = 60.22, 
+                                     energy = -620.0, label = "Stoich")
+        H2O_2 = DataSet(cation = 24, x = 48, y = 4, area = 60.22, 
+                                     energy = -677.0, label = "Stoich")
+
         data = [H2O, H2O_2]
         SE = 1.0
         adsorbant = -10.0

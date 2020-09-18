@@ -50,7 +50,7 @@ def calculate_excess(adsorbant, slab_cations, area, bulk,
         Surface excess of given species.
     """
     if check is True and nspecies == 1:
-        return ((adsorbant - ((bulk['Anion'] / bulk['Cation']) *
+        return ((adsorbant - ((bulk.anion / bulk.cation) *
                  slab_cations)) / (2 * area))
     else:
         return (adsorbant / (area * 2))
@@ -86,9 +86,8 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
     float:
         Constant normalising the slab energy to the bulk energy.
     """
-    return ((slab_energy - (slab_cations / bulk['Cation']) * (bulk['Energy'] /
-            bulk['F-Units'])) / (2 * area))
-
+    return ((slab_energy - (slab_cations / bulk.cation) * (bulk.energy /
+            bulk.funits)) / (2 * area))
 
 def calculate_surface_energy(deltamux, deltamuy, x_energy, y_energy,
                              xexcess, yexcess, normalised_bulk):
@@ -132,8 +131,8 @@ def calculate_surface_energy(deltamux, deltamuy, x_energy, y_energy,
         2D array of surface energies as a function of
         chemical potential of x and y
     """
-    return (normalised_bulk - (deltamux * xexcess) - (deltamuy * yexcess) - (
-        x_energy * xexcess) - (y_energy * yexcess))
+    return ((normalised_bulk- (deltamux * xexcess) - (deltamuy * yexcess) - (
+        x_energy * xexcess)- (y_energy * yexcess)) * 16.021)
 
 
 def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
@@ -167,14 +166,14 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
     ynew = ut.build_ygrid(x, y)
     S = np.array([])
     for k in range(0, nsurfaces):
-        xexcess = calculate_excess(data[k]['X'], data[k]['Cation'],
-                                   data[k]['Area'], bulk,
-                                   data[k]['nSpecies'], check=True)
-        yexcess = calculate_excess(data[k]['Y'], data[k]['Cation'],
-                                   data[k]['Area'], bulk)
-        normalised_bulk = calculate_normalisation(data[k]['Energy'],
-                                                  data[k]['Cation'], bulk,
-                                                  data[k]['Area'])
+        xexcess = calculate_excess(data[k].x, data[k].cation,
+                                   data[k].area, bulk,
+                                   data[k].nspecies, check=True)
+        yexcess = calculate_excess(data[k].y, data[k].cation,
+                                   data[k].area, bulk)
+        normalised_bulk = calculate_normalisation(data[k].energy,
+                                                  data[k].cation, bulk,
+                                                  data[k].area)
         SE = calculate_surface_energy(xnew, ynew,
                                       x_energy,
                                       y_energy,
@@ -184,33 +183,7 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
         S = np.append(S, SE)
     phase_data, SE = ut.get_phase_data(S, nsurfaces)
     return phase_data, SE
-
-
-def temperature_correction(nist_file, temperature):
-    """Use experimental data to correct the DFT free energy of an adsorbing
-    species to a specific temperature.
-
-    Parameters
-    ----------
-    nist_file : array like
-        numpy array containing experiemntal data from NIST_JANAF
-    temperature : int
-        Temperature to correct to
-
-    Returns
-    -------
-    gibbs : float
-        correct free energy
-    """
-    nist_data = ut.read_nist(nist_file)
-    h0 = nist_data[0, 4]
-    fitted_s = ut.fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 1000))
-    fitted_h = ut.fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 1000))
-    fitted_h = fitted_h + h0
-    gibbs = ut.calculate_gibbs(np.arange(1, 1000), fitted_s, fitted_h)
-    return gibbs[(temperature - 1)]
-
-
+    
 def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
               temperature=0, output="Phase_Diagram.png", increments=0.025):
     """Initialise the surface energy calculation.
@@ -239,7 +212,6 @@ def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
     system : class obj
         Plotting object
     """
-    data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)
     
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1],
@@ -251,10 +223,9 @@ def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
     phases, SE = evaluate_phases(data, bulk, X, Y,
                              nsurfaces, x_energy, y_energy)
     ticks = np.unique([phases])
-    #return_this = phases
-    #phases_new = ut.transform_numbers(phases, ticks)
     phases = ut.transform_numbers(phases, ticks)
     Z = np.reshape(phases, (Y.size, X.size))
+    SE = np.reshape(SE, (Y.size, X.size))
     labels = ut.get_labels(ticks, data)
     system = chemical_potential_plot.ChemicalPotentialPlot(X,
                                                            Y,

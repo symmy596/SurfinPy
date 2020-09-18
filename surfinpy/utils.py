@@ -1,6 +1,7 @@
+import yaml
 import numpy as np
 from scipy.constants import codata
-
+from scipy.interpolate import CubicSpline
 
 def pressure(chemical_potential, t):
     r"""Converts chemical potential at a specific
@@ -69,6 +70,67 @@ def build_ygrid(x, y):
     ynew = np.column_stack(ynew)
     return ynew
 
+def build_zgrid(z, y):
+    """Builds a 2D grip of values for the x axis.
+
+    Parameters
+    ----------
+    x : array like
+        numpy array
+    y : array like
+        numpy array
+
+    Returns
+    -------
+    xnew : array like
+        numpy array
+    """
+    znews = np.tile(z, y.size)
+    znews = np.reshape(znews, (z.size, y.size), order='F')
+    return znews
+
+def build_entgrid(z, y, ynew):
+    znews = np.tile(z, len(y))
+    znews = np.reshape(znews, (len(z), len(y)), order='F')
+    temp_ent = np.multiply(znews, ynew)
+    return temp_ent
+
+def build_freqgrid(z, y):
+    """Builds a 2D grip of values for the x axis.
+
+    Parameters
+    ----------
+    x : array like
+        numpy array
+    y : array like
+        numpy array
+
+    Returns
+    -------
+    xnew : array like
+        numpy array
+    """
+    znews = np.tile(z, (len(y),1))
+    return znews
+    
+def build_tempgrid(z, y):
+    """Builds a 2D grip of values for the x axis.
+
+    Parameters
+    ----------
+    x : array like
+        numpy array
+    y : array like
+        numpy array
+
+    Returns
+    -------
+    xnew : array like
+        numpy array
+    """
+    znews = np.tile(z, len(y))
+    znews = np.reshape(znews, (len(z), len(y)), order='F')
+    return znews
 
 def calculate_coverage(data):
     """Calcualte the coverage of the adsorbing species on each surface.
@@ -85,8 +147,8 @@ def calculate_coverage(data):
     """
     coverage = np.array([])
     for i in range(0, len(data)):
-        coverage = np.append(coverage, (((data[i]['Y'] / (
-            data[i]['Area'] / 100)) / 2) * 10**18))
+        coverage = np.append(coverage, (((data[i].y / (
+            data[i].area / 100)) / 2) * 10**18))
     return coverage
 
 
@@ -110,7 +172,7 @@ def get_labels(ticks, data):
     for i in range(0, ticks.size):
         val = ticks[i] - 1
         val = int(val)
-        label = data[val]['Label']
+        label = data[val].label
         labels.append(label)
     return labels
 
@@ -157,11 +219,8 @@ def fit(x, y, t):
     shift : array like
         data fitted from x and y to t
     '''
-    x = np.delete(x, (0), axis=0)
-    y = np.delete(y, (0), axis=0)
-    z = np.polyfit(x, y, 3)
-    f = np.poly1d(z)
-    shift = f(t)
+    z = CubicSpline(x, y, bc_type='clamped')
+    shift = z(t)
     return shift
 
 
@@ -257,3 +316,66 @@ def get_ticks(X):
     t = t - 0.5
     ticky = t.tolist()
     return ticky
+
+def read_vibdata(vib_file):
+    """Description Needed
+
+    Parameters
+    ----------
+    vib_file : type
+        descriotion needed
+
+    Returns
+    -------
+    vib_prop : type
+        description needed
+    """
+    with open(vib_file, 'r') as file:
+        vib_prop = yaml.load(file)
+    return vib_prop
+
+def fit_nist(nist_file):
+    """Use experimental data to correct the DFT free energy of an adsorbing
+    species to a specific temperature.
+
+    Parameters
+    ----------
+    nist_file : array like
+        numpy array containing experiemntal data from NIST_JANAF
+    temperature : int
+        Temperature to correct to
+
+    Returns
+    -------
+    gibbs : float
+        correct free energy
+    """
+    nist_data = read_nist(nist_file)
+    h0 = nist_data[0, 4]
+    fitted_s = fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 3000))
+    fitted_h = fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 3000))
+    fitted_h = fitted_h - fitted_h[0]
+    gibbs = calculate_gibbs(np.arange(1, 3000), fitted_s, fitted_h)
+    return gibbs
+
+def temperature_correction_range(nist_file, deltaY):
+    """Use experimental data to correct the DFT free energy of an adsorbing
+    species to a specific temperature.
+
+    Parameters
+    ----------
+    nist_file : array like
+        numpy array containing experiemntal data from NIST_JANAF
+    temperature : int
+        Temperature to correct to
+
+    Returns
+    -------
+    gibbs : float
+        correct free energy
+    """
+    Y = np.arange(deltaY['Range'][0], deltaY['Range'][1],
+                  1, dtype="int")
+    Y = Y -1
+    gibbs = fit_nist(nist_file)
+    return gibbs[Y]
