@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.constants import codata
 from surfinpy import utils as ut
-from surfinpy import pvt_plot
+from surfinpy import plotting
 
 
 def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
@@ -211,5 +211,5 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000,
     y = logP
     x = T
     z = phase_grid
-    system = pvt_plot.PVTPlot(x, y, z)
+    system = plotting.PTPlot(x, y, z)
     return system, SEABS

@@ -1,5 +1,5 @@
 import numpy as np
-from surfinpy import chemical_potential_plot
+from surfinpy import plotting
 from surfinpy import utils as ut
 from surfinpy import vibrational_data as vd
 
@@ -9,10 +9,10 @@ def normalise_phase_energy(phase, bulk):
 
     Parameters
     ----------
-    phase : 
-        Description Needed
-    bulk : 
-        Description Needed
+    phase : (:py:class:`surfinpy.data.DataSet`):
+        surfinpy dataset object.
+    bulk : (:py:class:`surfinpy.data.ReferenceDataSet`):
+        surfinpy ReferenceDataSet object.
 
     Returns
     -------
@@ -24,7 +24,7 @@ def normalise_phase_energy(phase, bulk):
 
 def calculate_bulk_energy(deltamux, ynew,  
                           x_energy,
-                          z_energy, deltamuz,
+                          z_energy, deltamuy,
                           phase,
                           bulk,
                           normalised_bulk,
@@ -33,74 +33,75 @@ def calculate_bulk_energy(deltamux, ynew,
 
     Parameters
     ----------
-    deltamux : type
+    deltamux : (:py:attr:`array_like`):
+        Chemical potential of species x
+    ynew : (:py:attr:`array_like`):
         description needed
-    ynew : type
+    x_energy : (:py:attr:`float`):
+        DFT energy or temperature corrected DFT energy
+    y_energy : (:py:attr:`float`):
+        DFT energy or temperature corrected DFT energy
+    deltamuy : (:py:attr:`array_like`):
+        Chemical potential of species y
+    phase : (:py:class:`surfinpy.data.DataSet`):
+        DFT calculation
+    bulk : (:py:class:`surfinpy.data.ReferenceDataSet`):
+        DFT calculation        
+    normalised_bulk : (:py:attr:`float`):
+        Bulk energy normalised to the bulk value.
+    exp_new :  (:py:attr:`array_like`):
         description needed
-    x_energy : type
+    exp_znew :  (:py:attr:`array_like`):
         description needed
-    z_energy : type
+    new_bulk_svib :  (:py:attr:`float`):
         description needed
-    delatmuz : type
-        description needed
-    phase : type
-        description needed
-    bulk : type
-        description needed
-    normalised_bulk : type
-        description needed
-    exp_new : type
-        description needed
-    exp_znew : type
-        description needed
-    new_bulk_svib : type
-        description needed
-    new_data_svib : type
+    new_data_svib :  (:py:attr:`float`):
         description needed
     
     Returns
     -------
-    type
+     (:py:attr:`array_like`):
         description needed
     """
 
     return (
-        normalised_bulk - deltamux * phase.x - deltamuz * phase.y - (
+        normalised_bulk - deltamux * phase.x - deltamuy * phase.y - (
         (x_energy + exp_xnew) * phase.x) - ((z_energy + exp_znew) * phase.y)-
         (new_data_svib * phase.funits - ((phase.cation/ (bulk.cation) * new_bulk_svib))))
 
 def evaluate_phases(data, bulk, x, y,
-                    nphases, x_energy, y_energy, mu_z, exp_x, exp_z):
+                    nphases, x_energy, y_energy,
+                    mu_z, exp_x, exp_z):
     """Calculates the surface energies of each phase as a function of chemical
     potential of x and y. Then uses this data to evaluate which phase is most
     stable at that x/y chemical potential cross section.
 
     Parameters
     ----------
-    data : list
-        List containing the dictionaries for each phase
-    bulk : dictionary
-        dictionary containing data for bulk
-    x : dictionary
+    data : (:py:attr:`list`):
+        List containing the (:py:class:`surfinpy.data.DataSet`): objects for each phase
+    bulk : (:py:class:`surfinpy.data.ReferenceDataSet`):
+        Reference dataset
+    x : (:py:attr:`dict`):
         X axis chemical potential values
-    y : dictionary
+    y : (:py:attr:`dict`):
         Y axis chemical potential values
-    nphases : int
+    nphases : (:py:attr:`int`):
         Number of phases
-    x_energy : float
+    x_energy : (:py:attr:`float`):
         DFT 0K energy for species x
-    y_energy : float
+    y_energy : (:py:attr:`float`):
         DFT 0K energy for species y
-    mu_z :  type
+    mu_z :  (:py:attr:`float`):
         Description Needed
-    exp_x : type
+    exp_x : (:py:attr:`float`):
         Description Needed
-    exp_z : type
+    exp_z : (:py:attr:`float`):
         Description Needed
 
     Returns
     -------
-    phase_data  : array like
+    phase_data  : (:py:attr:`array_like`):
         array of ints, with each int corresponding to a phase.
     """
     xnew = ut.build_xgrid(x, y)
@@ -136,23 +137,25 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy, mu_z, exp_x, exp_y
 
     Parameters
     ----------
-    data : type
+    data : (:py:attr:`list`):
+        List containing the (:py:class:`surfinpy.data.DataSet`): objects for each phase
+    bulk : (:py:class:`surfinpy.data.ReferenceDataSet`):
+        Reference dataset
+    x : (:py:attr:`dict`):
+        X axis chemical potential values
+    y : (:py:attr:`dict`):
+        Y axis chemical potential values
+    nphases : (:py:attr:`int`):
+        Number of phases
+    x_energy : (:py:attr:`float`):
+        DFT 0K energy for species x
+    y_energy : (:py:attr:`float`):
+        DFT 0K energy for species y
+    mu_z :  (:py:attr:`float`):
         Description Needed
-    bulk: type
+    exp_x : (:py:attr:`float`):
         Description Needed
-    deltaX : type
-        Description Needed
-    deltaY : type
-        Description Needed
-    x_energy : type
-        Description Needed
-    y_energy : type
-        Description Needed
-    mu_z : type
-        Description Needed
-    exp_x : type
-        Description Needed
-    exp_y : type
+    exp_y : (:py:attr:`float`):
         Description Needed
 
     Returns
@@ -177,12 +180,12 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy, mu_z, exp_x, exp_y
     Z = np.reshape(phases, (Y.size, X.size))
     SE = np.reshape(SE, (Y.size, X.size))
     labels = ut.get_labels(ticks, data)
-    system = chemical_potential_plot.ChemicalPotentialPlot(X,
-                                                           Y,
-                                                           Z,
-                                                           labels,
-                                                           ticks,
-                                                           deltaX['Label'],
-                                                           deltaY['Label'])
+    system = plotting.MuTPlot(X,
+                             Y,
+                             Z,
+                             labels,
+                             ticks,
+                             deltaX['Label'],
+                             deltaY['Label'])
 
     return system

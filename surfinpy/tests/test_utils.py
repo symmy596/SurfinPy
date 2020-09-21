@@ -91,3 +91,28 @@ class TestUtils(unittest.TestCase):
     def test_fit_nist(self):
         y = ut.fit_nist(test_data)[100]
         assert_almost_equal(y, 0.009429524075453962)
+
+    def  test_build_xgrid(self):
+        x = ut.build_xgrid(np.arange(10), np.arange(10))
+        assert np.array_equal(x[0], np.arange(10))
+
+    def  test_build_ygrid(self):
+        x = ut.build_ygrid(np.arange(10), np.arange(10))
+        assert np.array_equal(x[0], np.zeros(10))
+
+    def test_build_zgrid(self):
+        x = ut.build_ygrid(np.arange(10), np.arange(10))
+        assert np.array_equal(x[0], np.zeros(10))
+
+    def test_build_entgrid(self):
+        x = ut.build_entgrid(np.arange(10), np.arange(10), np.arange(10))
+        assert np.array_equal(x[0], np.zeros(10))
+        assert np.array_equal(x[1], np.arange(10))
+
+    def test_build_freqgrid(self):
+        x = ut.build_freqgrid(np.arange(10), np.arange(10))
+        assert np.array_equal(x[0], np.arange(10))
+
+    def test_build_tempgrid(self):
+        x = ut.build_tempgrid(np.arange(10), np.arange(10))
+        assert np.array_equal(x[0], np.zeros(10))

@@ -1,5 +1,5 @@
 import numpy as np
-from surfinpy import chemical_potential_plot
+from surfinpy import plotting
 from surfinpy import utils as ut
 
 
@@ -227,7 +227,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
     Z = np.reshape(phases, (Y.size, X.size))
     SE = np.reshape(SE, (Y.size, X.size))
     labels = ut.get_labels(ticks, data)
-    system = chemical_potential_plot.ChemicalPotentialPlot(X,
+    system = plotting.ChemicalPotentialPlot(X,
                                                            Y,
                                                            Z,
                                                            labels,
