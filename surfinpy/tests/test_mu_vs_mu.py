@@ -54,3 +54,20 @@ class Testmu_vs_mu(unittest.TestCase):
         expected_phase = np.zeros(X.size * Y.size)
         expected_phase = expected_phase + 2
         assert_almost_equal(phase, expected_phase)
+
+    def test_calculate(self):
+        xshiftval = 0
+        yshiftval = 0
+        deltaX = {'Range': [0, 10], 'Label': 'O'}
+        deltaY = {'Range': [0, 10], 'Label': 'H_2O'}
+        bulk = data.ReferenceDataSet(cation = 1, anion = 2, energy = -100.00, funits = 1)
+        pure = data.DataSet(cation = 24, x = 48, y = 0, area = 60.22, 
+                                     energy = -575.00, label = "Stoich", nspecies = 1)
+        H2O = data.DataSet(cation = 24, x = 48, y = 2, area = 60.22, 
+                                     energy = -600.00, label = "One", nspecies = 1)
+        dataset = [pure, H2O]
+
+        system, SE, X, Y, phase = mu_vs_mu.calculate(dataset, bulk, deltaX, deltaY, 0, 0)
+        expected_phase = np.zeros(X.size * Y.size)
+        expected_phase = np.reshape(expected_phase, (Y.size, X.size))
+        assert_almost_equal(phase, expected_phase)
