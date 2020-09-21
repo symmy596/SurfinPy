@@ -5,7 +5,7 @@ from scipy.constants import codata
 
 #Use scipy.constants for all constants
 
-def ZPE_Calc(vib_prop):
+def zpe_calc(vib_prop):
     """Description
 
     Parameters
@@ -25,7 +25,7 @@ def ZPE_Calc(vib_prop):
     return zpe
 
 #Is avid needed?
-def Entropy_Calc(freq, temp, vib_prop):
+def entropy_calc(freq, temp, vib_prop):
     """Description
 
     Parameters
@@ -65,7 +65,7 @@ def Entropy_Calc(freq, temp, vib_prop):
     
     return svib
 
-def Vib_Calc(vib_file, temp_r):
+def vib_calc(vib_file, temp_r):
     """Description Needed
 
     Parameters
@@ -90,6 +90,6 @@ def Vib_Calc(vib_file, temp_r):
     new_temp = ut.build_tempgrid(temp_r, vib_prop['Frequencies']) 
     freq = ut.build_freqgrid(vib_prop['Frequencies'], temp_r) 
     zpe = 0
-    zpe = ZPE_Calc(vib_prop)
-    svib = Entropy_Calc(freq, new_temp, vib_prop)
+    zpe = zpe_calc(vib_prop)
+    svib = entropy_calc(freq, new_temp, vib_prop)
     return zpe, svib
