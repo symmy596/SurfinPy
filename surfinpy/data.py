@@ -25,8 +25,6 @@ class ReferenceDataSet():
     """
     def __init__(self, cation, anion, energy, funits, file=None,
                  entropy=False, temp_range=None, zpe=False):
-        """
-        """
         self.cation = cation
         self.anion = anion
         self.energy = energy
@@ -42,14 +40,14 @@ class ReferenceDataSet():
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
                                     1, dtype="int")
-            self.svib = vd.Vib_Calc(self.file, self.temp_r)[1]
+            self.svib = vd.vib_calc(self.file, self.temp_r)[1]
             self.temperature = self.temp_r[0]
 
         if self.zpe:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
                                     1, dtype="int")
-            self.zpe = vd.Vib_Calc(self.file, self.temp_r)[0]
+            self.zpe = vd.vib_calc(self.file, self.temp_r)[0]
             self.temperature = self.temp_r[0]
 
 class DataSet():
@@ -101,12 +99,12 @@ class DataSet():
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
                                     1, dtype="int")
-            self.svib = vd.Vib_Calc(self.file, self.temp_r)[1]
+            self.svib = vd.vib_calc(self.file, self.temp_r)[1]
             self.temperature = self.temp_r[0]
 
         if self.zpe:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
                                     1, dtype="int")
-            self.zpe = vd.Vib_Calc(self.file, self.temp_r)[0]
+            self.zpe = vd.vib_calc(self.file, self.temp_r)[0]
             self.temperature = self.temp_r[0]
