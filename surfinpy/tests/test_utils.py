@@ -25,6 +25,17 @@ class TestUtils(unittest.TestCase):
         assert_approx_equal(expected[0], x[0], significant=8)
         assert_approx_equal(expected[1], x[1], significant=8)
 
+    def test_list_colors(self):
+        H20 = data.DataSet(cation = 24, x = 48, y = 2, area = 60.22, color="red",
+                                     energy = -570.00, label ="One", nspecies = 1)
+        H2O_2 = data.DataSet(cation = 24, x = 48, y = 4, area = 60.22, color="blue",
+                                     energy = -570.00, label ="Two", nspecies = 1)
+        dataset = [H20, H2O_2]
+        ticks = np.array([1, 2])
+        labels = ut.list_colors(dataset, ticks)
+        expected = ['red', 'blue']
+        assert labels == expected
+
     def test_get_labels(self):
         H20 = data.DataSet(cation = 24, x = 48, y = 2, area = 60.22, 
                                      energy = -570.00, label ="One", nspecies = 1)

@@ -34,5 +34,5 @@ class Testbulk_mu_vs_mu(unittest.TestCase):
         phase_1 = data.DataSet(cation = 10, x = 0, y = 10, energy = -90.0, label = "Periclase")
         phase_2 = data.DataSet(cation = 10, x = 0, y = 10, energy = -100.0, label = "Periclase")
         ref = {'Range': [ 0, 10],  'Label': 'test'}
-        calculated = bulk_mu_vs_t.calculate([phase_1, phase_2], bulk, ref, ref, 10, 10, 0, np.arange(0, 10, 1), np.arange(0, 10, 1))
+        calculated = bulk_mu_vs_t.calculate([phase_1, phase_2], bulk, ref, ref, 10, 10, 0, np.arange(0, 10, 0.01), np.arange(0, 10, 0.01))
         assert calculated.z[0, 0] == 0

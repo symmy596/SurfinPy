@@ -67,7 +67,7 @@ class Testmu_vs_mu(unittest.TestCase):
                                      energy = -600.00, label = "One", nspecies = 1)
         dataset = [pure, H2O]
 
-        system, SE, X, Y, phase = mu_vs_mu.calculate(dataset, bulk, deltaX, deltaY, 0, 0)
-        expected_phase = np.zeros(X.size * Y.size)
-        expected_phase = np.reshape(expected_phase, (Y.size, X.size))
-        assert_almost_equal(phase, expected_phase)
+        system = mu_vs_mu.calculate(dataset, bulk, deltaX, deltaY, 0, 0)
+        expected_phase = np.zeros(np.arange(0, 10, 0.025).size * np.arange(0, 10, 0.025).size)
+        expected_phase = np.reshape(expected_phase, (np.arange(0, 10, 0.025).size, np.arange(0, 10, 0.025).size))
+        assert_almost_equal(system.z, expected_phase)

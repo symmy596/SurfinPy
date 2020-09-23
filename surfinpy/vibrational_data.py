@@ -93,3 +93,32 @@ def vib_calc(vib_file, temp_r):
     zpe = zpe_calc(vib_prop)
     svib = entropy_calc(freq, new_temp, vib_prop)
     return zpe, svib
+
+def recalculate_vib(dataset, bulk):
+    if bulk.entropy:
+        bulk.temp_r = np.arange(bulk.temp_range[0],
+                                bulk.temp_range[1], 
+                                0.01, dtype="float")
+        bulk.svib = vib_calc(bulk.file, bulk.temp_r)[1]
+        bulk.temperature = bulk.temp_r[0]
+    if bulk.zpe:
+        bulk.temp_r = np.arange(bulk.temp_range[0],
+                                bulk.temp_range[1], 
+                                0.01, dtype="float")
+        bulk.zpe = vib_calc(bulk.file, bulk.temp_r)[0]
+        bulk.temperature = bulk.temp_r[0]
+
+    for phase in dataset:
+        if phase.entropy:
+            phase.temp_r = np.arange(phase.temp_range[0],
+                                    phase.temp_range[1], 
+                                    0.01, dtype="float")
+            phase.svib = vib_calc(phase.file, phase.temp_r)[1]
+            phase.temperature = phase.temp_r[0]
+
+        if phase.zpe:
+            phase.temp_r = np.arange(phase.temp_range[0],
+                                    phase.temp_range[1], 
+                                    0.01, dtype="float")
+            phase.zpe = vib_calc(phase.file, phase.temp_r)[0]
+            phase.temperature = phase.temp_r[0]
