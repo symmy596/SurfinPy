@@ -137,6 +137,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy):
                                  nphases, x_energy, y_energy)
 
     ticks = np.unique([phases])
+    colors = ut.list_colors(data, ticks)
     phases = ut.transform_numbers(phases, ticks)
     Z = np.reshape(phases, (Y.size, X.size))
     SE = np.reshape(SE, (Y.size, X.size))
@@ -146,6 +147,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy):
                                             Z,
                                             labels,
                                             ticks,
+                                            colors,
                                             deltaX['Label'],
                                             deltaY['Label'])
     return system

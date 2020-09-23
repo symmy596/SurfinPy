@@ -25,6 +25,17 @@ class TestUtils(unittest.TestCase):
         assert_approx_equal(expected[0], x[0], significant=8)
         assert_approx_equal(expected[1], x[1], significant=8)
 
+    def test_list_colors(self):
+        H20 = data.DataSet(cation = 24, x = 48, y = 2, area = 60.22, color="red",
+                                     energy = -570.00, label ="One", nspecies = 1)
+        H2O_2 = data.DataSet(cation = 24, x = 48, y = 4, area = 60.22, color="blue",
+                                     energy = -570.00, label ="Two", nspecies = 1)
+        dataset = [H20, H2O_2]
+        ticks = np.array([1, 2])
+        labels = ut.list_colors(dataset, ticks)
+        expected = ['red', 'blue']
+        assert labels == expected
+
     def test_get_labels(self):
         H20 = data.DataSet(cation = 24, x = 48, y = 2, area = 60.22, 
                                      energy = -570.00, label ="One", nspecies = 1)
@@ -90,7 +101,7 @@ class TestUtils(unittest.TestCase):
 
     def test_fit_nist(self):
         y = ut.fit_nist(test_data)[100]
-        assert_almost_equal(y, 0.009429524075453962)
+        assert_almost_equal(y, 5.315630959761595e-06)
 
     def  test_build_xgrid(self):
         x = ut.build_xgrid(np.arange(10), np.arange(10))

@@ -63,7 +63,6 @@ def calculate_bulk_energy(deltamux, ynew,
      (:py:attr:`array_like`):
         description needed
     """
-
     return (
         normalised_bulk - deltamux * phase.x - deltamuy * phase.y - (
         (x_energy + exp_xnew) * phase.x) - ((z_energy + exp_znew) * phase.y)-
@@ -111,7 +110,6 @@ def evaluate_phases(data, bulk, x, y,
     exp_znew = ut.build_zgrid(exp_z, x)
     S = np.array([])
     new_data_svib = 0
-
     if bulk.entropy:
         new_data_svib = ut.build_entgrid(bulk.svib, x, ynew)            
 
@@ -168,7 +166,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy, mu_z, exp_x, exp_y
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1],
                   0.025, dtype="float")
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1],
-                  1, dtype="float")
+                  0.01, dtype="float")
 
     phases, SE = evaluate_phases(data, bulk, X, Y,
                                  nphases, x_energy,
@@ -176,6 +174,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy, mu_z, exp_x, exp_y
                                  exp_x, exp_y,
                                  )
     ticks = np.unique([phases])
+    colors = ut.list_colors(data, ticks)
     phases = ut.transform_numbers(phases, ticks)
     Z = np.reshape(phases, (Y.size, X.size))
     SE = np.reshape(SE, (Y.size, X.size))
@@ -185,6 +184,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy, mu_z, exp_x, exp_y
                              Z,
                              labels,
                              ticks,
+                             colors,
                              deltaX['Label'],
                              deltaY['Label'])
 

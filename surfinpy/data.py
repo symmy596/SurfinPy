@@ -23,13 +23,15 @@ class ReferenceDataSet():
     zpe : type
         Description Needed
     """
-    def __init__(self, cation, anion, energy, funits, file=None,
-                 entropy=False, temp_range=None, zpe=False):
+    def __init__(self, cation, anion, energy, funits, color=None,
+                 file=None, entropy=False, temp_range=None,
+                 zpe=False):
         self.cation = cation
         self.anion = anion
         self.energy = energy
         self.funits = funits
         self.file = file
+        self.color = color
         self.entropy = entropy
         self.temp_range = temp_range
         self.zpe = 0
@@ -39,14 +41,14 @@ class ReferenceDataSet():
         if self.entropy:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
-                                    1, dtype="int")
+                                    0.01, dtype="float")
             self.svib = vd.vib_calc(self.file, self.temp_r)[1]
             self.temperature = self.temp_r[0]
 
         if self.zpe:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
-                                    1, dtype="int")
+                                    0.01, dtype="float")
             self.zpe = vd.vib_calc(self.file, self.temp_r)[0]
             self.temperature = self.temp_r[0]
 
@@ -78,7 +80,7 @@ class DataSet():
     temp_range : type
         Description Needed
     """
-    def __init__(self, cation, x, y, energy, label, funits=0, 
+    def __init__(self, cation, x, y, energy, label, color=None, funits=0, 
                  file=None, area=None, nspecies=None, entropy=False,
                  temp_range=False, zpe=False):
         self.cation = cation
@@ -86,6 +88,7 @@ class DataSet():
         self.y = y
         self.energy = energy
         self.label= label
+        self.color = color
         self.funits = funits
         self.file = file 
         self.area = area
@@ -98,13 +101,13 @@ class DataSet():
         if self.entropy:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
-                                    1, dtype="int")
+                                    0.01, dtype="float")
             self.svib = vd.vib_calc(self.file, self.temp_r)[1]
             self.temperature = self.temp_r[0]
 
         if self.zpe:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
-                                    1, dtype="int")
+                                    0.01, dtype="float")
             self.zpe = vd.vib_calc(self.file, self.temp_r)[0]
             self.temperature = self.temp_r[0]
