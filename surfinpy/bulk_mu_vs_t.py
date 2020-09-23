@@ -168,7 +168,7 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy, mu_z, exp_x, exp_y
     nphases = len(data)
 
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1],
-                  0.025, dtype="float")
+                  0.01, dtype="float")
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1],
                   0.01, dtype="float")
     vd.recalculate_vib(data, bulk)
