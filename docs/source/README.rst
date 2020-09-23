@@ -19,19 +19,28 @@ It is hoped that this tool will bring some benfits to the solid state community 
 The main features include:
 
 1. **Method to generate 2D surface phase diagrams as a function of chemical potential.**  
-   
-   - Generate a diagram for two adsorbing species e.g. water and carbon dioxide.  
-   - Generate a diagram for an adsorbing species and a surface species e.g. water and oxygen vacancies.  
+
+   - Generate a diagram as a function of the chemical potential of two adsorbing species e.g. water and carbon dioxide.  
+   - Generate a diagram as a function of the chemical potential of one adsorbing species and a surface species e.g. water and oxygen vacancies.  
    - Use experimental data combined with ab initio data to generate a temperature dependent phase diagram.  
 
 2. **Method to generate 2D surface phase diagrams as a function of temperature and pressure.**  
-   
-   - Use experimental data combined with ab initio data to generate a pvt plot showing the state of a surface.   
 
-3. **Use calculated surface energies to build crystal morphologies.**  
-   
+   - Use experimental data combined with ab initio data to generate a pressure vs temperature plot showing the state of a surface as a function of temperature and pressure of one species.
+
+3. **Use calculated surface energies to built crystal morphologies.**  
+
    - Use the surface energies produced by `surfinpy` alongside Pymatgen to built particle morphologies.  
-   - Evaulate how a particles shape changes with temperature and pressure.   
+   - Evaulate how a particles shape changes with temperature and pressure.
+
+4. **Method to generate 2D bulk phase diagrams as a function of chemical potential.**  
+
+   - Generate a diagram as a function of the chemical potential of two species e.g. water and carbon dioxide.  
+   - Use experimental data combined with ab initio data to generate a temperature dependent phase diagram.  
+
+5. **Method to generate 2D surface phase diagrams as a function of temperature and pressure.**  
+
+   - Use experimental data combined with ab initio data to generate a pressure vs temperature plot showing the phase space as a function of temperature and pressure.  
 
 The code has been developed to analyse VASP calculations however should in theory be compatible with other ab initio codes. 
 `surfinpy` was developed during a PhD project and as such the functionality focuses on the research questions encountered during that project, which we should clarify 

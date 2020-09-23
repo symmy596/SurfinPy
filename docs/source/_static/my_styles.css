@@ -1,3 +1,15 @@
 body {
     font-family:"Arial", Helvetica, sans-serif;
 }
+
+.wy-side-nav-search, .wy-nav-top {
+    background: #2DABE3;
+}
+
+.wy-side-nav-search>div.version{
+    color: #2DABE3;
+}
+
+.fa-bars{
+    color: #2DABE3;
+}
