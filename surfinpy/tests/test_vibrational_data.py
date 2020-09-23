@@ -25,3 +25,4 @@ class TestVibrationalData(unittest.TestCase):
     def test_vib_calc(self):
         x = vd.vib_calc(test_data, np.arange(10))
         assert x[0] == 0.0017049071357836591
+        

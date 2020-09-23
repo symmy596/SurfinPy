@@ -101,7 +101,7 @@ class TestUtils(unittest.TestCase):
 
     def test_fit_nist(self):
         y = ut.fit_nist(test_data)[100]
-        assert_almost_equal(y, 5.315630959761595e-06)
+        assert_almost_equal(y, 0.009429524075453962)
 
     def  test_build_xgrid(self):
         x = ut.build_xgrid(np.arange(10), np.arange(10))

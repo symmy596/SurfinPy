@@ -10,16 +10,16 @@ def temperature_correction(T, thermochem, adsorbant):
 
     Parameters
     ----------
-    T : int
+    T : :py:attr:`int`
         Temperature to scale the energy to
-    thermochem : array like
+    thermochem : :py:attr:`array_like`
         nist_janaf table
-    adsorbant : float
+    adsorbant : :py:attr:`float`
         DFT energy of adsorbant
 
     Returns
     -------
-    adsorbant : float
+    adsorbant : :py:attr:`float`
         Scaled energy of adsorbant
     """
     temperature_range = np.arange(2, np.amax(thermochem[:, 0]))
@@ -42,29 +42,29 @@ def calculate_surface_energy(stoich,
 
     Parameters
     ----------
-    stoich : dictionary
+    stoich : :py:class:`surfinpy.data.ReferenceDataSet`
         information about the stoichiometric surface
-    data : list
+    data : :py:attr:`list`
         list of dictionaries containing information on the "adsorbed" surfaces
-    SE : float
+    SE : :py:attr:`float`
         surface energy of the stoichiomteric surface
-    adsorbant : float
+    adsorbant : :py:attr:`float`
         dft energy of adsorbing species
-    coverage : array like
+    coverage : :py:attr:`array_like`
         Numpy array containing the different coverages of adsorbant.
-    thermochem : array like
+    thermochem : :py:attr:`array_like`
         Numpy array containing thermochemcial data downloaded from NIST_JANAF
         for the adsorbing species.
-    T : float
+    T : :py:attr:`float`
         Temperature to calculate surface energy
-    P : float
+    P : :py:attr:`float`
         Pressure to calculate the surface energy
-    coverage : array like (default None)
+    coverage : :py:attr:`array_like` 
         Coverage of adsorbed specied on the surface.
 
     Returns
     -------
-    SEs : array like
+    SEs : :py:attr:`array_like`
         surface energies for each surface at T/P
     """
     if coverage is None:

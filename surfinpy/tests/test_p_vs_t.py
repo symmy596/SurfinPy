@@ -68,7 +68,7 @@ class Testp_vs_t(unittest.TestCase):
         SE = 1.0
         adsorbant = -10.0
         thermochem = ut.read_nist(test_data)
-        system, SE = p_vs_t.calculate(stoich, data, SE, adsorbant, thermochem)
+        system = p_vs_t.calculate(stoich, data, SE, adsorbant, thermochem)
         expectedx = np.arange(2, 1000)
         expectedy = np.arange(-13, 5.5, 0.1)
         expectedz = np.zeros(((expectedy.size), (expectedx.size)))

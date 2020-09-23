@@ -16,14 +16,14 @@ def pressure(chemical_potential, t):
 
     Parameters
     ----------
-    chemical_potential : array like
+    chemical_potential : :py:attr:`array_like`
         delta mu values
-    t : int
+    t : :py:attr:`int`
         temperature
 
     Returns
     -------
-    pressure : array like
+    pressure : :py:attr:`array_like`
         pressure values as a function of chemcial potential
     """
     k = codata.value('Boltzmann constant in eV/K')
@@ -35,13 +35,13 @@ def calculate_coverage(data):
 
     Parameters
     ----------
-    data : list
+    data : :py:attr:`list`
         list of dictionaries containing info on each surface calculation
 
     Returns
     -------
-    coverage : array like
-        numpy array of coverage values in units of :math:`n/nm^2`
+    coverage : :py:attr:`array_like`
+        Coverage values in units of :math:`n/nm^2`
     """
     coverage = np.array([])
     for i in range(0, len(data)):
@@ -54,15 +54,15 @@ def build_xgrid(x, y):
 
     Parameters
     ----------
-    x : array like
-        numpy array
-    y : array like
-        numpy array
+    x : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
+    y : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
 
     Returns
     -------
-    xnew : array like
-        numpy array
+    xnew : :py:attr:`array_like`
+        Two dimensional numpy array required for energy calculations
     """
     xnew = np.tile(x, y.size)
     xnew = np.reshape(xnew, (y.size, x.size))
@@ -73,15 +73,15 @@ def build_ygrid(x, y):
 
     Parameters
     ----------
-    x : array like
-        numpy array
-    y : array like
-        numpy array
+    x : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
+    y : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
 
     Returns
     -------
-    xnew : array like
-        numpy array
+    xnew : :py:attr:`array_like`
+        Two dimensional numpy array required for energy calculations
     """
     ynew = np.tile(y, x.size)
     ynew = np.split(ynew, x.size)
@@ -93,21 +93,35 @@ def build_zgrid(z, y):
 
     Parameters
     ----------
-    x : array like
-        numpy array
-    y : array like
-        numpy array
+    x : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
+    y : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
 
     Returns
     -------
-    xnew : array like
-        numpy array
+    xnew : :py:attr:`array_like`
+        Two dimensional numpy array required for energy calculations
     """
     znews = np.tile(z, y.size)
     znews = np.reshape(znews, (z.size, y.size), order='F')
     return znews
 
 def build_entgrid(z, y, ynew):
+    """Builds a 2D grip of values for the x axis.
+
+    Parameters
+    ----------
+    x : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
+    y : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
+
+    Returns
+    -------
+    xnew : :py:attr:`array_like`
+        Two dimensional numpy array required for energy calculations
+    """
     znews = np.tile(z, len(y))
     znews = np.reshape(znews, (len(z), len(y)), order='F')
     temp_ent = np.multiply(znews, ynew)
@@ -118,15 +132,15 @@ def build_freqgrid(z, y):
 
     Parameters
     ----------
-    x : array like
-        numpy array
-    y : array like
-        numpy array
+    x : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
+    y : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
 
     Returns
     -------
-    xnew : array like
-        numpy array
+    xnew : :py:attr:`array_like`
+        Two dimensional numpy array required for energy calculations
     """
     znews = np.tile(z, (len(y),1))
     return znews
@@ -136,32 +150,33 @@ def build_tempgrid(z, y):
 
     Parameters
     ----------
-    x : array like
-        numpy array
-    y : array like
-        numpy array
+    x : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
+    y : :py:attr:`array_like`
+        One dimensional numpy array representing one dimension of phase diagram
 
     Returns
     -------
-    xnew : array like
-        numpy array
+    xnew : :py:attr:`array_like`
+        Two dimensional numpy array required for energy calculations
     """
     znews = np.tile(z, len(y))
     znews = np.reshape(znews, (len(z), len(y)), order='F')
     return znews
 
 def read_vibdata(vib_file):
-    """Description Needed
+    """Reads a yaml file containing the
+    vribational frequencies from a DFT calculation.
 
     Parameters
     ----------
-    vib_file : type
-        descriotion needed
+    vib_file : (:py:attr:`str`):
+        File name
 
     Returns
     -------
-    vib_prop : type
-        description needed
+    vib_prop : :py:attr:`dict`
+        Dictionary of vibrational freqencies.
     """
     with open(vib_file, 'r') as file:
         vib_prop = yaml.load(file)
@@ -172,13 +187,13 @@ def read_nist(File):
 
     Parameters
     ----------
-    File : str
-        filename of table
+    File : :py:attr:`str`
+        Filename of NIST_JANAF thermochemcial table
 
     Returns
     -------
-    data : array_like
-        table as an array
+    data : :py:attr:`array_like`
+        NIST_JANAF thermochemcial as an array
     '''
     data = np.genfromtxt(File, skip_header=2)
     return data
@@ -188,16 +203,16 @@ def fit(x, y, t):
 
     Parameters
     ----------
-    x : array like
+    x : :py:attr:`array_like`
         x axis for fit
-    y : array like
+    y : :py:attr:`array_like`
         y axis for fit
-    t : array like
+    t : :py:attr:`array_like`
         x axis to be fitted
 
     Returns
     -------
-    shift : array like
+    shift : :py:attr:`array_like`
         data fitted from x and y to t
     '''
     z = CubicSpline(x, y, bc_type='clamped')
@@ -210,16 +225,16 @@ def calculate_gibbs(t, s, h):
 
     Parameters
     ----------
-    t : array like
+    t : :py:attr:`array_like`
         Temperature range
-    s : array like
+    s : :py:attr:`array_like`
         delta s values from nist
-    h : array like
+    h : :py:attr:`array_like`
         selta h values from nist
 
     Returns
     -------
-    g : array like
+    g : :py:attr:`array_like`
         gibbs energy as a function of temperature
     '''
     deltas = (s * 0.01036) / 1000
@@ -227,28 +242,26 @@ def calculate_gibbs(t, s, h):
     g = deltah - t * deltas
     return g
 
-def fit_nist(nist_file):
+def fit_nist(nist_file, increments=1):
     """Use experimental data to correct the DFT free energy of an adsorbing
     species to a specific temperature.
 
     Parameters
     ----------
-    nist_file : array like
+    nist_file : :py:attr:`array_like`
         numpy array containing experiemntal data from NIST_JANAF
-    temperature : int
-        Temperature to correct to
 
     Returns
     -------
-    gibbs : float
+    gibbs : :py:attr:`float`
         correct free energy
     """
     nist_data = read_nist(nist_file)
     h0 = nist_data[0, 4]
-    fitted_s = fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 3000, 0.01))
-    fitted_h = fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 3000, 0.01))
+    fitted_s = fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 3000, increments))
+    fitted_h = fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 3000, increments))
     fitted_h = fitted_h - fitted_h[0]
-    gibbs = calculate_gibbs(np.arange(1, 3000, 0.01), fitted_s, fitted_h)
+    gibbs = calculate_gibbs(np.arange(1, 3000, increments), fitted_s, fitted_h)
     return gibbs
 
 def temperature_correction_range(nist_file, deltaY):
@@ -257,17 +270,17 @@ def temperature_correction_range(nist_file, deltaY):
 
     Parameters
     ----------
-    nist_file : array like
+    nist_file : :py:attr:`array_like`
         numpy array containing experiemntal data from NIST_JANAF
-    temperature : int
+    temperature : :py:attr:`int`
         Temperature to correct to
 
     Returns
     -------
-    gibbs : float
+    gibbs : :py:attr:`float`
         correct free energy
     """
-    x = fit_nist(nist_file)
+    x = fit_nist(nist_file, increments=0.01)
     lower = int(deltaY['Range'][0] / 0.01)
     upper = int(deltaY['Range'][1] / 0.01)
     gibbs = x[lower : upper]
@@ -279,14 +292,14 @@ def get_phase_data(S, nsurfaces):
 
     Parameters
     ----------
-    S : array like
+    S : :py:attr:`array_like`
         2D array of surface energies
-    nsurfaces : int
+    nsurfaces : :py:attr:`int`
         Total number of surfaces
 
     Returns
     -------
-    x : array like
+    x : :py:attr:`array_like`
         array of ints corresponding to the position of
         the lowest phase
     '''
@@ -297,6 +310,21 @@ def get_phase_data(S, nsurfaces):
     return x, SE
 
 def list_colors(phases, ticks):
+    '''Reads the phase diagram data and returns the colors that correspond
+    to the phases displayed on the phase diagram.
+
+    Parameters
+    ----------
+    phases  : :py:attr:`list`
+        list of (:py:class:`surfinpy.data.DataSet`): objects.
+    ticks : :py:attr:`list`
+        Phases that are displayed.
+
+    Returns
+    -------
+    colors : :py:attr:`list`
+        list of colors.
+    '''
     colors = []
     if phases[0].color:
         for i in range(0, ticks.size):
@@ -313,14 +341,14 @@ def get_labels(ticks, data):
 
     Parameters
     ----------
-    ticks : list
+    ticks : :py:attr:`list`
         Phases that are displayed.
-    data  : list
-        list of dictionaries.
+    data  : :py:attr:`list`
+        list of (:py:class:`surfinpy.data.DataSet`): objects.
 
     Returns
     -------
-    labels : list
+    labels : :py:attr:`list`
         list of labels.
     '''
     labels = []
@@ -337,12 +365,12 @@ def get_levels(X):
 
     Parameters
     ----------
-    X : array like
+    X : :py:attr:`array_like`
         2D array of ints corresponding to each phase.
 
     Returns
     -------
-    levels : array like
+    levels : :py:attr:`array_like`
         numpy array of ints
     """
     a = np.amax(X) + 1
@@ -365,14 +393,14 @@ def transform_numbers(Z, ticks):
 
     Parameters
     ----------
-    Z : array like
+    Z : :py:attr:`array_like`
         array of integers
-    ticks : list
+    ticks : :py:attr:`list`
         unique phases
 
     Returns
     -------
-    Z : array like
+    Z : :py:attr:`array_like`
         Normalised to a continuous set of numbers.
     '''
     y = np.arange(ticks.size)

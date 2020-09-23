@@ -10,22 +10,32 @@ class ChemicalPotentialPlot:
 
     Parameters
     ----------
-    x : array like
+    x : :py:attr:`array_like`
         x axis, chemical potential of species x
-    y : array like
+    y : :py:attr:`array_like`
         y axis, chemical potential of species y
-    z : array like
+    z : :py:attr:`array_like`
         two dimensional grid, phase info
-    labels : list
-        list of phase labels
-    ticks : list
-        list of phases
-    xlabel : str
+    labels : :py:attr:`list`
+        :py:attr:`list`): of phase labels
+    ticks : :py:attr:`list`
+        :py:attr:`list`): of phases
+    colors : :py:attr:`list`
+        :py:attr:`list`): of phases       
+    xlabel : :py:attr:`str`
         species name for x axis label
-    ylabel : str
+    ylabel : :py:attr:`str`
         species name for y axis label
     """
-    def __init__(self, x, y, z, labels, ticks, colors, xlabel, ylabel):
+    def __init__(self, 
+                 x,
+                 y,
+                 z,
+                 labels,
+                 ticks,
+                 colors,
+                 xlabel,
+                 ylabel):
         self.x = x
         self.y = y
         self.z = z
@@ -41,26 +51,23 @@ class ChemicalPotentialPlot:
         else:
             self.cmap = "viridis"
 
-    def plot_phase(self, temperature=None,
-                   colourmap=None, set_style=None, 
+    def plot_phase(self,
+                   temperature=None,
+                   colourmap=None,
+                   set_style=None, 
                    figsize=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
         ----------
-        temperature: int (optional)
-            Temperature. Default=None
-        xlabel: str (optional)
-            Set a custom x-axis label. Default=None
-        ylabel: str (optional)
-            Set a custom y-axis label. Default=None
-        colourmap: str (optional)
-            Colourmap for the plot. Default='viridis'
-        figsize: tuple (optional)
-            Set a custom figure size. Default=None
-        show_fig: bool (optional)
-            Automatically display a figure. Default=True
-            If set to False the plot is returned as an object.
+        temperature: :py:attr:`int`
+            Temperature. 
+        colourmap: :py:attr:`str`
+            Colourmap for the plot.
+        set_style: :py:attr:`str`
+            Plot style
+        figsize: :py:attr:`tuple`
+            Set a custom figure size.
         """
         if set_style:
             plt.style.use(set_style)
@@ -76,7 +83,9 @@ class ChemicalPotentialPlot:
         plt.tight_layout()
         return ax
 
-    def plot_mu_p(self, temperature, colourmap=None,
+    def plot_mu_p(self,
+                  temperature,
+                  colourmap=None,
                   set_style=None, 
                   cbar_label=None):
         """ Plots a phase diagram  with two sets of axis, one as a function of
@@ -84,12 +93,14 @@ class ChemicalPotentialPlot:
 
         Parameters
         ----------
-        temperature : int (optional)
+        temperature : :py:attr:`int`
             temperature
-        output : str (optional)
-            output filename
-        colourmap : str
+        colourmap : :py:attr:`str`
             colourmap for the plot
+        set_style: :py:attr:`str`
+            Plot style
+        cbar_label : :py:attr:`str`
+            Label for colorbar
         """
         if set_style:
             plt.style.use(set_style)
@@ -117,18 +128,20 @@ class ChemicalPotentialPlot:
             axR.set_xlabel(cbar_label, fontsize=_fig_params.FONTSIZE*0.8)
         return ax
 
-    def plot_pressure(self, temperature, colourmap=None,
+    def plot_pressure(self, 
+                      temperature, 
+                      colourmap=None,
                       set_style=None):
         """ Plots a phase diagram as a function of pressure.
 
         Parameters
         ----------
-        temperature : int (optional)
+        temperature : :py:attr:`int`
             temperature
-        output : str (optional)
-            output filename
-        colourmap : str
+        colourmap : :py:attr:`str`
             colourmap for the plot
+        set_style: :py:attr:`str` 
+            Plot style
         """
         if set_style:
             plt.style.use(set_style)
@@ -146,9 +159,38 @@ class ChemicalPotentialPlot:
         plt.tight_layout()
         return ax
 
-class MuTPlot():
 
-    def __init__(self, x, y, z, labels, ticks, colors, xlabel, ylabel):
+class MuTPlot():
+    """Class that plots a phase diagram as a function of chemical potential and temperature.
+
+    Parameters
+    ----------
+    x : :py:attr:`array_like`
+        x axis, chemical potential of species x
+    y : :py:attr:`array_like`
+        y axis, chemical potential of species y
+    z : :py:attr:`array_like`
+        two dimensional grid, phase info
+    labels : :py:attr:`list`
+        :py:attr:`list`): of phase labels
+    ticks : :py:attr:`list`
+        :py:attr:`list`): of phases
+    colors : :py:attr:`list`
+        :py:attr:`list`): of phases       
+    xlabel : :py:attr:`str`
+        species name for x axis label
+    ylabel : :py:attr:`str`
+        species name for y axis label
+    """
+    def __init__(self,
+                 x,
+                 y,
+                 z,
+                 labels,
+                 ticks,
+                 colors,
+                 xlabel,
+                 ylabel):
         self.x = x
         self.y = y
         self.z = z
@@ -165,25 +207,19 @@ class MuTPlot():
             self.cmap = "viridis"
 
     def plot_mu_vs_t(self,
-                    colourmap=None, set_style=None, 
+                    colourmap=None, 
+                    set_style=None, 
                     figsize=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
         ----------
-        temperature: int (optional)
-            Temperature. Default=None
-        xlabel: str (optional)
-            Set a custom x-axis label. Default=None
-        ylabel: str (optional)
-            Set a custom y-axis label. Default=None
-        colourmap: str (optional)
+        colourmap: :py:attr:`str`
             Colourmap for the plot. Default='viridis'
-        figsize: tuple (optional)
-            Set a custom figure size. Default=None
-        show_fig: bool (optional)
-            Automatically display a figure. Default=True
-            If set to False the plot is returned as an object.
+        set_style: :py:attr:`str`
+            Plot style
+        figsize: :py:attr:`tuple`
+            Set a custom figure size.
         """
         if set_style:
             plt.style.use(set_style)
@@ -199,26 +235,23 @@ class MuTPlot():
         plt.tight_layout()
         return ax
 
-    def plot_p_vs_t(self, temperature,
-                colourmap=None, set_style=None,
-                figsize=None):
+    def plot_p_vs_t(self,
+                    temperature,
+                    colourmap=None,
+                    set_style=None,
+                    figsize=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
         ----------
-        temperature: int (optional)
-            Temperature. Default=None
-        xlabel: str (optional)
-            Set a custom x-axis label. Default=None
-        ylabel: str (optional)
-            Set a custom y-axis label. Default=None
-        colourmap: str (optional)
+        temperature: :py:attr:`int`
+            Temperature.
+        colourmap: :py:attr:`str` 
             Colourmap for the plot. Default='viridis'
-        figsize: tuple (optional)
-            Set a custom figure size. Default=None
-        show_fig: bool (optional)
-            Automatically display a figure. Default=True
-            If set to False the plot is returned as an object.
+        set_style: :py:attr:`str`
+            Plot style
+        figsize: :py:attr:`tuple` 
+            Set a custom figure size.
         """
         p1 = ut.pressure(self.x, temperature)
         if set_style:
@@ -235,26 +268,23 @@ class MuTPlot():
         plt.tight_layout()
         return ax
 
-    def plot_mu_vs_t_vs_p(self, temperature,
-                          colourmap=None, set_style=None,
+    def plot_mu_vs_t_vs_p(self,
+                          temperature,
+                          colourmap=None,
+                          set_style=None,
                           figsize=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
         ----------
-        temperature: int (optional)
-            Temperature. Default=None
-        xlabel: str (optional)
-            Set a custom x-axis label. Default=None
-        ylabel: str (optional)
-            Set a custom y-axis label. Default=None
-        colourmap: str (optional)
+        temperature: :py:attr:`int`
+            Temperature.
+        colourmap: :py:attr:`str` 
             Colourmap for the plot. Default='viridis'
-        figsize: tuple (optional)
-            Set a custom figure size. Default=None
-        show_fig: bool (optional)
-            Automatically display a figure. Default=True
-            If set to False the plot is returned as an object.
+        set_style: :py:attr:`str`
+            Plot style
+        figsize: :py:attr:`tuple` 
+            Set a custom figure size.
         """
         if set_style:
             plt.style.use(set_style)
@@ -276,36 +306,37 @@ class MuTPlot():
         cbar = fig.colorbar(CM, extend='both', cax=axR, ticks=self.ticky)
         cbar.ax.set_yticklabels(self.labels, fontsize=_fig_params.FONTSIZE*0.8)
         return ax
-        
+
+  
 class PTPlot:
     """Class for plotting of temperature vs pressure phase diagrams.
 
     Parameters
     ----------
-    x : array like
+    x : :py:attr:`array_like`
         x axis
-    y : array like
+    y : :py:attr:`array_like`
         y axis
-    z : array like
+    z : :py:attr:`array_like`
         two dimensional array of phases
     """
-    def __init__(self, x, y, z):
+    def __init__(self,
+                 x,
+                 y,
+                 z):
         self.x = x
         self.y = y
         self.z = z
 
-    def plot(self, colourmap="viridis", set_style=None,
-             atmospheric_conditions=[1.0, 298.15]):
+    def plot(self, colourmap="viridis", set_style=None):
         """plots phase diagram
 
         Parameters
         ----------
-        output : str
-            output filename
-        colourmap : str
+        colourmap : :py:attr:`str`
             colourmap for phase diagram
-        atmospheric_conditions : list
-            location of bars showing atmospheric conditions
+        set_style: :py:attr:`str`
+            Plot style
         """
         if set_style:
             plt.style.use(set_style)

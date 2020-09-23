@@ -7,45 +7,49 @@ import sys
 
 def normalise_phase_energy(phase, bulk):
     r"""
-    Description Needed
+    Converts normalises each phase to be consistent with the bulk.
+    DFT calculations may have differing numbers of formula units compared to
+    the bulk and this must be accounted for. Furthermore, the vibrational entropy
+    and zero point energy are accounted for (if required).
 
     Parameters
     ----------
-    phase : (:py:class:`surfinpy.data.DataSet`):
+    phase : :py:class:`surfinpy.data.DataSet`
         surfinpy dataset object.
-    bulk : (:py:class:`surfinpy.data.ReferenceDataSet`):
+    bulk : :py:class:`surfinpy.data.DataSet`
         surfinpy ReferenceDataSet object.
 
     Returns
     -------
-    (:py:attr:`float`):
+    :py:attr:`float`
         Normalised phase energy
     """
     return ((phase.energy + (phase.zpe * phase.funits) - phase.temperature * phase.svib * phase.funits) - (phase.cation / bulk.cation)
             * ((bulk.energy / bulk.funits) - phase.temperature * phase.svib))
 
 def calculate_bulk_energy(deltamux, deltamuy, x_energy, y_energy,
-                             phase, normalised_bulk):
-    r"""Description Needed
+                          phase, normalised_bulk):
+    r"""Calculates the free energy of a given phase (DFT calculation)
+    as a function of chemical potential of x and y.
 
     Parameters
     ----------
-    deltamux : (:py:attr:`array_like`):
+    deltamux : :py:attr:`array_like`
         Chemical potential of species x
-    deltamuy : (:py:attr:`array_like`):
+    deltamuy : :py:attr:`array_like`
         Chemical potential of species y
-    x_energy : (:py:attr:`float`):
+    x_energy : :py:attr:`float`
         DFT energy or temperature corrected DFT energy
-    y_energy : (:py:attr:`float`):
+    y_energy : :py:attr:`float`
         DFT energy or temperature corrected DFT energy
-    phase : (:py:class:`surfinpy.data.DataSet`):
+    phase : :py:class:`surfinpy.data.DataSet`
         DFT calculation 
-    normalised_bulk : (:py:attr:`float`):
+    normalised_bulk : :py:attr:`float`
         Bulk energy normalised to the bulk value.
 
     Returns
     -------
-    (:py:attr:`array_like`):
+    :py:attr:`array_like`
         2D array of free energies as a function of
         chemical potential of x and y
     """
@@ -61,32 +65,24 @@ def evaluate_phases(data, bulk, x, y, nphases, x_energy, y_energy):
 
     Parameters
     ----------
-    data : (:py:attr:`list`):
-        List of (:py:class:`surfinpy.data.DataSet`): objects
-    bulk : (:py:class:`surfinpy.data.ReferenceDataSet`): object
+    data : :py:attr:`list`
+        List of :py:class:`surfinpy.data.DataSet` objects
+    bulk : :py:class:`surfinpy.data.ReferenceDataSet` object
         Reference dataset
-    x : (:py:attr:`dict`):
+    x : :py:attr:`dict`
         X axis chemical potential values
-    y : (:py:attr:`dict`):
+    y : :py:attr:`dict`
         Y axis chemical potential values
-    nphases : (:py:attr:`int`):
+    nphases : :py:attr:`int`
         Number of phases
-    x_energy : (:py:attr:`float`):
+    x_energy : :py:attr:`float`
         DFT 0 K energy for species x
-    y_energy : (:py:attr:`float`):
+    y_energy : :py:attr:`float`
         DFT 0 K energy for species y
-    Entropy_true : (:py:attr:`bool`):
-        Description Needed
-    ZPE_true : (:py:attr:`bool`):
-        Description Needed
-    temp_range : (:py:attr:`int`):
-        Description Needed
-    temperature : (:py:attr:`int`):
-        Description Needed
 
     Returns
     -------
-    phase_data  : array like
+    phase_data  : :py:attr:`array_like`
         array of ints, with each int corresponding to a phase.
     """
     xnew = ut.build_xgrid(x, y)
@@ -95,36 +91,36 @@ def evaluate_phases(data, bulk, x, y, nphases, x_energy, y_energy):
     for k in range(0, nphases):
         normalised_bulk = normalise_phase_energy(data[k], bulk)
         SE = calculate_bulk_energy(xnew, ynew, 
-                                      x_energy,
-                                      y_energy,
-                                      data[k],
-                                      normalised_bulk)
+                                   x_energy,
+                                   y_energy,
+                                   data[k],
+                                   normalised_bulk)
         S = np.append(S, SE)
 
     phase_data, SE = ut.get_phase_data(S, nphases)
     return phase_data, SE
 
 def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy):
-    """Initialise the surface energy calculation.
+    """Initialise the free energy calculation.
 
     Parameters
     ----------
-    data : list
-        List of (:py:class:`surfinpy.data.DataSet`): object for each phase
-    bulk : (:py:class:`surfinpy.data.ReferenceDataSet`):
+    data : :py:attr:`list`
+        List of :py:class:`surfinpy.data.DataSet` object for each phase
+    bulk : :py:class:`surfinpy.data.ReferenceDataSet`
         Reference dataset
-    deltaX : (:py:attr:`dict`):
+    deltaX : :py:attr:`dict`
         Range of chemical potential/label for species X 
-    DeltaY : (:py:attr:`dict`):
+    DeltaY : :py:attr:`dict`
         Range of chemical potential/label for species Y 
-    x_energy : (:py:attr:`float`):
+    x_energy : :py:attr:`float`
         DFT energy of adsorbing species
-    y_energy : (:py:attr:`float`):
+    y_energy : :py:attr:`float`
         DFT energy of adsorbing species
 
     Returns
     -------
-    system : (:py:class:`surfinpy.plotting.chemical_potential`):
+    system : :py:class:`surfinpy.plotting.ChemicalPotentialPlot`
         Plotting object
     """
     nphases = len(data)

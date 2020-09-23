@@ -21,24 +21,24 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
 
     Parameters
     ----------
-    AE : list
+    AE : :py:attr:`list`
         list of adsorption energies
-    lnP : array like
+    lnP : (:py:attr:`array_like`
         full pressure range
-    T : array like
+    T : :py:attr:`array_like`
         full temperature range
-    coverage : array like
+    coverage : :py:attr:`array_like`
         surface coverage of adsorbing species in each calculation
-    SE : float
+    SE : :py:attr:`float`
         surface energy of stoichiomteric surface
-    data : list
+    data : :py:attr:`list`
         list of dictionaries containing info on each surface
-    nsurfaces : int
+    nsurfaces : :py:attr:`int`
         total number of surface
 
     Returns
     -------
-    SE_array : array like
+    SE_array : :py:attr:`array_like`
         array of integers corresponding to lowest surface energies
     """
     R = codata.value('molar gas constant')
@@ -61,12 +61,12 @@ def convert_adsorption_energy_units(AE):
 
     Parameters
     ----------
-    AE : array like
+    AE : :py:attr:`array_like`
         array of adsorption energies
 
     Returns
     -------
-    array like
+    :py:attr:`array_like`
         array of adsorption energies in units of KJ/mol
     """
     return (AE * 96.485 * 1000)
@@ -78,18 +78,18 @@ def calculate_adsorption_energy(adsorbed_energy, slab_energy, n_species,
 
     Parameters
     ----------
-    adsorbed_energy : float
+    adsorbed_energy : (:py:attr:`float`):
         slab energy of slab and adsorbed species from DFT
-    slab_energy : float
+    slab_energy : (:py:attr:`float`):
         bare slab energy from DFT
-    n_species : int
+    n_species : (:py:attr:`int`):
         number of adsorbed species at the surface
-    adsorbant_t : array like
+    adsorbant_t : (:py:attr:`array_like`):
         dft energy of adsorbing species as a function of temperature
 
     Returns
     -------
-    array like
+    :py:attr:`array_like`
         adsorption energy as a function of temperature
     """
     return ((adsorbed_energy - (slab_energy + (n_species * adsorbant_t))) /
@@ -102,16 +102,16 @@ def adsorption_energy(data, stoich, adsorbant_t):
 
     Parameters
     ----------
-    data : list
-        list of dictionaries containing info about each calculation
-    stoich : dict
+    data : :py:attr:`list`
+        list of :py:class:`surfinpy.data.DataSet` objects containing info about each calculation
+    stoich : :py:class:`surfinpy.data.DataSet`
         info about the stoichiometric surface calculation
-    adsorbant_t : array like
+    adsorbant_t : :py:attr:`array_like`
         dft energy of adsorbing species as a function of temperature
 
     Returns
     -------
-    AE : array like
+    AE : :py:attr:`array_like`
         Adsorbtion energy of adsorbing species in each calculation
         as a function of temperature
     '''
@@ -131,26 +131,26 @@ def inititalise(thermochem, adsorbant, max_t, min_p, max_p):
 
     Parameters
     ----------
-    thermochem : array like
+    thermochem : :py:attr:`array_like`
         array containing NIST_JANAF thermochemical data
-    adsorbant : float
+    adsorbant : :py:attr:`float`
         dft energy of adsorbing species
-    max_t : int
+    max_t : :py:attr:`int`
         Maximum temperature of phase diagram
-    min_p : int
+    min_p : :py:attr:`int`
         Minimum pressure of phase diagram
-    max_p : int
+    max_p : :py:attr:`int`
         Maximum pressure of phase diagram
 
     Returns
     -------
-    lnP : array like
+    lnP : :py:attr:`array_like`
         numpy array of pressure values
-    logP : array like
+    logP : :py:attr:`array_like`
         log of lnP (hard coded range -13 - 5.0)
-    T : array like
+    T : :py:attr:`array_like`
         array of temperature values (hard coded range 2 - 1000 K)
-    adsrobant_t : array like
+    adsrobant_t : :py:attr:`array_like`
         dft values of adsorbant scaled to temperature
     '''
     T = np.arange(2, max_t)
@@ -168,29 +168,29 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000,
 
     Parameters
     ----------
-    stoich : dictionary
+    stoich : :py:class:`surfinpy.data.DataSet`
         information about the stoichiometric surface
-    data : list
-        list of dictionaries containing information on the "adsorbed" surfaces
-    SE : float
+    data : :py:attr:`list`
+        list of :py:class:`surfinpy.data.DataSet` objects on the "adsorbed" surfaces
+    SE : :py:attr:`float`
         surface energy of the stoichiomteric surface
-    adsorbant : float
+    adsorbant : :py:attr:`float`
         dft energy of adsorbing species
-    coverage : array like (default None)
+    coverage : :py:attr:`array_like` (default None)
         Numpy array containing the different coverages of adsorbant.
-    thermochem : array like
+    thermochem : :py:attr:`array_like`
         Numpy array containing thermochemcial data downloaded from NIST_JANAF
         for the adsorbing species.
-    max_t : int
+    max_t : :py:attr:`int`
         Maximum temperature in the phase diagram
-    min_p : int
+    min_p : :py:attr:`int`
         Minimum pressure of phase diagram
-    max_p : int
+    max_p : :py:attr:`int`
         Maximum pressure of phase diagram
 
     Returns
     -------
-    system : class object
+    system : :py:class:`surfinpy.plotting.PTPlot`
         plotting object
     '''
     if coverage is None:
@@ -212,4 +212,4 @@ def calculate(stoich, data, SE, adsorbant, thermochem, max_t=1000,
     x = T
     z = phase_grid
     system = plotting.PTPlot(x, y, z)
-    return system, SEABS
+    return system
