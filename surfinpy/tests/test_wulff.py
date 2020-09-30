@@ -3,6 +3,7 @@ import numpy.testing as npt
 import os
 from surfinpy import wulff
 from surfinpy import utils as ut
+from surfinpy import data
 import unittest
 from numpy.testing import assert_almost_equal, assert_equal
 
@@ -14,15 +15,17 @@ class TestWulff(unittest.TestCase):
     def test_temperature_correction(self):
         x = ut.read_nist(test_data)
         adsorbant = wulff.temperature_correction(100, x, -10.0)
-        assert_almost_equal( adsorbant, -10.0010467948)
+        assert_almost_equal( adsorbant, -10.0010467948, decimal=3)
 
 
     def test_wulff_calculate(self):
-        stoich = {'M': 20, 'X': 50, 'Y': 0, 'Area': 60.00, 'Energy': -500.0, 'Label': '0.00 - $Ce^{4+}$'}
-        H2O = {'M': 20, 'X': 50, 'Y': 2, 'Area': 60.00, 'Energy': -600.0,  'Label': '1.66 - $Ce^{4+}$'}
-        data = [H2O]
+        stoich = data.DataSet(cation = 20, x = 50, y = 0, area = 60.00, 
+                                     energy = -500.00, label ="One")
+        H2O = data.DataSet(cation = 20, x = 50, y = 2, area = 60.00, 
+                                     energy = -600.00, label ="Two")
+        dataset = [H2O]
         x = ut.read_nist(test_data)
-        y = wulff.calculate_surface_energy(stoich, data, 1.0, -10.0, x, 100, 2)
+        y = wulff.calculate_surface_energy(stoich, dataset, 1.0, -10.0, x, 100, 2)
         assert_almost_equal(y[0], 1.0)
         assert_almost_equal(y[1], -9.6914, decimal=4)
 

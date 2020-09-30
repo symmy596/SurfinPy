@@ -1,5 +1,5 @@
 import numpy as np
-from surfinpy import chemical_potential_plot
+from surfinpy import plotting
 from surfinpy import utils as ut
 
 
@@ -31,26 +31,26 @@ def calculate_excess(adsorbant, slab_cations, area, bulk,
 
     Parameters
     ----------
-    adsorbant : int
+    adsorbant : :py:attr:`int`
         Number of species
-    slab_cations : int
+    slab_cations : :py:attr:`int`
         Number of cations
-    area : float
+    area : :py:attr:`float`
         Area of surface
-    bulk : dic
+    bulk : :py:attr:`dict`
         Dictonary of bulk properties
-    nspecies : int (optional)
+    nspecies : :py:attr:`int`
         number of external species
-    check : bool (optional)
+    check : :py:attr:`bool`
         Check if this is an external or constituent species.
 
     Returns
     -------
-    float:
+    :py:attr:`float`
         Surface excess of given species.
     """
     if check is True and nspecies == 1:
-        return ((adsorbant - ((bulk['Anion'] / bulk['Cation']) *
+        return ((adsorbant - ((bulk.anion / bulk.cation) *
                  slab_cations)) / (2 * area))
     else:
         return (adsorbant / (area * 2))
@@ -72,23 +72,22 @@ def calculate_normalisation(slab_energy, slab_cations, bulk, area):
 
     Parameters
     ----------
-    slab_energy : float
+    slab_energy : :py:attr:`float`
         Energy of the slab from DFT
-    slab_cations : int
+    slab_cations : :py:attr:`int`
         Total number of cations in the slab
-    bulk : dictionary
-        Dictionary of bulk properties
-    area : float
+    bulk : :py:class:`surfinpy.data.DataSet`
+        Bulk properties
+    area : :py:attr:`float`
         Surface area
 
     Returns
     -------
-    float:
+    :py:attr:`float`
         Constant normalising the slab energy to the bulk energy.
     """
-    return ((slab_energy - (slab_cations / bulk['Cation']) * (bulk['Energy'] /
-            bulk['F-Units'])) / (2 * area))
-
+    return ((slab_energy - (slab_cations / bulk.cation) * (bulk.energy /
+            bulk.funits)) / (2 * area))
 
 def calculate_surface_energy(deltamux, deltamuy, x_energy, y_energy,
                              xexcess, yexcess, normalised_bulk):
@@ -111,29 +110,29 @@ def calculate_surface_energy(deltamux, deltamuy, x_energy, y_energy,
 
     Parameters
     ----------
-    deltamux : array like
+    deltamux : :py:attr:`array_like`
         Chemical potential of species x
-    deltamuy : array like
+    deltamuy : :py:attr:`array_like`
         Chemical potential of species y
-    x_energy : float
+    x_energy : :py:attr:`float`
         DFT energy or temperature corrected DFT energy
-    y_energy : float
+    y_energy : :py:attr:`float`
         DFT energy or temperature corrected DFT energy
-    xexcess : float
+    xexcess : :py:attr:`float`
         Surface excess of species x
-    yexcess : float
+    yexcess : :py:attr:`float`
         Surface excess of species y
-    normalised_bulk : float
+    normalised_bulk : :py:attr:`float`
         Slab energy normalised to the bulk value.
 
     Returns
     -------
-    array like:
+    :py:attr:`array_like`
         2D array of surface energies as a function of
         chemical potential of x and y
     """
-    return (normalised_bulk - (deltamux * xexcess) - (deltamuy * yexcess) - (
-        x_energy * xexcess) - (y_energy * yexcess))
+    return ((normalised_bulk- (deltamux * xexcess) - (deltamuy * yexcess) - (
+        x_energy * xexcess)- (y_energy * yexcess)) * 16.021)
 
 
 def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
@@ -143,38 +142,38 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
 
     Parameters
     ----------
-    data : list
-        List containing the dictionaries for each phase
-    bulk : dictionary
-        dictionary containing data for bulk
-    x : dictionary
+    data : :py:attr:`list`
+        List containing the :py:class:`surfinpy.data.DataSet` for each phase
+    bulk : :py:class:`surfinpy.data.DataSet`
+        Data for bulk
+    x : :py:attr:`dict`
         X axis chemical potential values
-    y : dictionary
+    y : :py:attr:`dict`
         Y axis chemical potential values
-    nsurfaces : int
+    nsurfaces : :py:attr:`int`
         Number of phases
-    x_energy : float
+    x_energy : :py:attr:`float`
         DFT 0K energy for species x
-    y_energy : float
+    y_energy : :py:attr:`float`
         DFT 0K energy for species y
 
     Returns
     -------
-    phase_data  : array like
+    phase_data  : :py:attr:`array_like`
         array of ints, with each int corresponding to a phase.
     """
     xnew = ut.build_xgrid(x, y)
     ynew = ut.build_ygrid(x, y)
     S = np.array([])
     for k in range(0, nsurfaces):
-        xexcess = calculate_excess(data[k]['X'], data[k]['Cation'],
-                                   data[k]['Area'], bulk,
-                                   data[k]['nSpecies'], check=True)
-        yexcess = calculate_excess(data[k]['Y'], data[k]['Cation'],
-                                   data[k]['Area'], bulk)
-        normalised_bulk = calculate_normalisation(data[k]['Energy'],
-                                                  data[k]['Cation'], bulk,
-                                                  data[k]['Area'])
+        xexcess = calculate_excess(data[k].x, data[k].cation,
+                                   data[k].area, bulk,
+                                   data[k].nspecies, check=True)
+        yexcess = calculate_excess(data[k].y, data[k].cation,
+                                   data[k].area, bulk)
+        normalised_bulk = calculate_normalisation(data[k].energy,
+                                                  data[k].cation, bulk,
+                                                  data[k].area)
         SE = calculate_surface_energy(xnew, ynew,
                                       x_energy,
                                       y_energy,
@@ -184,85 +183,54 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
         S = np.append(S, SE)
     phase_data, SE = ut.get_phase_data(S, nsurfaces)
     return phase_data, SE
-
-
-def temperature_correction(nist_file, temperature):
-    """Use experimental data to correct the DFT free energy of an adsorbing
-    species to a specific temperature.
-
-    Parameters
-    ----------
-    nist_file : array like
-        numpy array containing experiemntal data from NIST_JANAF
-    temperature : int
-        Temperature to correct to
-
-    Returns
-    -------
-    gibbs : float
-        correct free energy
-    """
-    nist_data = ut.read_nist(nist_file)
-    h0 = nist_data[0, 4]
-    fitted_s = ut.fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 1000))
-    fitted_h = ut.fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 1000))
-    fitted_h = fitted_h + h0
-    gibbs = ut.calculate_gibbs(np.arange(1, 1000), fitted_s, fitted_h)
-    return gibbs[(temperature - 1)]
-
-
-def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0,
-              temperature=0, output="Phase_Diagram.png", increments=0.025):
+    
+def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0):
     """Initialise the surface energy calculation.
 
     Parameters
     ----------
-    data : list
-        List of dictionaries for each phase
-    bulk : dictionary
-        Dictionary containing data for bulk
-    deltaX : dictionary
+    data : :py:attr:`list`
+        List of :py:class:`surfinpy.data.DataSet` for each phase
+    bulk : :py:class:`surfinpy.data.ReferenceDataSet`
+        Data for bulk
+    deltaX : :py:attr:`dict`
         Range of chemical potential/label for species X 
-    DeltaY : dictionary
+    DeltaY : :py:attr:`dict`
         Range of chemical potential/label for species Y 
-    x_energy : float
+    x_energy : :py:attr:`float`
         DFT energy of adsorbing species
-    y_energy : float
+    y_energy : :py:attr:`float`
         DFT energy of adsorbing species
-    temperature : int
-        Temperature
-    output : str
-        Output file name
 
     Returns
     -------
-    system : class obj
+    system : :py:class:`surfinpy.plotting.ChemicalPotentialPlot`
         Plotting object
     """
-    data = sorted(data, key=lambda k: (k['Y']))
     nsurfaces = len(data)
     
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1],
-                  increments, dtype="float")
+                  0.025, dtype="float")
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1],
-                  increments, dtype="float")
+                  0.025, dtype="float")
     X = X - x_energy
     Y = Y - y_energy
     phases, SE = evaluate_phases(data, bulk, X, Y,
                              nsurfaces, x_energy, y_energy)
     ticks = np.unique([phases])
-    #return_this = phases
-    #phases_new = ut.transform_numbers(phases, ticks)
+    colors = ut.list_colors(data, ticks)
     phases = ut.transform_numbers(phases, ticks)
     Z = np.reshape(phases, (Y.size, X.size))
+    SE = np.reshape(SE, (Y.size, X.size))
     labels = ut.get_labels(ticks, data)
-    system = chemical_potential_plot.ChemicalPotentialPlot(X,
-                                                           Y,
-                                                           Z,
-                                                           labels,
-                                                           ticks,
-                                                           deltaX['Label'],
-                                                           deltaY['Label'])
-    return system, SE, X, Y, Z#, return_this
+    system = plotting.ChemicalPotentialPlot(X,
+                                            Y,
+                                            Z,
+                                            labels,
+                                            ticks,
+                                            colors,
+                                            deltaX['Label'],
+                                            deltaY['Label'])
+    return system
 
 
