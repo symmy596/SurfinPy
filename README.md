@@ -17,7 +17,7 @@ This is the documentation for the open-source Python project - `surfinpy`.
 A library designed to facilitate the generation of publication ready phase diagrams from ab initio calculations for both surface and bulk materials.
 surfinpy is built on existing Python packages that those in the solid state physics/chemistry community should already be familiar with. 
 It is hoped that this tool will bring some benfits to the solid state community and facilitate the generation of publication ready phase diagrams (powered by Matplotlib.)
-
+ 
 The main features include:
 
 1. **Method to generate 2D surface phase diagrams as a function of chemical potential.**  
