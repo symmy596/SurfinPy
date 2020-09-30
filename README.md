@@ -12,7 +12,7 @@
 <a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
 <a href='https://gitter.im/Surfinpy/Lobby'>
 <img src='https://badges.gitter.im/gitterHQ/gitter.png' alt='Gitter chat' /></a>
-
+ 
 This is the documentation for the open-source Python project - `surfinpy`.
 A library designed to facilitate the generation of publication ready phase diagrams from ab initio calculations for both surface and bulk materials.
 surfinpy is built on existing Python packages that those in the solid state physics/chemistry community should already be familiar with. 
