@@ -1,9 +1,10 @@
-Modules
-=======
+API
+===
 
 .. toctree::
    :maxdepth: 4
 
+   data
    mu_vs_mu
    bulk_mu_vs_mu
    bulk_mu_vs_t

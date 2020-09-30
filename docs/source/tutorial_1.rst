@@ -104,7 +104,6 @@ two line process to generate the diagram.
     system = mu_vs_mu.calculate(data, bulk, deltaX, deltaY)
     system.plot_phase()
 
-
 .. image:: Figures/Tutorial_1/First.png
     :height: 300px
     :align: center

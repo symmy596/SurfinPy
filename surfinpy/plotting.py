@@ -55,7 +55,8 @@ class ChemicalPotentialPlot:
                    temperature=None,
                    colourmap=None,
                    set_style=None, 
-                   figsize=None):
+                   figsize=None,
+                   cbar_title=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
@@ -76,10 +77,12 @@ class ChemicalPotentialPlot:
         fig = plt.figure(figsize=figsize)
         ax = fig.add_subplot(111)
         CM = ax.contourf(self.x, self.y, self.z, levels=self.levels, cmap=self.cmap)
-        ax.set_ylabel("$\Delta \mu_{\mathrm{" + self.xlabel + "}}$" + " (eV)")
-        ax.set_xlabel("$\Delta \mu_{\mathrm{" + self.ylabel + "}}$" + " (eV)")
+        ax.set_ylabel("$\Delta \mu_{\mathrm{" + self.ylabel + "}}$" + " (eV)")
+        ax.set_xlabel("$\Delta \mu_{\mathrm{" + self.xlabel + "}}$" + " (eV)")
         cbar = fig.colorbar(CM, ticks=self.ticky, pad=0.1)
         cbar.ax.set_yticklabels(self.labels, fontsize=_fig_params.FONTSIZE*0.8)
+        if cbar_title:
+            cbar.ax.set_title(cbar_title, y=1.01, x=4, fontsize=_fig_params.FONTSIZE*0.8)
         plt.tight_layout()
         return ax
 
@@ -87,7 +90,8 @@ class ChemicalPotentialPlot:
                   temperature,
                   colourmap=None,
                   set_style=None, 
-                  cbar_label=None):
+                  cbar_title=None, 
+                  figsize=(6, 6)):
         """ Plots a phase diagram  with two sets of axis, one as a function of
         chemical potential and the second is as a function of pressure.
 
@@ -109,7 +113,7 @@ class ChemicalPotentialPlot:
 
         p1 = ut.pressure(self.x, temperature)
         p2 = ut.pressure(self.y, temperature)
-        fig = plt.figure(dpi=96, facecolor='#eeeeee', tight_layout=1)
+        fig = plt.figure(dpi=96, tight_layout=1, figsize=figsize)
         ax = fig.add_subplot(121)
         gs = gridspec.GridSpec(1, 2, width_ratios=[.95, .05])
         ax, axR = plt.subplot(gs[0]), plt.subplot(gs[1])
@@ -122,16 +126,21 @@ class ChemicalPotentialPlot:
         ax3 = ax.twiny()
         ax3.set_xlim(p1[0], p1[-1])
         ax3.set_xlabel("$P_" + "{\mathrm{" + self.xlabel + "}}$" + str(temperature) + " K (bar)")
+        ax.tick_params(labelsize=_fig_params.FONTSIZE*0.8)
+        ax2.tick_params(labelsize=_fig_params.FONTSIZE*0.8)
+        ax3.tick_params(labelsize=_fig_params.FONTSIZE*0.8)
         cbar = fig.colorbar(CM, extend='both', cax=axR, ticks=self.ticky)
-        cbar.ax.set_yticklabels(self.labels)
-        if cbar_label:
-            axR.set_xlabel(cbar_label, fontsize=_fig_params.FONTSIZE*0.8)
+        cbar.ax.set_yticklabels(self.labels, fontsize=_fig_params.FONTSIZE*0.8)
+        if cbar_title:
+            cbar.ax.set_title(cbar_title, y=1.01, x=4, fontsize=_fig_params.FONTSIZE*0.8)
         return ax
 
     def plot_pressure(self, 
                       temperature, 
                       colourmap=None,
-                      set_style=None):
+                      set_style=None, 
+                      figsize=(6, 6),
+                      cbar_title=None):
         """ Plots a phase diagram as a function of pressure.
 
         Parameters
@@ -149,13 +158,15 @@ class ChemicalPotentialPlot:
             self.cmap = colourmap
         p1 = ut.pressure(self.x, temperature)
         p2 = ut.pressure(self.y, temperature)
-        fig = plt.figure()
+        fig = plt.figure(figsize=figsize)
         ax = fig.add_subplot(111)
         CM = ax.contourf(p1, p2, self.z, levels=self.levels, cmap=self.cmap)
-        ax.set_ylabel("$P_" + "{\mathrm{" + self.xlabel + "}}$" + " 298 K (bar)")
-        ax.set_xlabel("$P_" + "{\mathrm{" + self.ylabel + "}}$" + " 298 K (bar)")
+        ax.set_ylabel("$P_" + "{\mathrm{" + self.ylabel + "}}$" + " 298 K (bar)")
+        ax.set_xlabel("$P_" + "{\mathrm{" + self.xlabel + "}}$" + " 298 K (bar)")
         cbar = fig.colorbar(CM, ticks=self.ticky, pad=0.1)
         cbar.ax.set_yticklabels(self.labels, fontsize=_fig_params.FONTSIZE*0.8)
+        if cbar_title:
+            cbar.ax.set_title(cbar_title, y=1.01, x=4, fontsize=_fig_params.FONTSIZE*0.8)
         plt.tight_layout()
         return ax
 
@@ -209,7 +220,8 @@ class MuTPlot():
     def plot_mu_vs_t(self,
                     colourmap=None, 
                     set_style=None, 
-                    figsize=None):
+                    figsize=(6, 6),
+                    cbar_title=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
@@ -232,6 +244,8 @@ class MuTPlot():
         ax.set_xlabel("$\Delta \mu_{\mathrm{" + self.xlabel + "}}$" + " (eV)")
         cbar = fig.colorbar(CM, ticks=self.ticky, pad=0.1)
         cbar.ax.set_yticklabels(self.labels, fontsize=_fig_params.FONTSIZE*0.8)
+        if cbar_title:
+            cbar.ax.set_title(cbar_title, y=1.01, x=4, fontsize=_fig_params.FONTSIZE*0.8)
         plt.tight_layout()
         return ax
 
@@ -239,7 +253,8 @@ class MuTPlot():
                     temperature,
                     colourmap=None,
                     set_style=None,
-                    figsize=None):
+                    figsize=(6, 6),
+                    cbar_title=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
@@ -265,6 +280,8 @@ class MuTPlot():
         ax.set_xlabel("$P_" + "{\mathrm{" + self.xlabel + "}}$" + str(temperature) + " K (bar)")
         cbar = fig.colorbar(CM, ticks=self.ticky, pad=0.1)
         cbar.ax.set_yticklabels(self.labels, fontsize=_fig_params.FONTSIZE*0.8)
+        if cbar_title:
+            cbar.ax.set_title(cbar_title, y=1.01, x=4, fontsize=_fig_params.FONTSIZE*0.8)
         plt.tight_layout()
         return ax
 
@@ -272,7 +289,8 @@ class MuTPlot():
                           temperature,
                           colourmap=None,
                           set_style=None,
-                          figsize=None):
+                          figsize=(6, 6), 
+                          cbar_title=None):
         """Plots a simple phase diagram as a function of chemical potential.
 
         Parameters
@@ -292,7 +310,7 @@ class MuTPlot():
             self.cmap = colourmap
         p1 = ut.pressure(self.x, temperature)
 
-        fig = plt.figure(dpi=96, facecolor='#eeeeee', tight_layout=1)
+        fig = plt.figure(dpi=96, tight_layout=1, figsize=figsize)
         ax = fig.add_subplot(121)
         gs = gridspec.GridSpec(1, 2, width_ratios=[.95, .05])
         ax, axR = plt.subplot(gs[0]), plt.subplot(gs[1])
@@ -302,9 +320,12 @@ class MuTPlot():
         ax3 = ax.twiny()
         ax3.set_xlim(p1[0], p1[-1])
         ax3.set_xlabel("$P_" + "{\mathrm{" + self.xlabel + "}}$" + str(temperature) + " K (bar)")
-        ax3.tick_params(labelsize=10)
+        ax.tick_params(labelsize=_fig_params.FONTSIZE*0.8)
+        ax3.tick_params(labelsize=_fig_params.FONTSIZE*0.8)
         cbar = fig.colorbar(CM, extend='both', cax=axR, ticks=self.ticky)
         cbar.ax.set_yticklabels(self.labels, fontsize=_fig_params.FONTSIZE*0.8)
+        if cbar_title:
+            cbar.ax.set_title(cbar_title, y=1.01, x=4, fontsize=_fig_params.FONTSIZE*0.8)
         return ax
 
   
@@ -328,7 +349,10 @@ class PTPlot:
         self.y = y
         self.z = z
 
-    def plot(self, colourmap="viridis", set_style=None):
+    def plot(self, colourmap="viridis", 
+             set_style=None, figsize=(6, 6), 
+             ylabel="log P (bar)",
+             xlabel="Temperature (K)"):
         """plots phase diagram
 
         Parameters
@@ -340,10 +364,10 @@ class PTPlot:
         """
         if set_style:
             plt.style.use(set_style)
-        fig = plt.figure()
+        fig = plt.figure(figsize=figsize)
         ax = fig.add_subplot(111)
         ax.contourf(self.x, self.y, self.z, cmap=colourmap)        
-        ax.set_xlabel('Temperature (K)')
-        ax.set_ylabel("log P (bar)")
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
         plt.tight_layout()
         return ax
