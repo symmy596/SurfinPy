@@ -54,6 +54,9 @@ These values can then be used to improve the accuracy of the free energy calcula
 
 Finally, eleven tutorials have been developed to highlight the full functionality of this new `surfinpy` release. These are all available in jupyter notebooks in the repository. 
 
+![An example phase diagram as a function of chemical potential.\label{fig:example}](surfinpy.pdf)
+
+
 # Statement of Need
 
 `surfinpy` is a package for generating phase diagrams from ab initio data. 
