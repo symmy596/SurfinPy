@@ -1,5 +1,5 @@
-Chemical Potential
-==================
+Chemical Potential Surfaces
+===========================
 
 The physical quantity that is used to define the stability of a surface with a given composition is its surface energy :math:`\gamma` (J :math:`m^{-2}`). 
 At its core, `surfinpy` is a code that calculates the surface energy of different slabs and uses these surface energies to build a phase diagram.
@@ -103,7 +103,6 @@ two line process to generate the diagram.
 
     system = mu_vs_mu.calculate(data, bulk, deltaX, deltaY)
     system.plot_phase()
-
 
 .. image:: Figures/Tutorial_1/First.png
     :height: 300px
