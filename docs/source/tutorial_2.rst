@@ -1,5 +1,5 @@
-Pressure vs Temperature Surfaces
-================================
+Pressure vs Temperature
+=======================
 
 `Surfinpy` has the functionality to generate phase diagrams as a function of pressure vs temperature based upon the methodology used in `Molinari et al 
 <https://pubs.acs.org/doi/abs/10.1021/jp300576b>`_ according to

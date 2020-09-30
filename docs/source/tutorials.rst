@@ -24,3 +24,4 @@ Bulk
 
    tutorial_4.rst
    tutorial_5.rst
+   tutorial_6.rst

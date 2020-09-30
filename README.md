@@ -125,6 +125,13 @@ workflow while core developers use branches in the main repository:
 
 For further information please contact Adam Symington, ars44@bath.ac.uk
 
+## Research
+
+- [Strongly Bound Surface Water Affects the Shape Evolution of Cerium Oxide Nanoparticles](https://pubs.acs.org/doi/abs/10.1021/acs.jpcc.9b09046)
+- [The energetics of carbonated PuO2 surfaces affects nanoparticle morphology: a DFT+U study](https://pubs.rsc.org/lv/content/articlelanding/2020/cp/d0cp00021c/unauth#!divAbstract)
+
+- [Exploiting cationic vacancies for increased energy densities in dual-ion batteries](https://www.sciencedirect.com/science/article/abs/pii/S2405829719310153)
+
 ## Author
 
 * Adam R.Symington

@@ -1,5 +1,5 @@
-Chemical Potential Surfaces
-===========================
+Chemical Potential
+==================
 
 The physical quantity that is used to define the stability of a surface with a given composition is its surface energy :math:`\gamma` (J :math:`m^{-2}`). 
 At its core, `surfinpy` is a code that calculates the surface energy of different slabs and uses these surface energies to build a phase diagram.

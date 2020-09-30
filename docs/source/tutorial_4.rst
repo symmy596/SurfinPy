@@ -1,5 +1,5 @@
-Chemical Potential Bulk
-=======================
+Chemical Potential
+==================
 
 In this tutorial we learn how to generate a basic bulk phase diagram from DFT energies.  This enables the comparison of the thermodynamic stability of various different bulk phases under different chemical potentials giving valuable insight in to the syntheis of solid phases.  This example will consider a series of bulk phases which can be defined through a reaction scheme across all phases, thus for this example including MgO, :math:`H_2O` and :math:`CO_2` as reactions and A as a generic product.
 
@@ -80,7 +80,7 @@ Next we create the bulk phases classes - one for each phase. 'Cation' is the num
     Hyd = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.0, label = "Hydromagnesite")
 
 
-Next we need to create a list of our data. Don't worry about the order, surfinpy will sort that out for you. 
+Next we need to create a list of our data. Don't worry about the order, `surfinpy` will sort that out for you. 
 
 .. code-block:: python
 
@@ -120,14 +120,19 @@ And finally we can generate our plot using these 6 variables of data.
 Temperature
 -----------
 
-In the previous example we generated a phase diagram at 0 K.  However, this is not representative of normal conditions.  Temperature is an important consideration for materials chemistry and we may wish to evaluate the phase thermodynamic stability at various synthesis conditions.  In order to overcome this and intorrduce temperature we need to modife the equations from tutorial 1.  This example will again be using the :math:`MgO-CO_2-H_2O` system.
+In the previous example we generated a phase diagram at 0 K.  However, this is not representative of normal conditions.  
+Temperature is an important consideration for materials chemistry and we may wish to evaluate the phase thermodynamic stability at various synthesis conditions.  
+This example will again be using the :math:`MgO-CO_2-H_2O` system.
 
 As before the free energy can be calculated using;
 
 .. math::
     \Delta G^{0}_{f} = \sum\Delta G_{f}^{0,\text{products}} - \sum\Delta G_{f}^{0,\text{reactants}}
 
-Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy :math:`(U_0)`. For gaseous species, the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems, we use experimental data to determine the temperature dependent free energy term for gaseous species, where :math:`$S_{expt}(T)$` is specific entropy value for a given T and  :math:`$H-H^0(T)$` is the , both can be obtained from the NIST database and can be calculated as;
+Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy :math:`(U_0)`. 
+For gaseous species, the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems, 
+we use experimental data to determine the temperature dependent free energy term for gaseous species, 
+where :math:`$S_{expt}(T)$` is specific entropy value for a given T and  :math:`$H-H^0(T)$` is the , both can be obtained from the NIST database and can be calculated as;
 
 .. math::
     G =  U_0 + (H-H^0(T) - T S_{\text{expt}}(T))
@@ -137,8 +142,6 @@ Where for this tutorial the free energy (G) for solid phases  is equal to is equ
     from surfinpy import bulk_mu_vs_mu as bmvm
     from surfinpy import utils as ut
     from surfinpy import data
-
-Same as tutorial 1 we first need to enter the DFT data in to the various data classes and create a list of the data.
 
 .. code-block:: python
 
@@ -156,7 +159,10 @@ Same as tutorial 1 we first need to enter the DFT data in to the various data cl
     x_energy=-20.53412969
     y_energy=-12.83725889
 
-In order to calculate :math:`$S_{expt}(T)$` for :math:`H_2O` and :math:`CO_2` we need to use experimental data from the NSIT JANAF database.  As a user you will need to download the tables for the species you are interested in (in this example water and carbon dioxide).  SurfinPy has a function that can read this data, assuming it is in the correct format and calculate the temperature correction for you.  Provide the math to the file and the temperature you want.
+In order to calculate :math:`$S_{expt}(T)$` for :math:`H_2O` and :math:`CO_2` we need to use experimental data from the NSIT JANAF database.  
+As a user you will need to download the tables for the species you are interested in (in this example water and carbon dioxide).  
+`surfinpy` has a function that can read this data, assuming it is in the correct format and calculate the temperature correction for you.  
+Provide the path to the file and the temperature you want.
 
 .. code-block:: python
 
@@ -184,7 +190,8 @@ CO2_corrected and H2O_corrected are now temperature depenent terms correcspondin
 Pressure
 --------
 
-In the previous tutorials we went through the process of generating a simple phase diagram for bulk phases and introducing temperature dependence for gaseous species.  This useful however, sometimes it can be more beneficial to convert the chemical potenials (eVs) to partial presure (bar). 
+In the previous example we went through the process of generating a simple phase diagram for bulk phases and introducing temperature dependence for gaseous species.  
+This useful however, sometimes it can be more beneficial to convert the chemical potenials (eVs) to partial presure (bar). 
 
 Chemical potential can be converted to pressure values using
 
@@ -203,7 +210,7 @@ where P is the pressure, :math:`$\mu$` is the chemical potential of oxygen, $k_B
     colors = ['#5B9BD5', '#4472C4', '#A5A5A5', '#772C24', '#ED7D31', '#FFC000', '#70AD47']
 
 
-Additionally, SurfinPy has the functionality to allow you to choose which colours are used for each phase.  Specify within the DataSet class color. 
+Additionally, `surfinpy` has the functionality to allow you to choose which colours are used for each phase.  Specify within the DataSet class color. 
 
 .. code-block:: python
 

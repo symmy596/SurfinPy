@@ -1,14 +1,19 @@
-Pressure vs Temperature Bulk
-============================
+Pressure vs Temperature
+=======================
 
-In tutorial 2, we showed how experimental data could be used to determine the temperature dependent free energy term for gaseous species and then plot a phase diagram that represents 298 K.  This same method can be used in conjuction with a temperature range to produce a phase diagram of temperature as a function of pressure (or chemical potential).  This is an important step to producing relatable phase diagrams that can be compared to experimental findings.
+In the previous example, we showed how experimental data could be used to determine the temperature dependent free energy term for gaseous species and then plot a phase diagram that represents 298 K.  
+This same method can be used in conjuction with a temperature range to produce a phase diagram of temperature as a function of pressure (or chemical potential).  
+This is an important step to producing relatable phase diagrams that can be compared to experimental findings.
 
 To reiterate, the free energy can be calculated using;
 
 .. math::
     \Delta G^{0}_{f} = \sum\Delta G_{f}^{0,\text{products}} - \sum\Delta G_{f}^{0,\text{reactants}}
 
-Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy (U<sub>0</sub>). For gaseous species, the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems, we use experimental data to determine the temperature dependent free energy term for gaseous species, where $S_{\text{expt}}(T)$ is specific entropy value for a given T and  $H-H^0(T)$ is the , both can be obtained from the NIST database and can be calculated as;
+Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy (:math:`U_0`). For gaseous species, 
+the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems, 
+we use experimental data to determine the temperature dependent free energy term for gaseous species, where $S_{\text{expt}}(T)$ is specific entropy value for a given T and  $H-H^0(T)$ is the , 
+both can be obtained from the NIST database and can be calculated as;
 
 .. math::
     G =  U_0 + (H-H^0(T) - T S_{\text{expt}}(T))
@@ -65,7 +70,8 @@ temperature_range sets the temperature range which is calculated for the phase d
 
     data = [MgO, Art, Bru, Nes,  Mag, Lan, Hyd]
 
-deltaZ specifies the temperature range which is plotted (Note that this must be the same as temperature_range).  mu_y is the chemical potential (eV) of third component, in this example we use a chemical potential of water = 0 eV which is equivalent to 1 bar pressure. 
+deltaZ specifies the temperature range which is plotted (Note that this must be the same as temperature_range).  
+mu_y is the chemical potential (eV) of third component, in this example we use a chemical potential of water = 0 eV which is equivalent to 1 bar pressure. 
 
 .. code-block:: python
 

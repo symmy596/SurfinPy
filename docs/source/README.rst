@@ -12,19 +12,19 @@
     :alt: Build Status
 
 This is the documentation for the open-source Python project, `surfinpy`.
-A library designed to facilitate the generation of publication ready surface phase diagrams from ab initio calculations.
+A library designed to facilitate the generation of publication ready phase diagrams from ab initio calculations.
 `surfinpy` is built on existing Python packages that those in the solid state physics/chemistry community should already be familiar with. 
 It is hoped that this tool will bring some benfits to the solid state community and facilitate the generation of publication ready phase diagrams (powered by Matplotlib.)
 
 The main features include:
 
-1. **Method to generate 2D surface phase diagrams as a function of chemical potential.**  
+1. **Method to generate surface phase diagrams as a function of chemical potential.**  
 
    - Generate a diagram as a function of the chemical potential of two adsorbing species e.g. water and carbon dioxide.  
    - Generate a diagram as a function of the chemical potential of one adsorbing species and a surface species e.g. water and oxygen vacancies.  
    - Use experimental data combined with ab initio data to generate a temperature dependent phase diagram.  
 
-2. **Method to generate 2D surface phase diagrams as a function of temperature and pressure.**  
+2. **Method to generate surface phase diagrams as a function of temperature and pressure.**  
 
    - Use experimental data combined with ab initio data to generate a pressure vs temperature plot showing the state of a surface as a function of temperature and pressure of one species.
 
@@ -33,7 +33,7 @@ The main features include:
    - Use the surface energies produced by `surfinpy` alongside Pymatgen to built particle morphologies.  
    - Evaulate how a particles shape changes with temperature and pressure.
 
-4. **Method to generate 2D bulk phase diagrams as a function of chemical potential.**  
+4. **Method to generate bulk phase diagrams as a function of chemical potential.**  
 
    - Generate a diagram as a function of the chemical potential of two species e.g. water and carbon dioxide.  
    - Use experimental data combined with ab initio data to generate a temperature dependent phase diagram.  
@@ -42,8 +42,13 @@ The main features include:
 
    - Use experimental data combined with ab initio data to generate a pressure vs temperature plot showing the phase space as a function of temperature and pressure.  
 
-The code has been developed to analyse VASP calculations however should in theory be compatible with other ab initio codes. 
-`surfinpy` was developed during a PhD project and as such the functionality focuses on the research questions encountered during that project, which we should clarify 
+6. **Method to include vibrational properties in a phase diagram**
+   
+   - Module to calculate the zero point energy and vibrational entropy
+   - Encorporate the zero point energy and/or the vibrational entropy into a phase diagram.
+
+The code has been developed to analyse VASP calculations but is compatible with other ab initio codes. 
+`surfinpy` was developed across several PhD projects and as such the functionality focuses on the research questions encountered during those projects, which we should clarify 
 are wide ranging. Code contributions aimed at expanding the code to new problems are encouraged.
 
 `surfinpy` is free to use.
@@ -51,8 +56,7 @@ are wide ranging. Code contributions aimed at expanding the code to new problems
 Usage
 -----
 
-A full list of examples can be found in the examples folder of the git repository, these include both the Python scripts needed to generate each plot, and 
-jupyter notebook tutorials which combine the full theory with code examples.
+A full list of examples can be found in the examples folder of the git repository, these include jupyter notebook tutorials which combine the full theory with code examples.
 
 Installation
 ------------
