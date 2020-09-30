@@ -10,3 +10,4 @@ surfinpy/tests/__pycache__
 docs/build
 paper/latex
 .DS_Store
+ToDo.md

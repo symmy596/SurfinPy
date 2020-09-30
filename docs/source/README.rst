@@ -38,7 +38,7 @@ The main features include:
    - Generate a diagram as a function of the chemical potential of two species e.g. water and carbon dioxide.  
    - Use experimental data combined with ab initio data to generate a temperature dependent phase diagram.  
 
-5. **Method to generate 2D surface phase diagrams as a function of temperature and pressure.**  
+5. **Method to generate bulk phase diagrams as a function of temperature and pressure.**  
 
    - Use experimental data combined with ab initio data to generate a pressure vs temperature plot showing the phase space as a function of temperature and pressure.  
 
