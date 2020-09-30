@@ -12,7 +12,7 @@
 <a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
 <a href='https://gitter.im/Surfinpy/Lobby'>
 <img src='https://badges.gitter.im/gitterHQ/gitter.png' alt='Gitter chat' /></a>
-
+ 
 This is the documentation for the open-source Python project - `surfinpy`.
 A library designed to facilitate the generation of publication ready phase diagrams from ab initio calculations for both surface and bulk materials.
 surfinpy is built on existing Python packages that those in the solid state physics/chemistry community should already be familiar with. 
@@ -124,6 +124,13 @@ workflow while core developers use branches in the main repository:
       the changes are accepted.
 
 For further information please contact Adam Symington, ars44@bath.ac.uk
+
+## Research
+
+- [Strongly Bound Surface Water Affects the Shape Evolution of Cerium Oxide Nanoparticles](https://pubs.acs.org/doi/abs/10.1021/acs.jpcc.9b09046)
+- [The energetics of carbonated PuO2 surfaces affects nanoparticle morphology: a DFT+U study](https://pubs.rsc.org/lv/content/articlelanding/2020/cp/d0cp00021c/unauth#!divAbstract)
+
+- [Exploiting cationic vacancies for increased energy densities in dual-ion batteries](https://www.sciencedirect.com/science/article/abs/pii/S2405829719310153)
 
 ## Author
 
