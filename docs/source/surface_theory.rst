@@ -1,5 +1,5 @@
 Surface Theory
-=============
+==============
 
 `surfinpy` has the capability to generate phase diagrams as a function of chemical potential of two varying species e.g. water and carbon dioxide. In such an example 
 the user would require calculations with varying concentrations of water, carbon dioxide and water/carbon dioxide on a surface. Assuming that you have generated enough, 

@@ -10,11 +10,7 @@ surfinpy
    gallery.rst
    tutorials.rst
    using_surfinpy.rst
-
-.. toctree::
-   :maxdepth: 2
-
-   modules
+   modules.rst
 
 
 
