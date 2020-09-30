@@ -2,7 +2,8 @@
 .vscode
 build
 dist
-examples/.ipynb_checkpoints
+examples/surfaces/.ipynb_checkpoints
+examples/bulk/.ipynb_checkpoints
 examples/Untitled.ipynb
 surfinpy.egg-info
 surfinpy/__pycache__
