@@ -154,7 +154,7 @@ def inititalise(thermochem, adsorbant, max_t, min_p, max_p):
         dft values of adsorbant scaled to temperature
     '''
     T = np.arange(2, max_t)
-    shift = ut.fit(thermochem[:, 0], thermochem[:, 2], T)
+    shift = ut.cs_fit(thermochem[:, 0], thermochem[:, 2], T)
     shift = (T * (shift / 1000)) / 96.485
     adsorbant_t = adsorbant - shift
     logP = np.arange(min_p, max_p, 0.1)

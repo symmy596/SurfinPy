@@ -23,7 +23,7 @@ def temperature_correction(T, thermochem, adsorbant):
         Scaled energy of adsorbant
     """
     temperature_range = np.arange(2, np.amax(thermochem[:, 0]))
-    shift = ut.fit(thermochem[:, 0], thermochem[:, 2], temperature_range)
+    shift = ut.cs_fit(thermochem[:, 0], thermochem[:, 2], temperature_range)
     shift = (T * (shift[(T - 1)] / 1000)) / 96.485
     adsorbant = adsorbant - shift
     return adsorbant
