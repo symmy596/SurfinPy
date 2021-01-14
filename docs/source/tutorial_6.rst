@@ -57,36 +57,36 @@ Vibrational modes can be calculated via a density functional pertibation calcula
 
 .. code-block:: python
 
-    MgO = data.DataSet(cation = 10, x = 0, y = 0, energy = -92, 
-                      label = "Periclase", entropy = True, zpe=True, file = 'MgO_vib.yaml', 
+    Bulk = data.DataSet(cation = 10, x = 0, y = 0, energy = -92, 
+                      label = "Bulk", entropy = True, zpe=True, file = 'ref_files/bulk_vib.yaml', 
                       funits = 10, temp_range=temperature_range)
 
-    Art = data.DataSet(cation = 10, x = 5, y = 20, energy = -468, 
-                      label = "Artinite", entropy = True, zpe=True, file = 'Art_vib.yaml', 
+    A = data.DataSet(cation = 10, x = 5, y = 20, energy = -468, 
+                      label = "A", entropy = True, zpe=True, file = 'ref_files/A_vib.yaml', 
                       funits = 5, temp_range=temperature_range)
 
-    Bru = data.DataSet(cation = 10, x = 0, y = 10, energy = -228, 
-                      label = "Brucite", entropy = True, zpe=True, file = 'Bru_vib.yaml', 
+    B = data.DataSet(cation = 10, x = 0, y = 10, energy = -228, 
+                      label = "B", entropy = True, zpe=True, file = 'ref_files/B_vib.yaml', 
                       funits =  10, temp_range=temperature_range)
 
-    Nes = data.DataSet(cation = 10, x = 10, y = 30, energy = -706, 
-                      label = "Nesquehonite", entropy = True, zpe=True, file = 'Nes_vib.yaml', 
+    C = data.DataSet(cation = 10, x = 10, y = 30, energy = -706, 
+                      label = "C", entropy = True, zpe=True, file = 'ref_files/C_vib.yaml', 
                       funits = 10, temp_range=temperature_range)
 
-    Mag = data.DataSet(cation = 10, x = 10, y = 0, energy = -310, 
-                      label = "Magnesite", entropy = True, zpe=True,  file = 'Mag_vib.yaml', 
+    D = data.DataSet(cation = 10, x = 10, y = 0, energy = -310, 
+                      label = "D", entropy = True, zpe=True,  file = 'ref_files/D_vib.yaml', 
                       funits =  10, temp_range=temperature_range)
 
-    Lan = data.DataSet(cation = 10, x = 10, y = 50, energy = -972, 
-                      label = "Lansfordite", entropy = True, zpe=True, file = 'Lan_vib.yaml', 
+    E = data.DataSet(cation = 10, x = 10, y = 50, energy = -972, 
+                      label = "E", entropy = True, zpe=True, file = 'ref_files/E_vib.yaml', 
                       funits =  10, temp_range=temperature_range)
 
-    Hyd = data.DataSet(cation = 10, x = 8, y = 10, energy = -398, 
-                      label = "Hydromagnesite", entropy = True, zpe=True, file = 'Hyd_vib.yaml', 
+    F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398, 
+                      label = "F", entropy = True, zpe=True, file = 'ref_files/F_vib.yaml', 
                       funits =  2, temp_range=temperature_range)
 
 
-    data = [MgO, Art, Bru, Nes,  Mag, Lan, Hyd]
+    data = [Bulk, A, B, C, D, E, F]
 
     x_energy=-20.53412969
     y_energy=-12.83725889
@@ -130,36 +130,36 @@ In tutorial 5 we showed how SurfinPy can be used to calculate the vibrational en
     bulk = data.ReferenceDataSet(cation = 1, anion = 1, energy = -92.0, funits = 10, file = 'bulk_vib.yaml', entropy=True, zpe=True, temp_range=temperature_range)
 
 
-    MgO = data.DataSet(cation = 10, x = 0, y = 0, energy = -92., color=colors[0],
-                    label = "Periclase", entropy = True, zpe=True, file = 'MgO_vib.yaml', 
+    Bulk = data.DataSet(cation = 10, x = 0, y = 0, energy = -92., color=colors[0],
+                    label = "Bulk", entropy = True, zpe=True, file = 'ref_files/bulk_vib.yaml', 
                     funits = 10, temp_range=temperature_range)
 
-    Mag = data.DataSet(cation = 10, x = 10, y = 0, energy = -310.,  color=colors[1],
-                    label = "Magnesite", entropy = True, zpe=True,  file = 'Mag_vib.yaml', 
+    D = data.DataSet(cation = 10, x = 10, y = 0, energy = -310.,  color=colors[1],
+                    label = "D", entropy = True, zpe=True,  file = 'ref_files/D_vib.yaml', 
                     funits =  10, temp_range=temperature_range)
 
-    Bru = data.DataSet(cation = 10, x = 0, y = 10, energy = -227.,  color=colors[2],
-                    label = "Brucite", entropy = True, zpe=True, file = 'Bru_vib.yaml', 
+    B = data.DataSet(cation = 10, x = 0, y = 10, energy = -227.,  color=colors[2],
+                    label = "B", entropy = True, zpe=True, file = 'ref_files/B_vib.yaml', 
                     funits =  10, temp_range=temperature_range)
 
-    Hyd = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.,  color=colors[3],
-                    label = "Hydromagnesite", entropy = True, zpe=True, file = 'Hyd_vib.yaml', 
+    F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.,  color=colors[3],
+                    label = "F", entropy = True, zpe=True, file = 'ref_files/F_vib.yaml', 
                     funits =  2, temp_range=temperature_range)     
                 
-    Art = data.DataSet(cation = 10, x = 5, y = 20, energy = -467.,  color=colors[4],
-                    label = "Artinite", entropy = True, zpe=True, file = 'Art_vib.yaml', 
+    A = data.DataSet(cation = 10, x = 5, y = 20, energy = -467.,  color=colors[4],
+                    label = "A", entropy = True, zpe=True, file = 'ref_files/A_vib.yaml', 
                     funits = 5, temp_range=temperature_range)
 
 
-    Nes = data.DataSet(cation = 10, x = 10, y = 30, energy = -705.,  color=colors[5],
-                    label = "Nesquehonite", entropy = True, zpe=True, file = 'Nes_vib.yaml', 
+    C = data.DataSet(cation = 10, x = 10, y = 30, energy = -705.,  color=colors[5],
+                    label = "C", entropy = True, zpe=True, file = 'ref_files/C_vib.yaml', 
                     funits = 10, temp_range=temperature_range)
 
-    Lan = data.DataSet(cation = 10, x = 10, y = 50, energy = -971.,  color=colors[6],
-                    label = "Lansfordite", entropy = True, zpe=True, file = 'Lan_vib.yaml', 
+    E = data.DataSet(cation = 10, x = 10, y = 50, energy = -971.,  color=colors[6],
+                    label = "E", entropy = True, zpe=True, file = 'ref_files/E_vib.yaml', 
                     funits =  10, temp_range=temperature_range)
 
-    data = [MgO, Art, Bru, Nes,  Mag, Lan, Hyd]
+    data = [Bulk, A, B, C,  D, E, F]
 
     deltaX = {'Range': [ -1, 0.6],  'Label': 'CO_2'}
     deltaZ = {'Range': [ 273, 373], 'Label': 'Temperature'}
@@ -182,7 +182,7 @@ When investigating the phase diagram for certain systems it could be beneficial 
 
 .. code-block:: python
 
-    data = [MgO, Art, Bru, Nes, Lan, Hyd]
+    data = [Bulk, A, B, C, E, F]
 
     system = bmvt.calculate(data, bulk, deltaX, deltaZ, x_energy, y_energy, mu_y, exp_x, exp_y)
     ax = system.plot_mu_vs_t_vs_p(temperature=273)
