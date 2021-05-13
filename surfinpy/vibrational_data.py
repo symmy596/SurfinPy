@@ -6,17 +6,17 @@ from scipy.constants import codata
 #Use scipy.constants for all constants
 
 def zpe_calc(vib_prop):
-    """Description
+    """Calculates and returns the zero point energy for the system.
 
     Parameters
     ----------
-    vib_prop : type
-        description
+    vib_prop : :py:attr:`array_like`
+        Vibrational Properties read from input yaml file
 
     Returns
     -------
-    zpe :
-        description
+    zpe : :py:attr:`float`
+        Zero Point energy for the system
     """
     hc = 9.93247898996E-24 #constant
     vib_prop_1 = list(map(lambda x : x * hc, vib_prop['Frequencies']))
@@ -26,21 +26,21 @@ def zpe_calc(vib_prop):
 
 #Is avid needed?
 def entropy_calc(freq, temp, vib_prop):
-    """Description
+    """Calculates and returns the vibrational entropy for the system.
 
     Parameters
     ----------
-    freq : type
-        description
-    temp : type
-        description
-    vib_prop : type
-        description
+    freq : :py:attr:`array_like`
+        Vibrational frequencies for system.
+    temp : :py:attr:`array_like`
+        Temperature range at which the vibrational entropy is calculated
+    vib_prop : :py:attr:`array_like`
+        Vibrational Properties read from input yaml file
 
     Returns
     -------
-    svib :
-        description
+    svib : :py:attr:`array_like`
+        Vibrational entropy for the system calculated using the temperature range provided.
     """
     hc = 1.99E-25 *100.0E0 #constant
     k = 1.38064852E-23#constant
@@ -66,25 +66,21 @@ def entropy_calc(freq, temp, vib_prop):
     return svib
 
 def vib_calc(vib_file, temp_r):
-    """Description Needed
-
+    """Calculates and returns the Zero Point Energy (ZPE) and vibrational entropy for the temperature range provided. 
+    
     Parameters
     ----------
-    vib_file : type
-        description
-    temp_r : type
-        description
-    zpe_true : type
-        description
-    ent_true : type
-        description
+    vib_file : :py:attr:`str`):
+        yaml file containing vibrational frequencies
+    temp_r : :py:attr:`array_like`
+        Temperature range at which the vibrational entropy is calculated
 
     Returns
     -------
-    zpe :
-        description
-    svib : 
-        description
+    zpe : :py:attr:`float`
+        Zero Point energy for the system
+    svib : :py:attr:`array_like`
+        Vibrational entropy for the system calculated using the temperature range provided.
     """
     vib_prop = ut.read_vibdata(vib_file)
     new_temp = ut.build_tempgrid(temp_r, vib_prop['Frequencies']) 
