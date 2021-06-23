@@ -22,8 +22,8 @@ def normalise_phase_energy(phase, bulk):
     :py:attr:`float`
         Constant normalising the slab energy to the bulk energy.
     """
-    return ((phase.energy + (phase.zpe * phase.funits)) - (phase.cation / bulk.cation) * ((bulk.energy /
-            bulk.funits)+ bulk.zpe))
+    return ((phase.energy + (phase.zpev * phase.funits)) - (phase.cation / bulk.cation) * ((bulk.energy /
+            bulk.funits)+ bulk.zpev))
 
 def calculate_bulk_energy(deltamux, ynew,  
                           x_energy,
