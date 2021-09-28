@@ -113,10 +113,12 @@ def evaluate_phases(data, bulk, x, y,
     exp_znew = ut.build_zgrid(exp_z, x)
     S = np.array([])
     new_data_svib = 0
-    if bulk.entropy:
-        new_data_svib = ut.build_entgrid(bulk.svib, x, ynew)            
-
+	f bulk.entropy:
+        new_bulk_svib = ut.build_zgrid(bulk.avib, x)       
+		
     for k in range(0, nphases):
+        if data[k].entropy:
+            new_data_svib = ut.build_zgrid(data[k].avib, x)
         normalised_bulk = normalise_phase_energy(data[k],
                                                   bulk)
 
@@ -126,7 +128,7 @@ def evaluate_phases(data, bulk, x, y,
                                    data[k],
                                    bulk,
                                    normalised_bulk,
-                                   exp_xnew, exp_znew, new_data_svib, new_data_svib)
+                                   exp_xnew, exp_znew, new_bulk_svib, new_data_svib)
 
         S = np.append(S, SE)
 
