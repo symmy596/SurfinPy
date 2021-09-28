@@ -46,7 +46,7 @@ def entropy_calc(freq, temp, vib_prop):
     hc = np.multiply(physical_constants["speed of light in vacuum"][0],physical_constants["Planck constant"][0])*100 #constant
     k =  physical_constants["Boltzmann constant"][0]
     R=physical_constants["molar gas constant"][0]
-	jtoev = np.multiply(physical_constants["electron volt-joule relationship"][0],physical_constants["Avogadro constant"][0])
+    jtoev = np.multiply(physical_constants["electron volt-joule relationship"][0],physical_constants["Avogadro constant"][0])
     np.seterr(over='ignore')
 
     Theta = np.multiply(freq,hc)
