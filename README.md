@@ -8,6 +8,7 @@
 [![status](http://joss.theoj.org/papers/368e55451d3fd6ae4b939e1b8e7843ba/status.svg)](http://joss.theoj.org/papers/368e55451d3fd6ae4b939e1b8e7843ba)
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/)
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
+[![Build status](https://ci.appveyor.com/api/projects/status/nww04m6tp3335jjr?svg=true)](https://ci.appveyor.com/project/symmy596/surfinpy)
 [![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
 <a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
 <a href='https://gitter.im/Surfinpy/Lobby'>
