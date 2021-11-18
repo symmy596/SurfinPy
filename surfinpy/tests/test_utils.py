@@ -66,7 +66,7 @@ class TestUtils(unittest.TestCase):
         assert x[10, 0] == 1000
         assert x[1, 1] == 1
 
-    def test_fit(self):
+    def test_cs_fit(self):
         data = np.array([[0, 0, 0],
                          [1, 1, 1],
                          [2, 2, 2],
@@ -74,7 +74,7 @@ class TestUtils(unittest.TestCase):
                          [4, 3, 5],
                          [5, 3, 8]])
         y = np.array([1, 2, 3, 4])
-        x = ut.fit(data[:, 0], data[:, 2], y)
+        x = ut.cs_fit(data[:, 0], data[:, 2], y)
         expected = np.array([1., 2., 3., 5.])
         assert_almost_equal(x, expected, decimal=2)
 
@@ -101,7 +101,7 @@ class TestUtils(unittest.TestCase):
 
     def test_fit_nist(self):
         y = ut.fit_nist(test_data)[100]
-        assert_almost_equal(y, 0.009429524075453962)
+        assert_almost_equal(y, 0.00943131080792852)
 
     def  test_build_xgrid(self):
         x = ut.build_xgrid(np.arange(10), np.arange(10))

@@ -181,10 +181,10 @@ def evaluate_phases(data, bulk, x, y, nsurfaces, x_energy, y_energy):
                                       yexcess,
                                       normalised_bulk)
         S = np.append(S, SE)
-    phase_data, SE = ut.get_phase_data(S, nsurfaces)
-    return phase_data, SE
+    phase_data, surface_energy = ut.get_phase_data(S, nsurfaces)
+    return phase_data, surface_energy
     
-def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0):
+def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0, increments=0.025):
     """Initialise the surface energy calculation.
 
     Parameters
@@ -210,9 +210,9 @@ def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0):
     nsurfaces = len(data)
     
     X = np.arange(deltaX['Range'][0], deltaX['Range'][1],
-                  0.025, dtype="float")
+                  increments, dtype="float")
     Y = np.arange(deltaY['Range'][0], deltaY['Range'][1],
-                  0.025, dtype="float")
+                  increments, dtype="float")
     X = X - x_energy
     Y = Y - y_energy
     phases, SE = evaluate_phases(data, bulk, X, Y,
@@ -231,6 +231,6 @@ def calculate(data, bulk, deltaX, deltaY, x_energy=0, y_energy=0):
                                             colors,
                                             deltaX['Label'],
                                             deltaY['Label'])
-    return system
+    return system, SE
 
 

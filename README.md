@@ -1,5 +1,6 @@
 # SurfinPy
 
+
 <p align="center"> 
 <img src="https://github.com/symmy596/SurfinPy/blob/master/logo/Logo.png?raw=true" width="40%"/>
 </p>
@@ -8,6 +9,7 @@
 [![status](http://joss.theoj.org/papers/368e55451d3fd6ae4b939e1b8e7843ba/status.svg)](http://joss.theoj.org/papers/368e55451d3fd6ae4b939e1b8e7843ba)
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/)
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
+[![Build status](https://ci.appveyor.com/api/projects/status/nww04m6tp3335jjr?svg=true)](https://ci.appveyor.com/project/symmy596/surfinpy)
 [![PyPI version](https://badge.fury.io/py/surfinpy.svg)](https://badge.fury.io/py/surfinpy)
 <a href='https://coveralls.io/github/symmy596/SurfinPy?branch=master'><img src='https://coveralls.io/repos/github/symmy596/SurfinPy/badge.svg?branch=master' alt='Coverage Status' /></a>
 <a href='https://gitter.im/Surfinpy/Lobby'>
@@ -135,6 +137,7 @@ For further information please contact Adam Symington, ars44@bath.ac.uk
 - [Strongly Bound Surface Water Affects the Shape Evolution of Cerium Oxide Nanoparticles](https://pubs.acs.org/doi/abs/10.1021/acs.jpcc.9b09046)
 - [The energetics of carbonated PuO2 surfaces affects nanoparticle morphology: a DFT+U study](https://pubs.rsc.org/lv/content/articlelanding/2020/cp/d0cp00021c/unauth#!divAbstract)
 - [Exploiting cationic vacancies for increased energy densities in dual-ion batteries](https://www.sciencedirect.com/science/article/abs/pii/S2405829719310153)
+- [Thermodynamic Evolution of Cerium Oxide Nanoparticle Morphology Using Carbon Dioxide](https://pubs.acs.org/doi/abs/10.1021/acs.jpcc.0c07437)
 
 ## Author
 

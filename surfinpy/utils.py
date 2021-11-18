@@ -198,7 +198,7 @@ def read_nist(File):
     data = np.genfromtxt(File, skip_header=2)
     return data
 
-def fit(x, y, t):
+def cs_fit(x, y, t):
     '''Fit a polynominal function to thermochemical data from NIST_JANAF
 
     Parameters
@@ -217,6 +217,28 @@ def fit(x, y, t):
     '''
     z = CubicSpline(x, y, bc_type='clamped')
     shift = z(t)
+    return shift
+
+def poly_fit(x, y, t):
+    '''Fit a polynominal function to thermochemical data from NIST_JANAF
+    Parameters
+    ----------
+    x : array like
+        x axis for fit
+    y : array like
+        y axis for fit
+    t : array like
+        x axis to be fitted
+    Returns
+    -------
+    shift : array like
+        data fitted from x and y to t
+    '''
+    x = np.delete(x, (0), axis=0)
+    y = np.delete(y, (0), axis=0)
+    z = np.polyfit(x, y, 3)
+    f = np.poly1d(z)
+    shift = f(t)
     return shift
 
 def calculate_gibbs(t, s, h):
@@ -242,7 +264,7 @@ def calculate_gibbs(t, s, h):
     g = deltah - t * deltas
     return g
 
-def fit_nist(nist_file, increments=1):
+def fit_nist(nist_file, increments=1, method='cs'):
     """Use experimental data to correct the DFT free energy of an adsorbing
     species to a specific temperature.
 
@@ -258,9 +280,13 @@ def fit_nist(nist_file, increments=1):
     """
     nist_data = read_nist(nist_file)
     h0 = nist_data[0, 4]
-    fitted_s = fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 3000, increments))
-    fitted_h = fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 3000, increments))
-    fitted_h = fitted_h - fitted_h[0]
+    if method == 'cs':
+        fitted_s = cs_fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 3000, increments))
+        fitted_h = cs_fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 3000, increments))
+    elif method == 'poly':
+        fitted_s = poly_fit(nist_data[:, 0], nist_data[:, 2], np.arange(1, 3000, increments))
+        fitted_h = poly_fit(nist_data[:, 0], nist_data[:, 4], np.arange(1, 3000, increments))
+    fitted_h = fitted_h + h0
     gibbs = calculate_gibbs(np.arange(1, 3000, increments), fitted_s, fitted_h)
     return gibbs
 
@@ -305,9 +331,9 @@ def get_phase_data(S, nsurfaces):
     '''
     S = np.split(S, nsurfaces)
     S = np.column_stack(S)
+    surface_energy = np.amin(S, axis=1)
     x = np.argmin(S, axis=1) + 1
-    SE = np.amin(S, axis=1)
-    return x, SE
+    return x, surface_energy
 
 def list_colors(phases, ticks):
     '''Reads the phase diagram data and returns the colors that correspond
