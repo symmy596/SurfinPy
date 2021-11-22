@@ -48,11 +48,12 @@ def entropy_calc(freq, temp, vib_prop):
     R=physical_constants["molar gas constant"][0]
     jtoev = np.multiply(physical_constants["electron volt-joule relationship"][0],physical_constants["Avogadro constant"][0])
     np.seterr(over='ignore')
+    np.seterr(divide='ignore', invalid='ignore')
 
     Theta = np.multiply(freq,hc)
     Theta = np.divide(Theta, k)
     
-    u = np.multiply(Theta, R)/(np.exp(np.divide(Theta, temp), dtype=np.float64)-1)
+    u = np.divide(np.multiply(Theta, R),(np.exp(np.divide(Theta, temp), dtype=np.float64)-1))
     uvib = np.sum(u, axis=1)
     uvib = uvib/vib_prop['F-Units']
 
@@ -65,7 +66,7 @@ def entropy_calc(freq, temp, vib_prop):
     svib = np.sum(s, axis=1, dtype=np.float64)
     svib = svib/vib_prop['F-Units']
     svib = np.divide(svib,jtoev) #constant
-    
+    svib = np.nan_to_num(svib)
     return svib, avib
 
 def vib_calc(vib_file, temp_r):

@@ -179,7 +179,7 @@ def read_vibdata(vib_file):
         Dictionary of vibrational freqencies.
     """
     with open(vib_file, 'r') as file:
-        vib_prop = yaml.load(file)
+        vib_prop = yaml.load(file, Loader=yaml.FullLoader)
     return vib_prop
 
 def read_nist(File):
