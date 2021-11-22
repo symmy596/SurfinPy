@@ -19,7 +19,7 @@ class TestReferenceData(unittest.TestCase):
 
     def test_reference_data_2(self):
         bulk = data.ReferenceDataSet(cation = 1, anion = 2, energy = -90.00, entropy = True, file = test_data, funits = 10, temp_range=[100, 120])
-        assert_almost_equal(bulk.svib[0], 0.00049717)
+        assert_almost_equal(bulk.svib[0], 1.6076787893E-03)
 
     def test_dataset_1(self):
         phase_1 = data.DataSet(cation = 10, x = 0, y = 0, energy = -90.0, label = "Periclase")
@@ -29,4 +29,4 @@ class TestReferenceData(unittest.TestCase):
 
     def test_dataset_2(self):
         phase_1 = data.DataSet(cation = 10, x = 0, y = 0, energy = -90.0, label = "Periclase", entropy = True, file = test_data, funits = 10, temp_range=[100, 120])
-        assert_almost_equal(phase_1.svib[0], 0.00049717)
+        assert_almost_equal(phase_1.svib[0], 1.6076787893E-03)

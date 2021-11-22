@@ -11,8 +11,9 @@ test_data = os.path.join(os.path.dirname(__file__), 'H2O.txt')
 
 class Testp_vs_t(unittest.TestCase):
 
-    def setUp(self):
-        self.testdata = open(test_data).read()
+#  Is this needed ?
+#    def setUp(self):
+#        self.testdata = open(test_data).read()
 
     def test_calculate_surface_energy(self):
         AE = np.array([-1.0, -2.0])

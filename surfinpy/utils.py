@@ -179,7 +179,7 @@ def read_vibdata(vib_file):
         Dictionary of vibrational freqencies.
     """
     with open(vib_file, 'r') as file:
-        vib_prop = yaml.load(file)
+        vib_prop = yaml.load(file, Loader=yaml.FullLoader)
     return vib_prop
 
 def read_nist(File):
@@ -392,7 +392,7 @@ def get_levels(X):
     Parameters
     ----------
     X : :py:attr:`array_like`
-        2D array of ints corresponding to each phase.
+        2D array of ints corresponding to each phase.                                                                               
 
     Returns
     -------
@@ -405,7 +405,7 @@ def get_levels(X):
     return levels
 
 def get_ticks(X):
-    """I have no idea what this does
+    """Sets the tick marks to show all phases plotted on the cbar plot. 
     """
     t = np.arange(X.size)
     t = t - 0.5

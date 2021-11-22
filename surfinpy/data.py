@@ -38,8 +38,9 @@ class ReferenceDataSet():
         self.color = color
         self.entropy = entropy
         self.temp_range = temp_range
-        self.zpe = 0
+        self.zpev = 0
         self.svib = 0
+        self.avib = 0
         self.temperature = 0
         self.zpe = zpe
         if self.entropy:
@@ -47,13 +48,14 @@ class ReferenceDataSet():
                                     self.temp_range[1], 
                                     1, dtype="float")
             self.svib = vd.vib_calc(self.file, self.temp_r)[1]
+            self.avib = vd.vib_calc(self.file, self.temp_r)[2]
             self.temperature = self.temp_r[0]
 
         if self.zpe:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
                                     1, dtype="float")
-            self.zpe = vd.vib_calc(self.file, self.temp_r)[0]
+            self.zpev = vd.vib_calc(self.file, self.temp_r)[0]
             self.temperature = self.temp_r[0]
 
 class DataSet():
@@ -105,19 +107,22 @@ class DataSet():
         self.nspecies = nspecies
         self.entropy = entropy
         self.temp_range = temp_range
-        self.zpe = 0
+        self.zpev = 0
         self.svib = 0
+        self.avib = 0
         self.temperature = 0
+        self.zpe = zpe
         if self.entropy:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
                                     1, dtype="float")
             self.svib = vd.vib_calc(self.file, self.temp_r)[1]
+            self.avib = vd.vib_calc(self.file, self.temp_r)[2]
             self.temperature = self.temp_r[0]
 
         if self.zpe:
             self.temp_r = np.arange(self.temp_range[0],
                                     self.temp_range[1], 
                                     1, dtype="float")
-            self.zpe = vd.vib_calc(self.file, self.temp_r)[0]
+            self.zpev = vd.vib_calc(self.file, self.temp_r)[0]
             self.temperature = self.temp_r[0]

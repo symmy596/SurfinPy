@@ -40,35 +40,35 @@ temperature_range sets the temperature range which is calculated for the phase d
     bulk = data.ReferenceDataSet(cation = 1, anion = 1, energy = -92.0, funits = 10, file = 'bulk_vib.yaml', temp_range=temperature_range)
 
 
-    MgO = data.DataSet(cation = 10, x = 0, y = 0, energy = -92., color=colors[0],
-                    label = "Periclase", file = 'MgO_vib.yaml', 
+    Bulk = data.DataSet(cation = 10, x = 0, y = 0, energy = -92., color=colors[0],
+                    label = "Bulk", file = 'ref_files/bulk_vib.yaml'', 
                     funits = 10, temp_range=temperature_range)
 
-    Mag = data.DataSet(cation = 10, x = 10, y = 0, energy = -310.,  color=colors[1],
-                    label = "Magnesite", file = 'Mag_vib.yaml', 
+    D = data.DataSet(cation = 10, x = 10, y = 0, energy = -310.,  color=colors[1],
+                    label = "D", file = 'ref_files/D_vib.yaml', 
                     funits =  10, temp_range=temperature_range)
 
-    Bru = data.DataSet(cation = 10, x = 0, y = 10, energy = -227.,  color=colors[2],
-                    label = "Brucite", file = 'Bru_vib.yaml', 
+    B = data.DataSet(cation = 10, x = 0, y = 10, energy = -227.,  color=colors[2],
+                    label = "B", file = 'ref_files/B_vib.yaml', 
                     funits =  10, temp_range=temperature_range)
 
-    Hyd = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.,  color=colors[3],
-                    label = "Hydromagnesite", file = 'Hyd_vib.yaml', 
+    F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.,  color=colors[3],
+                    label = "F", file = 'ref_files/F_vib.yaml', 
                     funits =  2, temp_range=temperature_range)
 
-    Art = data.DataSet(cation = 10, x = 5, y = 20, energy = -467.,  color=colors[4],
-                    label = "Artinite", file = 'Art_vib.yaml', 
+    A = data.DataSet(cation = 10, x = 5, y = 20, energy = -467.,  color=colors[4],
+                    label = "A", file = 'ref_files/A_vib.yaml', 
                     funits = 5, temp_range=temperature_range)
 
-    Nes = data.DataSet(cation = 10, x = 10, y = 30, energy = -705.,  color=colors[5],
-                    label = "Nesquehonite", file = 'Nes_vib.yaml', 
+    C = data.DataSet(cation = 10, x = 10, y = 30, energy = -705.,  color=colors[5],
+                    label = "C", file = 'ref_files/C_vib.yaml', 
                     funits = 10, temp_range=temperature_range)
 
-    Lan = data.DataSet(cation = 10, x = 10, y = 50, energy = -971.,  color=colors[6],
-                    label = "Lansfordite", file = 'Lan_vib.yaml', 
+    E = data.DataSet(cation = 10, x = 10, y = 50, energy = -971.,  color=colors[6],
+                    label = "E", file = 'ref_files/E_vib.yaml', 
                     funits =  10, temp_range=temperature_range)
 
-    data = [MgO, Art, Bru, Nes,  Mag, Lan, Hyd]
+    data = [Bulk, A, B, C,  D, E, F]
 
 deltaZ specifies the temperature range which is plotted (Note that this must be the same as temperature_range).  
 mu_y is the chemical potential (eV) of third component, in this example we use a chemical potential of water = 0 eV which is equivalent to 1 bar pressure. 

@@ -24,8 +24,8 @@ def normalise_phase_energy(phase, bulk):
     :py:attr:`float`
         Normalised phase energy
     """
-    return ((phase.energy + (phase.zpe * phase.funits) - phase.temperature * phase.svib * phase.funits) - (phase.cation / bulk.cation)
-            * ((bulk.energy / bulk.funits) - phase.temperature * phase.svib))
+    return ((phase.energy + (phase.zpev * phase.funits) + phase.avib * phase.funits) - (phase.cation / bulk.cation)
+            * (((bulk.energy / bulk.funits)+bulk.zpev) + bulk.avib))
 
 def calculate_bulk_energy(deltamux, deltamuy, x_energy, y_energy,
                           phase, normalised_bulk):

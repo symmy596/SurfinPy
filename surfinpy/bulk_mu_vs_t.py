@@ -22,8 +22,8 @@ def normalise_phase_energy(phase, bulk):
     :py:attr:`float`
         Constant normalising the slab energy to the bulk energy.
     """
-    return ((phase.energy + (phase.zpe * phase.funits)) - (phase.cation / bulk.cation) * ((bulk.energy /
-            bulk.funits)+ bulk.zpe))
+    return ((phase.energy + (phase.zpev * phase.funits)) - (phase.cation / bulk.cation) * ((bulk.energy /
+            bulk.funits)+ bulk.zpev))
 
 def calculate_bulk_energy(deltamux, ynew,  
                           x_energy,
@@ -53,14 +53,14 @@ def calculate_bulk_energy(deltamux, ynew,
         DFT calculation        
     normalised_bulk : :py:attr:`float`
         Bulk energy normalised to the bulk value.
-    exp_new :  :py:attr:`array_like`
-        description needed
+    exp_xnew :  :py:attr:`array_like`
+        Experimental correction for species x
     exp_znew :  :py:attr:`array_like`
-        description needed
+        Experimental correction for species y
     new_bulk_svib :  :py:attr:`float`
-        description needed
+        Vibrational entopy for the bulk reference cell calculated at the temperature range provided
     new_data_svib :  :py:attr:`float`
-        description needed
+        Vibrational entopy for the phase calculated at the temperature range provided
     
     Returns
     -------
@@ -96,12 +96,11 @@ def evaluate_phases(data, bulk, x, y,
     y_energy : :py:attr:`float`
         DFT 0K energy for species y
     mu_z :  :py:attr:`float`
-        Description Needed
+        Set chemical potential for species y
     exp_x : :py:attr:`float`
-        Description Needed
+        Experimental correction for species x
     exp_z : :py:attr:`float`
-        Description Needed
-
+        Experimental correction for species y
     Returns
     -------
     phase_data  : :py:attr:`array_like`
@@ -114,10 +113,13 @@ def evaluate_phases(data, bulk, x, y,
     exp_znew = ut.build_zgrid(exp_z, x)
     S = np.array([])
     new_data_svib = 0
+    new_bulk_svib = 0
     if bulk.entropy:
-        new_data_svib = ut.build_entgrid(bulk.svib, x, ynew)            
+        new_bulk_svib = ut.build_zgrid(bulk.avib, x)       
 
     for k in range(0, nphases):
+        if data[k].entropy:
+            new_data_svib = ut.build_zgrid(data[k].avib, x)
         normalised_bulk = normalise_phase_energy(data[k],
                                                   bulk)
 
@@ -127,7 +129,7 @@ def evaluate_phases(data, bulk, x, y,
                                    data[k],
                                    bulk,
                                    normalised_bulk,
-                                   exp_xnew, exp_znew, new_data_svib, new_data_svib)
+                                   exp_xnew, exp_znew, new_bulk_svib, new_data_svib)
 
         S = np.append(S, SE)
 
@@ -154,16 +156,16 @@ def calculate(data, bulk, deltaX, deltaY, x_energy, y_energy, mu_z, exp_x, exp_y
     y_energy : :py:attr:`float`
         DFT 0K energy for species y
     mu_z :  :py:attr:`float`
-        Description Needed
+        Set chemical potential for species y
     exp_x : :py:attr:`float`
-        Description Needed
+        Experimental correction for species x
     exp_y : :py:attr:`float`
-        Description Needed
+        Experimental correction for species y
 
     Returns
     -------
     system : :py:class:`surfinpy.plotting.MuTPlot`
-        Description Needed
+        Plotting object
     """
     nphases = len(data)
 

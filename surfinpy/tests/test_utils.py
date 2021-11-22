@@ -11,8 +11,9 @@ test_data = os.path.join(os.path.dirname(__file__), 'H2O.txt')
 
 class TestUtils(unittest.TestCase):
 
-    def setUp(self):
-        self.testdata = open(test_data).read()
+# Is this needed ?
+#    def setUp(self):
+#        self.testdata = open(test_data).read()
 
     def test_calculate_coverage(self):
         H20 = data.DataSet(cation = 24, x = 48, y = 2, area = 60.22, 
