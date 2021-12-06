@@ -66,7 +66,7 @@ The first thing to do is input the data that we have generated from our DFT simu
     bulk = data.ReferenceDataSet(cation = 1, anion = 1, energy = -92.0, funits = 10)
 
 
-Next we create the bulk phases classes - one for each phase. 'Cation' is the number of cations, 'x' is in this case the number of water species (corresponding to the X axis of the phase diagram), 'y' is the number of in this case :math:`CO_2` molecules (corresponding to the Y axis of our phase diagram), 'Energy' is the DFT energy and finally 'Label' is the label for the phase (appears on the phase diagram).
+Next we create the bulk phases classes - one for each phase (A-F). 'Cation' is the number of cations, 'x' is in this case the number of water species (corresponding to the X axis of the phase diagram), 'y' is the number of in this case :math:`CO_2` molecules (corresponding to the Y axis of our phase diagram), 'Energy' is the DFT energy and finally 'Label' is the label for the phase (appears on the phase diagram).
 
 
 .. code-block:: python

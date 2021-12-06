@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'surfinpy'
+project = 'SurfinPy'
 copyright = '2020, Adam R. Symington'
 author = 'Adam R. Symington'
 
