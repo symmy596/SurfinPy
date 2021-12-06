@@ -131,7 +131,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'surfinpy.tex', 'surfinpy Documentation',
-     'Adam R. Symington', 'manual'),
+     'Adam R. Symington, Joshua S. Tse', 'manual'),
 ]
 
 

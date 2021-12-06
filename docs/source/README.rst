@@ -114,7 +114,7 @@ Contributing
 Contact
 ~~~~~~~
 
-If you have questions regarding any aspect of the software then please get in touch with the development team via email Adam Symington - symmy596@gmail.com, Joshua Tse (joshua.s.tse@gmail.com). 
+If you have questions regarding any aspect of the software then please get in touch with the development team via email Adam Symington (symmy596@gmail.com), Joshua Tse (joshua.s.tse@gmail.com). 
 Alternatively you can create an issue on the `Issue Tracker <https://github.com/symmy596/SurfinPy/issues>`_ or you can discuss your questions on our `gitter channel <https://gitter.im/Surfinpy/Lobby>`_.
 
 Bugs 
