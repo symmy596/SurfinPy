@@ -13,7 +13,7 @@
 
 This is the documentation for the open-source Python project, `SurfinPy`.
 A library designed to facilitate the generation of publication ready phase diagrams from ab initio calculations.
-`surfinpy` is built on existing Python packages that those in the solid state physics/chemistry community should already be familiar with. 
+`SurfinPy` is built on existing Python packages that those in the solid state physics/chemistry community should already be familiar with. 
 This tool will bring some benfits to the solid state community and facilitate the generation of publication ready phase diagrams (powered by Matplotlib).
 
 The main features include:
@@ -30,7 +30,7 @@ The main features include:
 
 3. **Use calculated surface energies to built crystal morphologies.**  
 
-   - Use the surface energies produced by `surfinpy` alongside Pymatgen to built particle morphologies.  
+   - Use the surface energies produced by `SurfinPy` alongside Pymatgen to built particle morphologies.  
    - Evaulate how a particles shape changes with temperature and pressure.
 
 4. **Method to generate bulk phase diagrams as a function of chemical potential.**  
@@ -114,7 +114,7 @@ Contributing
 Contact
 ~~~~~~~
 
-If you have questions regarding any aspect of the software then please get in touch with the developer Adam Symington via email - ars44@bath.ac.uk. 
+If you have questions regarding any aspect of the software then please get in touch with the development team via email Adam Symington - symmy596@gmail.com, Joshua Tse (joshua.s.tse@gmail.com). 
 Alternatively you can create an issue on the `Issue Tracker <https://github.com/symmy596/SurfinPy/issues>`_ or you can discuss your questions on our `gitter channel <https://gitter.im/Surfinpy/Lobby>`_.
 
 Bugs 
@@ -142,7 +142,7 @@ workflow while core developers use branches in the main repository:
 
 
 
-For further information please contact Adam Symington, ars44@bath.ac.uk
+For further information please contact Adam Symington - symmy596@gmail.com, Joshua Tse - joshua.s.tse@gmail.com
 
 
 Research
