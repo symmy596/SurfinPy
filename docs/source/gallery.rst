@@ -7,7 +7,7 @@ for generating the plot.
 Surfaces
 --------
 
-chemical potential
+Chemical Potential
 ~~~~~~~~~~~~~~~~~~
 
 The following are examples of a phase diagram as a function of chemical potential. The first is the default output 

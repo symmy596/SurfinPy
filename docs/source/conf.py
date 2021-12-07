@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'surfinpy'
+project = 'SurfinPy'
 copyright = '2020, Adam R. Symington'
-author = 'Adam R. Symington'
+author = 'Adam R. Symington, Joshua S. Tse'
 
 # The full version, including alpha/beta/rc tags
 release = '2.0.0'
@@ -131,7 +131,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'surfinpy.tex', 'surfinpy Documentation',
-     'Adam R. Symington', 'manual'),
+     'Adam R. Symington, Joshua S. Tse', 'manual'),
 ]
 
 
