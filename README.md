@@ -106,7 +106,7 @@ To build the documentation from scratch
 
 ### Contact
 
-If you have questions regarding any aspect of the software then please get in touch with the developer Adam Symington via email - ars44@bath.ac.uk. 
+If you have questions regarding any aspect of the software then please get in touch with the development team via email Adam Symington (symmy596@gmail.com), Joshua Tse (joshua.s.tse@gmail.com). 
 Alternatively you can create an issue on the [Issue Tracker](https://github.com/symmy596/SurfinPy/issues) or you can discuss your questions on our [gitter channel](https://gitter.im/Surfinpy/Lobby).
 
 ### Bugs
@@ -130,7 +130,7 @@ workflow while core developers use branches in the main repository:
       project. A more detailed discussion can take place there before
       the changes are accepted.
 
-For further information please contact Adam Symington, ars44@bath.ac.uk
+For further information please contact Adam Symington - symmy596@gmail.com, Joshua Tse - joshua.s.tse@gmail.com
 
 ## Research
 
@@ -142,8 +142,9 @@ For further information please contact Adam Symington, ars44@bath.ac.uk
 ## Author
 
 * Adam R.Symington
-  
+* Joshua Tse (Uniersity of Huddersfield)  
+
 ## Acknowledgements
   
 * [Prof Stephen C.Parker](http://people.bath.ac.uk/chsscp/) - (Bath University)
-* Joshua Tse (Huddersfield Uniersity)
+
