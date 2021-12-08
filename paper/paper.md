@@ -10,22 +10,22 @@ tags:
 authors:
 - name: Joshua S. Tse
   orcid: 0000-0002-1320-557X
-  affiliation: 2
+  affiliation: 1
 - name: Marco Molinari
   orcid: 0000-0001-7144-6075
-  affiliation: 2
+  affiliation: 1
 - name: Stephen C. Parker
   orcid: 0000-0003-3804-0975
-  affiliation: 1
+  affiliation: 2
 - name: Adam R. Symington
   orcid: 0000-0001-6059-497X
-  affiliation: "1"
+  affiliation: "2"
 affiliations:
-- name: Department of Chemistry, University of Bath
-  index: 1
 - name: Department of Chemistry, University of Huddersfield
+  index: 1
+- name: Department of Chemistry, University of Bath
   index: 2
-date: 30 September 2020
+date: 08 December 2020
 bibliography: paper.bib
 ---
 
