@@ -32,8 +32,8 @@ bibliography: paper.bib
 # Summary
 
 SurfinPy is a python module for generating phase diagrams from Density Functional Theory data. 
-The previous code release, reported in Adam R. Symington *et. al.* \cite{Symington2019}, calculated the surface free energy under different external conditions, and used these surface free energies to generate phase diagrams. 
-These phase diagrams can and have been used to provide an understanding of surface composition under various environmental conditions, thus providing crucial information for a range of materials science problems \cite{Symington2020c,Symington2020a,Moxon2020}. 
+The previous code release, reported in Adam R. Symington *et. al.* '[@Symington2019]', calculated the surface free energy under different external conditions, and used these surface free energies to generate phase diagrams. 
+These phase diagrams can and have been used to provide an understanding of surface composition under various environmental conditions, thus providing crucial information for a range of materials science problems '[@Symington2020c;@Symington2020a;@Moxon2020]'. 
 In this new release, the code has been expanded to generate phase diagrams for bulk phases, as well as surface phases. 
 
 This `SurfinPy` release makes the following contributions
