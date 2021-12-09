@@ -46,15 +46,15 @@ This `SurfinPy` release makes the following contributions
 The largest contribution to this release is the ability to calculate and plot phase diagrams for bulk phases, which is a substantial expansion of the previous code to include free
 energy for bulk phases (and not just surfaces) under various pressures and temperatures.
 Similarly, to the surface module, free energies for each phase are calculated under a specific temperature and pressure, which is then used to generate phase diagrams for bulk phases. 
-Instead of an absolute value, temperature ranges can now be provided, enabling the ability to plot pressure as a function of temperature (or vice-versa) providing results, which are easily comparable, where available to experiment.
+Instead of an absolute value, temperature ranges can now be provided, enabling the ability to plot pressure as a function of temperature (or vice-versa) providing results, which are comparable to experimental data where available.
 
-Another noteable addition to this release is the ability to calculate vibrational properties for solid phases from Density Functional Theory calculations. 
+Another notable addition to this release is the ability to calculate vibrational properties for solid phases from Density Functional Theory calculations. 
 This method uses the vibrational modes for each structure to calculate the zero point energy and thus the vibrational entropy. 
 These values can then be used to improve the accuracy of the free energy calculation and applies a higher level of theory. An example of bulk phase diagrams is shown in Figure 1.
 
 Finally, eleven tutorials have been developed to highlight the full functionality of this new `SurfinPy` release. These are all available in jupyter notebooks in the repository. 
 
-![An example phase diagram as a function of chemical potential.\label{fig:example}](surfinpy.pdf)
+![An example of a phase diagram as a function of chemical potential.\label{fig:example}](surfinpy.pdf)
 
 
 # Statement of Need
@@ -70,6 +70,6 @@ With this release SurfinPy is no longer limited to the surface chemistry, but ex
 
 # Acknowledgements
   
-The authors acknowledge the EPSRC (EP/K025597/1 and EP/R010366/1), and the Royal Society (Newton Advanced Fellowship NA150190).
+The authors acknowledge support from the EPSRC (EP/K025597/1 and EP/R010366/1), and the Royal Society (Newton Advanced Fellowship NA150190).
 
 # References
