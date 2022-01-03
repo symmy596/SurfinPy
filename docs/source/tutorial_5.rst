@@ -1,8 +1,8 @@
 Pressure vs Temperature
 =======================
 
-In the previous example, we showed how experimental data could be used to determine the temperature dependent free energy term for gaseous species and then plot a phase diagram that represents 298 K.  
-This same method can be used in conjuction with a temperature range to produce a phase diagram of temperature as a function of pressure (or chemical potential).  
+In the previous example, we showed how experimental data could be used to determine the temperature dependent free energy term for gaseous species and then plot a phase diagram that represents 298 K.
+This same method can be used in conjunction with a temperature range to produce a phase diagram of temperature as a function of pressure (or chemical potential).
 This is an important step to producing relatable phase diagrams that can be compared to experimental findings.
 
 To reiterate, the free energy can be calculated using;
@@ -10,9 +10,9 @@ To reiterate, the free energy can be calculated using;
 .. math::
     \Delta G^{0}_{f} = \sum\Delta G_{f}^{0,\text{products}} - \sum\Delta G_{f}^{0,\text{reactants}}
 
-Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy (:math:`U_0`). For gaseous species, 
-the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems, 
-we use experimental data to determine the temperature dependent free energy term for gaseous species, where $S_{\text{expt}}(T)$ is specific entropy value for a given T and  $H-H^0(T)$ is the , 
+Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy (:math:`U_0`). For gaseous species,
+the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems,
+we use experimental data to determine the temperature dependent free energy term for gaseous species, where $S_{\text{expt}}(T)$ is specific entropy value for a given T and  $H-H^0(T)$ is the ,
 both can be obtained from the NIST database and can be calculated as;
 
 .. math::
@@ -41,37 +41,37 @@ temperature_range sets the temperature range which is calculated for the phase d
 
 
     Bulk = data.DataSet(cation = 10, x = 0, y = 0, energy = -92., color=colors[0],
-                    label = "Bulk", file = 'ref_files/bulk_vib.yaml'', 
+                    label = "Bulk", file = 'ref_files/bulk_vib.yaml'',
                     funits = 10, temp_range=temperature_range)
 
     D = data.DataSet(cation = 10, x = 10, y = 0, energy = -310.,  color=colors[1],
-                    label = "D", file = 'ref_files/D_vib.yaml', 
+                    label = "D", file = 'ref_files/D_vib.yaml',
                     funits =  10, temp_range=temperature_range)
 
     B = data.DataSet(cation = 10, x = 0, y = 10, energy = -227.,  color=colors[2],
-                    label = "B", file = 'ref_files/B_vib.yaml', 
+                    label = "B", file = 'ref_files/B_vib.yaml',
                     funits =  10, temp_range=temperature_range)
 
     F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.,  color=colors[3],
-                    label = "F", file = 'ref_files/F_vib.yaml', 
+                    label = "F", file = 'ref_files/F_vib.yaml',
                     funits =  2, temp_range=temperature_range)
 
     A = data.DataSet(cation = 10, x = 5, y = 20, energy = -467.,  color=colors[4],
-                    label = "A", file = 'ref_files/A_vib.yaml', 
+                    label = "A", file = 'ref_files/A_vib.yaml',
                     funits = 5, temp_range=temperature_range)
 
     C = data.DataSet(cation = 10, x = 10, y = 30, energy = -705.,  color=colors[5],
-                    label = "C", file = 'ref_files/C_vib.yaml', 
+                    label = "C", file = 'ref_files/C_vib.yaml',
                     funits = 10, temp_range=temperature_range)
 
     E = data.DataSet(cation = 10, x = 10, y = 50, energy = -971.,  color=colors[6],
-                    label = "E", file = 'ref_files/E_vib.yaml', 
+                    label = "E", file = 'ref_files/E_vib.yaml',
                     funits =  10, temp_range=temperature_range)
 
     data = [Bulk, A, B, C,  D, E, F]
 
-deltaZ specifies the temperature range which is plotted (Note that this must be the same as temperature_range).  
-mu_y is the chemical potential (eV) of third component, in this example we use a chemical potential of water = 0 eV which is equivalent to 1 bar pressure. 
+deltaZ specifies the temperature range which is plotted (Note that this must be the same as temperature_range).
+mu_y is the chemical potential (eV) of third component, in this example we use a chemical potential of water = 0 eV which is equivalent to 1 bar pressure.
 
 .. code-block:: python
 
