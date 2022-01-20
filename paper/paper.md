@@ -66,6 +66,8 @@ This allows the exploration of the phase stability of solid state systems of dif
 We have also added functionality to calculate and incorporate the vibrational entropy and zero point energy. 
 This removes the approximation that entropy of solid phases does not contribute to the free energy and improves the accuracy of the methods.
 
+There are other codes that are able to produce phase diagrams e.g. pymatgen (REF) and ASE (REF), however, our code offers an easier way to compare phases and plot diagrams of chemical potential as a function of chemical potential and chemcial potential as a function of temperature.  Additionally, our code only deals with the production of phase diagrams paired with detailed examples, offering a more tailored experience compared to other codes.
+
 With this release SurfinPy is no longer limited to the surface chemistry, but expands on the chemistry of bulk phases, which makes it ideal for applications to the broad spectrum of research questions across the solid state chemistry and physics.
 
 # Acknowledgements
