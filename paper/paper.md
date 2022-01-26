@@ -33,8 +33,8 @@ bibliography: paper.bib
 
 SurfinPy is a python module for generating phase diagrams from data derived from ab initio and/or classical techniques.
 
-The previous code release, reported in Adam R. Symington *et. al.* '[@Symington2019]', calculated the surface free energy under different external conditions, and used surface free energy values to generate phase diagrams. 
-Phase diagrams have been used to provide an understanding of surface composition under various environmental conditions, thus providing crucial information for a range of materials science problems '[@Symington2020c;@Symington2020a;@Moxon2020]'. 
+The previous code release, reported in Adam R. Symington *et. al.* [@Symington2019], calculated the surface free energy under different external conditions, and used surface free energy values to generate phase diagrams. 
+Phase diagrams have been used to provide an understanding of surface composition under various environmental conditions, thus providing crucial information for a range of materials science problems [@Symington2020c;@Symington2020a;@Moxon2020]. 
 In this second release, the code has been expanded to generate phase diagrams for bulk phases, as well as surface phases. 
 
 This `SurfinPy` release increases the capability of the previous release implementing the following major contributions
@@ -61,7 +61,7 @@ Finally, eleven tutorials have been developed to highlight the full functionalit
 With this release SurfinPy is no longer limited to the surface composition and chemistry and particle morphology, but expands on the chemistry of bulk phases, which make it ideal for applications to the broad spectrum of research questions around solid state chemistry and physics. 
 This allows the exploration of the phase stability of solid state systems (bulk and surface phases) of different compositions as a function of external conditions. 
 
-Other codes capable to produce phase diagrams *e.g.* pymatgen '[@ONG2013314]' and ASE '[@Hjorth_Larsen_2017]' are available.  However, our code is self-contained allowing for the generating both bulk and surface phase diagrams, while offering easier and enhanced plotting capability to compare phases as a function of chemical potential of different species and temperature.  Additionally, unlike other codes detailed tutorials are available, offering a more tailored and focused experience compared to other codes.
+Other codes capable to produce phase diagrams *e.g.* pymatgen [@ONG2013314] and ASE [@Hjorth_Larsen_2017] are available.  However, our code is self-contained allowing for the generating both bulk and surface phase diagrams, while offering easier and enhanced plotting capability to compare phases as a function of chemical potential of different species and temperature.  Additionally, unlike other codes detailed tutorials are available, offering a more tailored and focused experience compared to other codes.
 
 # Acknowledgements
   
