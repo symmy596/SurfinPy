@@ -87,6 +87,8 @@ To build the documentation from scratch
     cd docs
     make html
 
+Alternativly, documentation can be found [here](https://surfinpy.readthedocs.io/en/latest/).
+
 ### License
 
 `surfinpy` is made available under the MIT License.
