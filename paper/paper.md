@@ -36,17 +36,18 @@ bibliography: paper.bib
 The previous code release, reported in Adam R. Symington *et. al.* [@Symington2019], calculated the surface free energy values under different external conditions, and used these values to generate phase diagrams. 
 Surface phase diagrams have been used to provide an understanding of surface composition under various environmental conditions, thus giving crucial information for a range of surface science problems [@Symington2020c;@Symington2020a;@Moxon2020]. 
 
-In this second `SurfinPy` release, the capability of the code has been expanded to generate phase diagrams for bulk phases, as well as surface phases. The code how now the ability to calculate free energy values of bulk phases under specific values of pressure and temperature, and use these to plot phase diagrams for bulk phases as a function  of the chemical potential (and/or pressure) of two species, and as a function  of the chemical potential and temperature. 
-Instead of an absolute value, temperature ranges can now be provided, enabling the ability to plot pressure as a function of temperature (or vice-versa) giving results, that are comparable to experimental data where available.
+In this second `SurfinPy` release, the capability of the code has been expanded to generate phase diagrams for bulk phases, as well as surface phases. The code now has the ability to calculate free energy values of bulk phases under specific values of pressure and temperature, and use these to plot phase diagrams for bulk phases as a function  of the chemical potential (and/or pressure)(\autoref{fig:example}) of two species, and as a function  of the chemical potential and temperature. 
+Instead of an absolute value, temperature ranges can now be provided, enabling the ability to plot pressure as a function of temperature (or vice-versa), giving results that are comparable to experimental data where available.
 Another notable addition to this release is the ability to calculate vibrational properties for bulk phases. 
 The vibrational modes for bulk phases are used to calculate the zero point energy and thus the vibrational entropy. 
-The code allows for the inclusion of these values into the generation of phase diagrams, which removes the approximation that entropy of bulk phases has little contribution to the free energy and may improve the accuracy of the methodology.
+The code allows for the inclusion of these values into the generation of phase diagrams, which removes the approximation that entropy of bulk phases has little contribution to the free energy, and may improve the accuracy of the methodology.
 
 A significant update to the original code has also been made to improve performance in terms of speedup, stream-line workflow and enhanced plotting options.
+Finally, eleven tutorials have been developed to highlight the full functionality of this new SurfinPy release. These are all available in jupyter notebooks in the repository.
 
 ![An example of a phase diagram as a function of chemical potential.\label{fig:example}](surfinpy.pdf)
 
-Finally, eleven tutorials have been developed to highlight the full functionality of this new SurfinPy release. These are all available in jupyter notebooks in the repository.
+
 
 # Statement of Need
 
