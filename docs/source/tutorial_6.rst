@@ -1,11 +1,11 @@
 Vibrational Entropy
 ===================
 
-In this example we will expand this methodology to calculate the vibrational properties for solid phases (i.e. zero point energy, vibrational entropy) 
+In this example we will expand this methodology to calculate the vibrational properties for solid phases (i.e. zero point energy, vibrational entropy)
 and include these values in the generation of the phase diagrams.  This allows for a more accurate calculation of phase diagrams without the need to include experimental corrections for solid phases.
 
-As with previous examples, the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems, 
-we use experimental data to determine the temperature dependent free energy term for gaseous species obtained from the NIST database.  
+As with previous examples, the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems,
+we use experimental data to determine the temperature dependent free energy term for gaseous species obtained from the NIST database.
 In addition we also calculate the vibrational properties for the solid phases modifying the free energy (G) for solid phases to be;
 
 .. math::
@@ -38,45 +38,45 @@ where :math:`$A_{vib}$` is the vibrational Helmholtz free energy and defined as;
     bulk = data.ReferenceDataSet(cation = 1, anion = 1, energy = -92.0, funits = 10, file = 'bulk_vib.yaml', entropy=True, zpe=True, temp_range=temperature_range)
 
 
-In addition to entropy and zpe keyword you must provide the a file containing the vibrational modes and number of formula units used in taht calculations.  You must create the yaml file using the following format
+In addition to entropy and zpe keyword you must provide the a file containing the vibrational modes and number of formula units used in that calculations.  You must create the yaml file using the following format
 
 .. code-block:: python
 
     F-Units : number
-    Frequencies : 
+    Frequencies :
     - mode1
     - mode2
 
-Vibrational modes can be calculated via a density functional pertibation calculation or via the phonopy code.
+Vibrational modes can be calculated via a density functional perturbation calculation or via the phonopy code.
 
 .. code-block:: python
 
-    Bulk = data.DataSet(cation = 10, x = 0, y = 0, energy = -92, 
-                      label = "Bulk", entropy = True, zpe=True, file = 'ref_files/bulk_vib.yaml', 
+    Bulk = data.DataSet(cation = 10, x = 0, y = 0, energy = -92,
+                      label = "Bulk", entropy = True, zpe=True, file = 'ref_files/bulk_vib.yaml',
                       funits = 10, temp_range=temperature_range)
 
-    A = data.DataSet(cation = 10, x = 5, y = 20, energy = -468, 
-                      label = "A", entropy = True, zpe=True, file = 'ref_files/A_vib.yaml', 
+    A = data.DataSet(cation = 10, x = 5, y = 20, energy = -468,
+                      label = "A", entropy = True, zpe=True, file = 'ref_files/A_vib.yaml',
                       funits = 5, temp_range=temperature_range)
 
-    B = data.DataSet(cation = 10, x = 0, y = 10, energy = -228, 
-                      label = "B", entropy = True, zpe=True, file = 'ref_files/B_vib.yaml', 
+    B = data.DataSet(cation = 10, x = 0, y = 10, energy = -228,
+                      label = "B", entropy = True, zpe=True, file = 'ref_files/B_vib.yaml',
                       funits =  10, temp_range=temperature_range)
 
-    C = data.DataSet(cation = 10, x = 10, y = 30, energy = -706, 
-                      label = "C", entropy = True, zpe=True, file = 'ref_files/C_vib.yaml', 
+    C = data.DataSet(cation = 10, x = 10, y = 30, energy = -706,
+                      label = "C", entropy = True, zpe=True, file = 'ref_files/C_vib.yaml',
                       funits = 10, temp_range=temperature_range)
 
-    D = data.DataSet(cation = 10, x = 10, y = 0, energy = -310, 
-                      label = "D", entropy = True, zpe=True,  file = 'ref_files/D_vib.yaml', 
+    D = data.DataSet(cation = 10, x = 10, y = 0, energy = -310,
+                      label = "D", entropy = True, zpe=True,  file = 'ref_files/D_vib.yaml',
                       funits =  10, temp_range=temperature_range)
 
-    E = data.DataSet(cation = 10, x = 10, y = 50, energy = -972, 
-                      label = "E", entropy = True, zpe=True, file = 'ref_files/E_vib.yaml', 
+    E = data.DataSet(cation = 10, x = 10, y = 50, energy = -972,
+                      label = "E", entropy = True, zpe=True, file = 'ref_files/E_vib.yaml',
                       funits =  10, temp_range=temperature_range)
 
-    F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398, 
-                      label = "F", entropy = True, zpe=True, file = 'ref_files/F_vib.yaml', 
+    F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398,
+                      label = "F", entropy = True, zpe=True, file = 'ref_files/F_vib.yaml',
                       funits =  2, temp_range=temperature_range)
 
 
@@ -106,7 +106,7 @@ Vibrational modes can be calculated via a density functional pertibation calcula
 Temperature
 -----------
 
-In tutorial 5 we showed how SurfinPy can be used to calculate the vibrational entropy and zero point energy for solid phases and in tutorial 4 we showed how a temperature range can be used to calculate the phase diagram of temperature as a function of presure.  In this example we will use both lesson from these tutorials to produce a phase diagram of temperature as a function of pressure including the vibrational properties for solid phases.  Again this produces results which are easily compared to experimental values in addition to increasing the level of theory used.
+In tutorial 5 we showed how SurfinPy can be used to calculate the vibrational entropy and zero point energy for solid phases and in tutorial 4 we showed how a temperature range can be used to calculate the phase diagram of temperature as a function of pressure.  In this example we will use both lesson from these tutorials to produce a phase diagram of temperature as a function of pressure including the vibrational properties for solid phases.  Again this produces results which are easily compared to experimental values in addition to increasing the level of theory used.
 
 .. code-block:: python
 
@@ -125,32 +125,32 @@ In tutorial 5 we showed how SurfinPy can be used to calculate the vibrational en
 
 
     Bulk = data.DataSet(cation = 10, x = 0, y = 0, energy = -92., color=colors[0],
-                    label = "Bulk", entropy = True, zpe=True, file = 'ref_files/bulk_vib.yaml', 
+                    label = "Bulk", entropy = True, zpe=True, file = 'ref_files/bulk_vib.yaml',
                     funits = 10, temp_range=temperature_range)
 
     D = data.DataSet(cation = 10, x = 10, y = 0, energy = -310.,  color=colors[1],
-                    label = "D", entropy = True, zpe=True,  file = 'ref_files/D_vib.yaml', 
+                    label = "D", entropy = True, zpe=True,  file = 'ref_files/D_vib.yaml',
                     funits =  10, temp_range=temperature_range)
 
     B = data.DataSet(cation = 10, x = 0, y = 10, energy = -227.,  color=colors[2],
-                    label = "B", entropy = True, zpe=True, file = 'ref_files/B_vib.yaml', 
+                    label = "B", entropy = True, zpe=True, file = 'ref_files/B_vib.yaml',
                     funits =  10, temp_range=temperature_range)
 
     F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.,  color=colors[3],
-                    label = "F", entropy = True, zpe=True, file = 'ref_files/F_vib.yaml', 
-                    funits =  2, temp_range=temperature_range)     
-                
+                    label = "F", entropy = True, zpe=True, file = 'ref_files/F_vib.yaml',
+                    funits =  2, temp_range=temperature_range)
+
     A = data.DataSet(cation = 10, x = 5, y = 20, energy = -467.,  color=colors[4],
-                    label = "A", entropy = True, zpe=True, file = 'ref_files/A_vib.yaml', 
+                    label = "A", entropy = True, zpe=True, file = 'ref_files/A_vib.yaml',
                     funits = 5, temp_range=temperature_range)
 
 
     C = data.DataSet(cation = 10, x = 10, y = 30, energy = -705.,  color=colors[5],
-                    label = "C", entropy = True, zpe=True, file = 'ref_files/C_vib.yaml', 
+                    label = "C", entropy = True, zpe=True, file = 'ref_files/C_vib.yaml',
                     funits = 10, temp_range=temperature_range)
 
     E = data.DataSet(cation = 10, x = 10, y = 50, energy = -971.,  color=colors[6],
-                    label = "E", entropy = True, zpe=True, file = 'ref_files/E_vib.yaml', 
+                    label = "E", entropy = True, zpe=True, file = 'ref_files/E_vib.yaml',
                     funits =  10, temp_range=temperature_range)
 
     data = [Bulk, A, B, C,  D, E, F]
@@ -172,7 +172,7 @@ In tutorial 5 we showed how SurfinPy can be used to calculate the vibrational en
     :height: 300px
     :align: center
 
-When investigating the phase diagram for certain systems it could be beneficial to remove a kinetically inhibited but thermodynamically stable phase to investigate the metastable phase diagram.  Within SurfinPy this can be acheived via recreating the data list without the phase in question then recalculating the phse diagram, as below.
+When investigating the phase diagram for certain systems it could be beneficial to remove a kinetically inhibited but thermodynamically stable phase to investigate the metastable phase diagram.  Within SurfinPy this can be achieved via recreating the data list without the phase in question then recalculating the phase diagram, as below.
 
 .. code-block:: python
 
