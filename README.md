@@ -67,11 +67,7 @@ surfinpy is a Python 3 package and requires a typical scientific Python stack. U
 
 To build from source:
 
-    pip install -r requirements.txt
-
-    python setup.py build
-
-    python setup.py install
+    pip install -r requirements.txt -e .
 
     python setup.py test
 
@@ -103,6 +99,9 @@ Alternativly, documentation can be found [here](https://surfinpy.readthedocs.io/
 - Pymatgen
 - Seaborn
 - Pyyaml
+- Jupyter (Examples using Jupyter Notebooks)
+- Pandas
+
 
 ## Contributing
 
