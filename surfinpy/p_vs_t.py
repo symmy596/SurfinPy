@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.constants import codata
+from scipy.constants import value
 from surfinpy import utils as ut
 from surfinpy import plotting
 
@@ -41,8 +41,8 @@ def calculate_surface_energy(AE, lnP, T, coverage, SE, nsurfaces):
     SE_array : :py:attr:`array_like`
         array of integers corresponding to lowest surface energies
     """
-    R = codata.value('molar gas constant')
-    N_A = codata.value('Avogadro constant')
+    R = value('molar gas constant')
+    N_A = value('Avogadro constant')
     SEABS = np.array([])
     xnew = ut.build_xgrid(T, lnP)
     ynew = ut.build_ygrid(T, lnP)

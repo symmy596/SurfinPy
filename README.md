@@ -100,7 +100,6 @@ Alternativly, documentation can be found [here](https://surfinpy.readthedocs.io/
 - Seaborn
 - Pyyaml
 - Jupyter (Examples using Jupyter Notebooks)
-- Pandas
 
 
 ## Contributing
