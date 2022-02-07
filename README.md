@@ -69,7 +69,12 @@ To build from source:
 
     pip install -r requirements.txt -e .
 
+    Or for jupyter compatable use
+
+    pip install -r requirements.txt -e .[Tutorials]
+
     python setup.py test
+
 
 Or alternatively install with pip
 
@@ -99,7 +104,7 @@ Alternativly, documentation can be found [here](https://surfinpy.readthedocs.io/
 - Pymatgen
 - Seaborn
 - Pyyaml
-- Jupyter (Examples using Jupyter Notebooks)
+- Jupyter (Examples using Jupyter Notebooks, use Tutorials install)
 
 
 ## Contributing
