@@ -69,7 +69,7 @@ To build from source:
 
     pip install -r requirements.txt -e .
 
-    Or for jupyter compatable use
+Or for jupyter compatable use
 
     pip install -r requirements.txt -e .[Tutorials]
 
