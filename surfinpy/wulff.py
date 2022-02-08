@@ -1,7 +1,7 @@
 from surfinpy import p_vs_t as pt
 from surfinpy import utils as ut
 import numpy as np
-from scipy.constants import codata
+from scipy.constants import value
 
 
 def temperature_correction(T, thermochem, adsorbant):
@@ -69,8 +69,8 @@ def calculate_surface_energy(stoich,
     """
     if coverage is None:
         coverage = ut.calculate_coverage(data)
-    R = codata.value('molar gas constant')
-    N_A = codata.value('Avogadro constant')
+    R = value('molar gas constant')
+    N_A = value('Avogadro constant')
     lnP = np.log(10 ** P)
     adsorbant = temperature_correction(T, thermochem, adsorbant)
     AE = pt.adsorption_energy(data, stoich, adsorbant)
