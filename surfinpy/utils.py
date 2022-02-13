@@ -1,6 +1,6 @@
 import yaml
 import numpy as np
-from scipy.constants import codata
+from scipy.constants import value
 from scipy.interpolate import CubicSpline
 import matplotlib.pyplot as plt 
 
@@ -26,7 +26,7 @@ def pressure(chemical_potential, t):
     pressure : :py:attr:`array_like`
         pressure values as a function of chemcial potential
     """
-    k = codata.value('Boltzmann constant in eV/K')
+    k = value('Boltzmann constant in eV/K')
     pressure = chemical_potential / (k * t * 2.203)
     return pressure
 

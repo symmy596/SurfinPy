@@ -1,7 +1,7 @@
 import yaml
 import numpy as np
 from surfinpy import utils as ut
-from scipy.constants import codata
+from scipy.constants import value
 from scipy.constants import physical_constants
 
 def zpe_calc(vib_prop):

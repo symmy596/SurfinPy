@@ -1,7 +1,7 @@
 Chemical Potential
 ==================
 
-In this tutorial we learn how to generate a basic bulk phase diagram from DFT energies.  This enables the comparison of the thermodynamic stability of various different bulk phases under different chemical potentials giving valuable insight in to the syntheis of solid phases.  This example will consider a series of bulk phases which can be defined through a reaction scheme across all phases, thus for this example including Bulk, :math:`H_2O` and :math:`CO_2` as reactions and A as a generic product.
+In this tutorial we learn how to generate a basic bulk phase diagram from DFT energies.  This enables the comparison of the thermodynamic stability of various different bulk phases under different chemical potentials giving valuable insight in to the synthesis of solid phases.  This example will consider a series of bulk phases which can be defined through a reaction scheme across all phases, thus for this example including Bulk, :math:`H_2O` and :math:`CO_2` as reactions and A as a generic product.
 
 .. math::
     x\text{Bulk} + y\text{H}_2\text{O} + z\text{CO}_2 \rightarrow \text{A}
@@ -17,7 +17,7 @@ Assuming that :math:`H_2O` and :math:`CO_2` are gaseous species, :math:`$\mu_{CO
 .. math::
 	\mu_{\text{H}_2\text{O}} = \mu^0_{\text{H}_2\text{O}} + \Delta\mu_{\text{H}_2\text{O}}
 
-and 
+and
 
 .. math::
 	\mu_{\text{CO}_2} = \mu^0_{\text{CO}_2} + \Delta\mu_{\text{CO}_2}
@@ -80,14 +80,14 @@ Next we create the bulk phases classes - one for each phase (A-F). 'Cation' is t
     F = data.DataSet(cation = 10, x = 8, y = 10, energy = -398.0, label = "F")
 
 
-Next we need to create a list of our data. Don't worry about the order, `surfinpy` will sort that out for you. 
+Next we need to create a list of our data. Don't worry about the order, `surfinpy` will sort that out for you.
 
 .. code-block:: python
 
     data = [Bulk, A, B, C,  D, E, F]
 
 
-We now need to generate our X and Y axis, or more appropriately, our chemical potential values. These exist in a dictionary. 'Range' corresponds to the range of chemcial potential values to be considered and 'Label' is the axis label.  Additionally, the x and y energy need to be specified.
+We now need to generate our X and Y axis, or more appropriately, our chemical potential values. These exist in a dictionary. 'Range' corresponds to the range of chemical potential values to be considered and 'Label' is the axis label.  Additionally, the x and y energy need to be specified.
 
 .. code-block:: python
 
@@ -103,7 +103,7 @@ We now need to generate our X and Y axis, or more appropriately, our chemical po
     y_energy=-12.83725889
 
 
-And finally we can generate our plot using these 6 variables of data. 
+And finally we can generate our plot using these 6 variables of data.
 
 .. code-block:: python
 
@@ -120,8 +120,8 @@ And finally we can generate our plot using these 6 variables of data.
 Temperature
 -----------
 
-In the previous example we generated a phase diagram at 0 K.  However, this is not representative of normal conditions.  
-Temperature is an important consideration for materials chemistry and we may wish to evaluate the phase thermodynamic stability at various synthesis conditions.  
+In the previous example we generated a phase diagram at 0 K.  However, this is not representative of normal conditions.
+Temperature is an important consideration for materials chemistry and we may wish to evaluate the phase thermodynamic stability at various synthesis conditions.
 This example will again be using the :math:`Bulk-CO_2-H_2O` system.
 
 As before the free energy can be calculated using;
@@ -129,9 +129,9 @@ As before the free energy can be calculated using;
 .. math::
     \Delta G^{0}_{f} = \sum\Delta G_{f}^{0,\text{products}} - \sum\Delta G_{f}^{0,\text{reactants}}
 
-Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy :math:`(U_0)`. 
-For gaseous species, the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems, 
-we use experimental data to determine the temperature dependent free energy term for gaseous species, 
+Where for this tutorial the free energy (G) for solid phases  is equal to is equal to the calculated DFT energy :math:`(U_0)`.
+For gaseous species, the standard free energy varies significantly with temperature, and as DFT simulations are designed for condensed phase systems,
+we use experimental data to determine the temperature dependent free energy term for gaseous species,
 where :math:`$S_{expt}(T)$` is specific entropy value for a given T and  :math:`$H-H^0(T)$` is the , both can be obtained from the NIST database and can be calculated as;
 
 .. math::
@@ -159,9 +159,9 @@ where :math:`$S_{expt}(T)$` is specific entropy value for a given T and  :math:`
     x_energy=-20.53412969
     y_energy=-12.83725889
 
-In order to calculate :math:`$S_{expt}(T)$` for :math:`H_2O` and :math:`CO_2` we need to use experimental data from the NSIT JANAF database.  
-As a user you will need to download the tables for the species you are interested in (in this example water and carbon dioxide).  
-`surfinpy` has a function that can read this data, assuming it is in the correct format and calculate the temperature correction for you.  
+In order to calculate :math:`$S_{expt}(T)$` for :math:`H_2O` and :math:`CO_2` we need to use experimental data from the NSIT JANAF database.
+As a user you will need to download the tables for the species you are interested in (in this example water and carbon dioxide).
+`surfinpy` has a function that can read this data, assuming it is in the correct format and calculate the temperature correction for you.
 Provide the path to the file and the temperature you want.
 
 .. code-block:: python
@@ -175,7 +175,7 @@ Provide the path to the file and the temperature you want.
     deltaX = {'Range': [ -3, 2],  'Label': 'CO_2'}
     deltaY = {'Range': [ -3, 2], 'Label': 'H_2O'}
 
-CO2_corrected and H2O_corrected are now temperature depenent terms correcsponding to a temperature of 298 K. The resulting phase diagram will now be at a temperature of 298 K.
+CO2_corrected and H2O_corrected are now temperature dependent terms corresponding to a temperature of 298 K. The resulting phase diagram will now be at a temperature of 298 K.
 
 .. code-block:: python
 
@@ -190,15 +190,15 @@ CO2_corrected and H2O_corrected are now temperature depenent terms correcspondin
 Pressure
 --------
 
-In the previous example we went through the process of generating a simple phase diagram for bulk phases and introducing temperature dependence for gaseous species.  
-This useful however, sometimes it can be more beneficial to convert the chemical potenials (eVs) to partial presure (bar). 
+In the previous example we went through the process of generating a simple phase diagram for bulk phases and introducing temperature dependence for gaseous species.
+This useful however, sometimes it can be more beneficial to convert the chemical potentials (eVs) to partial pressure (bar).
 
 Chemical potential can be converted to pressure values using
 
 .. math::
     P & = \frac{\mu_O}{k_B T} ,
 
-where P is the pressure, :math:`$\mu$` is the chemical potential of oxygen, $k_B$ is the Boltzmnann constant and T is the temperature. 
+where P is the pressure, :math:`$\mu$` is the chemical potential of oxygen, $k_B$ is the Boltzmann constant and T is the temperature.
 
 .. code-block:: python
 
@@ -210,7 +210,7 @@ where P is the pressure, :math:`$\mu$` is the chemical potential of oxygen, $k_B
     colors = ['#5B9BD5', '#4472C4', '#A5A5A5', '#772C24', '#ED7D31', '#FFC000', '#70AD47']
 
 
-Additionally, `surfinpy` has the functionality to allow you to choose which colours are used for each phase.  Specify within the DataSet class color. 
+Additionally, `surfinpy` has the functionality to allow you to choose which colours are used for each phase.  Specify within the DataSet class color.
 
 .. code-block:: python
 
