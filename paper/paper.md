@@ -31,7 +31,7 @@ bibliography: paper.bib
 
 # Summary
 
-`SurfinPy` is a python module for generating phase diagrams from data derived from ab initio and/or classical methodologies.
+`SurfinPy` is a python module for generating phase diagrams from data derived from *ab initio* and/or classical methodologies.
 
 The previous code release, reported in Adam R. Symington *et. al.* [@Symington2019], calculated the surface free energy values under different external conditions, and used these values to generate phase diagrams. 
 Surface phase diagrams have been used to provide an understanding of surface composition under various environmental conditions, thus giving crucial information for a range of surface science problems [@Symington2020c;@Symington2020a;@Moxon2020]. 
