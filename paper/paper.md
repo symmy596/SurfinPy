@@ -19,7 +19,6 @@ authors:
   affiliation: 2
 - name: Adam R. Symington
   orcid: 0000-0001-6059-497X
-  affiliation: "2"
 affiliations:
 - name: Department of Chemistry, University of Huddersfield
   index: 1
