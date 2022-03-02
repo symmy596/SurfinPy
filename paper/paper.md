@@ -18,15 +18,13 @@ authors:
   orcid: 0000-0003-3804-0975
   affiliation: 2
 - name: Adam R. Symington
-  affiliation: 3
+  affiliation: 2
   orcid: 0000-0001-6059-497X
 affiliations:
 - name: Department of Chemistry, University of Huddersfield
   index: 1
 - name: Department of Chemistry, University of Bath
   index: 2
-- name: Unaffiliated
-  index: 3
 date: 08 December 2020
 bibliography: paper.bib
 ---
