@@ -7,6 +7,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2573646.svg)](https://doi.org/10.5281/zenodo.2573646)
 [![status](http://joss.theoj.org/papers/368e55451d3fd6ae4b939e1b8e7843ba/status.svg)](http://joss.theoj.org/papers/368e55451d3fd6ae4b939e1b8e7843ba)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.04014/status.svg)](https://doi.org/10.21105/joss.04014)
 [![Documentation Status](https://readthedocs.org/projects/surfinpy/badge/?version=latest)](https://surfinpy.readthedocs.io/en/latest/)
 [![Build Status](https://travis-ci.com/symmy596/SurfinPy.svg?branch=master)](https://travis-ci.com/symmy596/SurfinPy)
 [![Build status](https://ci.appveyor.com/api/projects/status/nww04m6tp3335jjr?svg=true)](https://ci.appveyor.com/project/symmy596/surfinpy)
